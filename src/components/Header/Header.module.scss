@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  width: 100%;
+  padding: 10px 15px 10px 50px;
+  font-size: 30px;
+}
+
+.headerMenu {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  gap: 30px;
+}
+
+.menuList {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  //   margin-right: 30px;
+}
+
+.logoutBtn {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: transparent;
+}

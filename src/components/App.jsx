@@ -1,16 +1,17 @@
+import { Routes, Route } from 'react-router';
+import { Layout } from './Layout/Layout';
+import { DashBoardPage } from 'pages/DashBoardPage/DashBoardPage';
+import { ReportsPage } from 'pages/ReportsPage/ReportsPage';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React template :)
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<DashBoardPage />} />
+          <Route path="partner" element={<ReportsPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 };

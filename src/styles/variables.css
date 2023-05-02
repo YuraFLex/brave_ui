@@ -1,0 +1,38 @@
+:root {
+  /* Fonts */
+  --main-font: 'Circe', sans-serif;
+
+  /* Text Colors */
+  --title-black-color: #000000;
+  --text-white-color: #ffffff;
+  --header-grey-color: #bdbdbd;
+  --balance-grey-color: #a6a6a6;
+  --earnings-green-color: #24cca7;
+  --expenditure-red-color: #ff6596;
+  --subscription-green-color: #24cca7;
+
+  /* Backgroung Color */
+  --primary-bg-color: #0099fa;
+  --secondary-bg-color: #ffffff;
+  --desktop-bg-color: rgba(255, 255, 255, 0.4);
+
+  /* Shadows */
+  --modal-list-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  --hometab-hr-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  --hometab-hr-section-shadow: 1px 0px 0px rgba(0, 0, 0, 0.05),
+    2px 0px 0px rgba(255, 255, 255, 0.6);
+
+  /* Animations */
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --modal-animation: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Breakpoints */
+  --mobile: 320px;
+  --tablet: 768px;
+  --desktop: 1280px;
+
+  /* dark mood */
+  /* --dark-mood-bg-color: rgba(0, 0, 0, 0.5);
+  --dark-mood-form-color: rgba(0, 0, 0, 0.1);
+  --dark-mood-addForm-color: #565d64; */
+}

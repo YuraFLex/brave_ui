@@ -1,11 +1,11 @@
-// import s from './DashBoardPage.module.scss';
+import { Wraper } from 'components/Wraper/Wraper';
 
 export const DashBoardPage = () => {
   return (
     <>
-      <div className="pageContent">
+      <Wraper>
         <h1>Welcome Dashboard page</h1>
-      </div>
+      </Wraper>
     </>
   );
 };

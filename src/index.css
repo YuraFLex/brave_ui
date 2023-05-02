@@ -1,8 +1,36 @@
+@font-face {
+  font-family: 'Work Sans';
+  src: url(../public/fonts/WorkSans-Light.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url(../public/fonts/WorkSans-Regular.ttf);
+  font-weight: regular;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url(../public/fonts/WorkSans-SemiBold.ttf);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url(../public/fonts/WorkSans-Bold.ttf);
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #0099fa;
@@ -16,8 +44,12 @@ code {
 
 #root {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
+}
+
+main {
+  margin: 0 auto;
 }
 
 *,
@@ -179,13 +211,4 @@ img {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
-}
-
-.pageContent {
-  width: 88vw;
-  height: 100vh;
-  background-color: #fff;
-  color: #000;
-  border-radius: 16px;
-  padding: 20px 40px;
 }

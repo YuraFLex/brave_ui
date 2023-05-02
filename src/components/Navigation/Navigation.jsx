@@ -1,12 +1,17 @@
 import { Link } from './Navigation.styled';
 import s from './Navigation.module.scss';
-// import { AiFillHome } from 'react-icons/ai';
+import { RxHamburgerMenu } from 'react-icons/rx';
 import { TbReportSearch } from 'react-icons/tb';
 import { MdSpaceDashboard } from 'react-icons/md';
 
 export const Navigation = () => {
   return (
-    <nav>
+    <nav className={s.nav}>
+      <div className={s.menuBurger}>
+        <button className={s.menuBtn}>
+          <RxHamburgerMenu className={s.menuIcon} />
+        </button>
+      </div>
       <ul className={s.navlist}>
         <li>
           <Link to="/" end>
@@ -18,7 +23,7 @@ export const Navigation = () => {
           </Link>
         </li>
         <li>
-          <Link to="partner">
+          <Link to="reports">
             <span>
               <TbReportSearch className={s.icon} />
             </span>

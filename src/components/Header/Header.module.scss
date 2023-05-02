@@ -1,8 +1,14 @@
 .header {
   display: flex;
-  width: 100%;
-  padding: 10px 15px 10px 50px;
+  align-items: center;
+  // width: calc(100% - 200px);
+  padding: 10px 15px;
   font-size: 30px;
+  // margin-left: auto;
+}
+
+.logo {
+  width: 150px;
 }
 
 .headerMenu {

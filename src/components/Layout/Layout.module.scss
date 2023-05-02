@@ -1,4 +1,6 @@
 .content {
   display: flex;
-  gap: 30px;
+  flex-direction: column;
+  gap: 20px;
+  width: calc(100% - 200px);
 }

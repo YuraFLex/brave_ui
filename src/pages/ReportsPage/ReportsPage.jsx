@@ -1,10 +1,12 @@
+import { Wraper } from 'components/Wraper/Wraper';
+
 export const ReportsPage = () => {
   return (
     <>
-      <div className="pageContent">
+      <Wraper>
         <h2>Reports Summary</h2>
         <h2>Reports Detailed</h2>
-      </div>
+      </Wraper>
     </>
   );
 };

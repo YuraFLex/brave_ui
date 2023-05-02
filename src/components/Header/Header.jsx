@@ -1,10 +1,13 @@
+import logo from '../../images/logo.png';
 import s from './Header.module.scss';
 
 export const Header = () => {
   return (
     <>
       <header className={s.header}>
-        <h1>Brave</h1>
+        <a className="link" href="/brave_ui">
+          <img className={s.logo} src={logo} alt="logo" />
+        </a>
         <div className={s.headerMenu}>
           <ul className={s.menuList}>
             <li>

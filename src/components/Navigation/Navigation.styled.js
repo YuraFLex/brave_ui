@@ -9,8 +9,18 @@ export const Link = styled(NavLink)`
   padding: 10px 0;
   color: inherit;
   width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+
+  &:hover {
+    background-color: rgb(0 0 0 / 18%);
+    border-radius: 4px;
+    padding: 10px;
+  }
 
   &.active {
-    color: #000;
+    background-color: rgb(0 0 0 / 18%);
+    border-radius: 4px;
+    padding: 10px;
   }
 `;

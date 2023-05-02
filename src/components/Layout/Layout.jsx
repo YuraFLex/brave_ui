@@ -8,9 +8,9 @@ import { Header } from 'components/Header/Header';
 export const Layout = () => {
   return (
     <>
-      <Header />
+      <Navigation />
       <div className={s.content}>
-        <Navigation />
+        <Header />
         <main>
           <Outlet />
         </main>

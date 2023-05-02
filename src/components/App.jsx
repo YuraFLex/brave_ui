@@ -9,7 +9,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<DashBoardPage />} />
-          <Route path="partner" element={<ReportsPage />} />
+          <Route path="reports" element={<ReportsPage />} />
         </Route>
       </Routes>
     </>

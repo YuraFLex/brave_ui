@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/brave_ui/static/css/main.7acaea2f.css",
+    "main.js": "/brave_ui/static/js/main.1519510b.js",
+    "index.html": "/brave_ui/index.html",
+    "main.7acaea2f.css.map": "/brave_ui/static/css/main.7acaea2f.css.map",
+    "main.1519510b.js.map": "/brave_ui/static/js/main.1519510b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.1519510b.js"
+  ]
+}

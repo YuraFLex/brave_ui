@@ -1,10 +1,74 @@
+import { Accordion } from 'components/Accardion/Accardion';
+import { AccordionContainer } from 'components/Accardion/AccardionConteiner';
 import { Wraper } from 'components/Wraper/Wraper';
+
+import s from './DashBoardPage.module.scss';
 
 export const DashBoardPage = () => {
   return (
     <>
       <Wraper>
-        <h1>Welcome Dashboard page</h1>
+        <AccordionContainer>
+          <Accordion title={'Platform Activity'}>
+            <ul className={s.platfromList}>
+              <li className={s.platfromItem}>
+                <div className={s.platformCard}>
+                  <div className={s.platfromHeader}>
+                    <span>Bid Requests</span>
+                    <span>+64.4%</span>
+                  </div>
+                  <div>
+                    <span className={s.descr}>8888888888</span>
+                  </div>
+                </div>
+              </li>
+              <li className={s.platfromItem}>
+                <div className={s.platformCard}>
+                  <div className={s.platfromHeader}>
+                    <span>Bid Response</span>
+                    <span>+64.4%</span>
+                  </div>
+                  <div>
+                    <span className={s.descr}>8888888888</span>
+                  </div>
+                </div>
+              </li>
+              <li className={s.platfromItem}>
+                <div className={s.platformCard}>
+                  <div className={s.platfromHeader}>
+                    <span>Impressions</span>
+                    <span>+64.4%</span>
+                  </div>
+                  <div>
+                    <span className={s.descr}>8888888888</span>
+                  </div>
+                </div>
+              </li>
+              <li className={s.platfromItem}>
+                <div className={s.platformCard}>
+                  <div className={s.platfromHeader}>
+                    <span>Win Rate %</span>
+                    <span>+6.4%</span>
+                  </div>
+                  <div>
+                    <span className={s.descr}>15%</span>
+                  </div>
+                </div>
+              </li>
+              <li className={s.platfromItem}>
+                <div className={s.platformCard}>
+                  <div className={s.platfromHeader}>
+                    <span>Timeouts %</span>
+                    <span>+6.4%</span>
+                  </div>
+                  <div>
+                    <span className={s.descr}>1.51</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </Accordion>
+        </AccordionContainer>
       </Wraper>
     </>
   );

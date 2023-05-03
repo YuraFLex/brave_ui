@@ -45,7 +45,6 @@ code {
 #root {
   display: flex;
   flex-direction: row;
-  gap: 20px;
 }
 
 main {

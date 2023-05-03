@@ -18,10 +18,6 @@ export const Header = () => {
               <span>Outgoing QPS:</span>
               <span> 2</span>
             </li>
-            <li>
-              <span>Net profit:</span>
-              <span> 3</span>
-            </li>
           </ul>
 
           <span className={s.user}>User name</span>

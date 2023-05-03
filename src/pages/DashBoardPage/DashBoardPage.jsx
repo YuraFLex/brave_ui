@@ -66,6 +66,17 @@ export const DashBoardPage = () => {
                   </div>
                 </div>
               </li>
+              <li className={s.platfromItem}>
+                <div className={s.platformCard}>
+                  <div className={s.platfromHeader}>
+                    <span>Spend</span>
+                    <span>-65.4%</span>
+                  </div>
+                  <div>
+                    <span className={s.descr}>$ 15678.08</span>
+                  </div>
+                </div>
+              </li>
             </ul>
           </Accordion>
         </AccordionContainer>

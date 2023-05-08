@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://YuraFLex.github.io/brave_ui/",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -14,7 +15,8 @@
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
     "react-router": "^6.11.0",
-    "react-router-dom": "^6.11.0",
+    "redux-persist": "^6.0.0",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.5",
     "sass": "^1.62.1",

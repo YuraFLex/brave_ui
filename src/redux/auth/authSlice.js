@@ -8,13 +8,13 @@ import {
 
 const initialState = {
   user: {
-    name: '',
     email: '',
+    password: '',
   },
   token: null,
   isLoading: false,
   error: null,
-  isFetchingCurrentUser: false,
+  isFetchingCurrentUser: true,
 };
 
 const authSlice = createSlice({

@@ -1,20 +1,20 @@
 import { Accordion } from 'components/Accardion/Accardion';
 import { AccordionContainer } from 'components/Accardion/AccardionConteiner';
 import { Wraper } from 'components/Wraper/Wraper';
-import { useEffect } from 'react';
-import { fetchDsp } from 'api/api';
+// import { useEffect } from 'react';
+// import { fetchDsp } from 'api/api';
 
 import s from './DashBoardPage.module.scss';
 
 export const DashBoardPage = () => {
-  useEffect(() => {
-    async function fetchData() {
-      const dsp = await fetchDsp();
-      console.log(dsp);
-    }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const dsp = await fetchDsp();
+  //     console.log(dsp);
+  //   }
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
   return (
     <>
       <Wraper>

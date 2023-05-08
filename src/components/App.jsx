@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
-import { Routes } from 'react-router';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { Routes } from 'react-router';
+// import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Layout } from './Layout/Layout';
 import { LoginPage } from 'pages/LoginPage/LoginPage';

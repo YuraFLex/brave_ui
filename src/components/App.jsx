@@ -9,30 +9,29 @@ import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
 import { DashBoardPage } from 'pages/DashBoardPage/DashBoardPage';
 import { ReportsPage } from 'pages/ReportsPage/ReportsPage';
 
-import { fetchCurrentUser } from 'redux/auth/authOperations';
-import { selectIsFetchingCurrentUser } from 'redux/auth/authSelectors';
+import { selectIsLoginIn } from 'redux/auth/authSelectors';
 
 export const App = () => {
-  const isFetchingCurrentUser = useSelector(selectIsFetchingCurrentUser);
-  console.log(isFetchingCurrentUser);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCurrentUser());
-  }, [dispatch]);
+  const isAuth = useSelector(selectIsLoginIn);
+  console.log(isAuth);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchCurrentUser());
+  // }, [dispatch]);
   return (
     <>
-      {!isFetchingCurrentUser ? (
+      {!isAuth ? (
         <Switch>
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationPage} />
         </Switch>
       ) : (
-        <Routes>
+        <Switch>
           <Route path="/" element={<Layout />}>
             <Route index element={<DashBoardPage />} />
             <Route path="reports" element={<ReportsPage />} />
           </Route>
-        </Routes>
+        </Switch>
       )}
     </>
   );

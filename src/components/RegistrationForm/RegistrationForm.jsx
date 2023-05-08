@@ -1,6 +1,9 @@
 import { Button } from 'components/Button/Button';
 import { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+
+import { useDispatch } from 'react-redux';
+import { registration } from '../../redux/auth/authOperations';
 
 import s from './RegisterForm.module.scss';
 
@@ -10,19 +13,29 @@ export const RegistrationForm = () => {
   const [password, setPassword] = useState('');
   // const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = async e => {
+  const dispatch = useDispatch();
+
+  // const handleSubmit = async e => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('/api/registration', {
+  //       email,
+  //       password,
+  //     });
+  //     const token = response.data.token;
+  //     localStorage.setItem('token', token);
+  //     window.location.reload();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const handleSubmit = e => {
     e.preventDefault();
-    try {
-      const response = await axios.post('/api/registration', {
-        email,
-        password,
-      });
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(registration({ email, password }));
+
+    setEmail('');
+    setPassword('');
   };
 
   return (

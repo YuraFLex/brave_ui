@@ -1,6 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
-// import { Routes } from 'react-router';
-// import { useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { Layout } from './Layout/Layout';
@@ -13,26 +11,27 @@ import { selectIsLoginIn } from 'redux/auth/authSelectors';
 
 export const App = () => {
   const isAuth = useSelector(selectIsLoginIn);
-  console.log(isAuth);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchCurrentUser());
-  // }, [dispatch]);
+
   return (
-    <>
-      {!isAuth ? (
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
-          <Route exact path="/registration" component={RegistrationPage} />
-        </Switch>
-      ) : (
-        <Switch>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<DashBoardPage />} />
-            <Route path="reports" element={<ReportsPage />} />
-          </Route>
-        </Switch>
-      )}
-    </>
+    <Routes>
+      <Route path="/login" element={<LoginPage isAuth={isAuth} />} />
+      <Route
+        path="/registration"
+        element={<RegistrationPage isAuth={isAuth} />}
+      />
+      <Route
+        path="/"
+        element={
+          isAuth ? (
+            <Layout>
+              <Route index element={<DashBoardPage />} />
+              <Route path="reports" element={<ReportsPage />} />
+            </Layout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+    </Routes>
   );
 };

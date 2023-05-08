@@ -2,35 +2,30 @@ import { useState } from 'react';
 import { Button } from 'components/Button/Button';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/authOperations';
-// import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import s from './LoginForm.module.scss';
 
-export const LoginForm = () => {
+export const LoginForm = ({ isAuth, onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-  // try {
-  //   const response = await axios.post('/api/login', { email, password });
-  //   const token = response.data.token;
-  //   localStorage.setItem('token', token);
-
-  //   window.location.reload();
-  // } catch (error) {
-  //   console.error(error);
-  // }
-  // };
+  const navigate = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(login({ email, password }));
     setEmail('');
     setPassword('');
+    onLoginSuccess && onLoginSuccess();
+    navigate('/');
   };
+
+  if (isAuth) {
+    navigate('/', { replace: true });
+    return null;
+  }
 
   return (
     <form onSubmit={handleSubmit} className={s.logForm}>

@@ -15,21 +15,6 @@ export const RegistrationForm = () => {
 
   const dispatch = useDispatch();
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post('/api/registration', {
-  //       email,
-  //       password,
-  //     });
-  //     const token = response.data.token;
-  //     localStorage.setItem('token', token);
-  //     window.location.reload();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(registration({ email, password }));

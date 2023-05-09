@@ -8,7 +8,7 @@ import { registration } from '../../redux/auth/authOperations';
 import s from './RegisterForm.module.scss';
 
 export const RegistrationForm = () => {
-  // const [name, setName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [confirmPassword, setConfirmPassword] = useState('');
@@ -17,7 +17,7 @@ export const RegistrationForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(registration({ email, password }));
+    dispatch(registration({ name, email, password }));
 
     setEmail('');
     setPassword('');
@@ -25,14 +25,15 @@ export const RegistrationForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className={s.regForm}>
-      {/* <label className={s.regLabel}>
+      <label className={s.regLabel}>
         Name:
         <input
+          className={s.regInput}
           type="text"
           value={name}
           onChange={e => setName(e.target.value)}
         />
-      </label> */}
+      </label>
       <label className={s.regLabel}>
         Email:
         <input

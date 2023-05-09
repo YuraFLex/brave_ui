@@ -7,6 +7,15 @@
   &:not(:last-child) {
     border-bottom: 1px solid rgba(34, 36, 38, 0.15);
   }
+
+  &:hover {
+    background-color: #f1f2f3;
+  }
+}
+
+.accardionHeaderActive {
+  background-color: #f1f2f3;
+  color: #0099fa;
 }
 
 .accardionContent {

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+
+import cn from 'classnames';
 import s from './Accardion.module.scss';
 
 const icons = {
@@ -16,7 +18,12 @@ export const Accordion = ({ title, children }) => {
 
   return (
     <>
-      <div className={s.accardionHeader} onClick={toggleAccordion}>
+      <div
+        className={cn(s.accardionHeader, {
+          [s.accardionHeaderActive]: isExpanded,
+        })}
+        onClick={toggleAccordion}
+      >
         <span className={s.icon}>
           {isExpanded ? icons.expanded : icons.collapsed}
         </span>

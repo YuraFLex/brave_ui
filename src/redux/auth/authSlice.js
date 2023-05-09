@@ -3,13 +3,14 @@ import { registration, login, logout } from './authOperations';
 
 const initialState = {
   user: {
+    name: '',
     email: '',
     password: '',
   },
-  token: null,
   isLoading: false,
   isLoggedIn: false,
   error: null,
+  token: null,
 };
 
 const authSlice = createSlice({
@@ -21,10 +22,10 @@ const authSlice = createSlice({
     [registration.pending]: state => {
       state.isLoading = true;
     },
-    [registration.fulfilled]: (state, { payload: { user, token } }) => {
+    [registration.fulfilled]: (state, { payload: { user, accessToken } }) => {
       state.isLoading = false;
       state.user = user;
-      state.token = token;
+      state.token = accessToken;
       state.isLoggedIn = true;
     },
     [registration.rejected]: (state, { payload }) => {
@@ -35,10 +36,10 @@ const authSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    [login.fulfilled]: (state, { payload: { user, token } }) => {
+    [login.fulfilled]: (state, { payload: { user, accessToken } }) => {
       state.isLoading = false;
       state.user = user;
-      state.token = token;
+      state.token = accessToken;
       state.isLoggedIn = true;
     },
     [login.rejected]: (state, { payload }) => {
@@ -53,6 +54,7 @@ const authSlice = createSlice({
       state.user = {
         name: '',
         email: '',
+        password: '',
       };
       state.token = null;
       state.isLoggedIn = false;

@@ -1,6 +1,8 @@
 import { Accordion } from 'components/Accardion/Accardion';
 import { AccordionContainer } from 'components/Accardion/AccardionConteiner';
 import { Wraper } from 'components/Wraper/Wraper';
+import { BsArrowUpShort } from 'react-icons/bs';
+
 // import { useEffect } from 'react';
 // import { fetchDsp } from 'api/api';
 
@@ -25,7 +27,9 @@ export const DashBoardPage = () => {
                 <div className={s.platformCard}>
                   <div className={s.platfromHeader}>
                     <span>Bid Requests</span>
-                    <span>+64.4%</span>
+                    <span>
+                      +64.4% <BsArrowUpShort />
+                    </span>
                   </div>
                   <div>
                     <span className={s.descr}>8888888888</span>
@@ -36,7 +40,9 @@ export const DashBoardPage = () => {
                 <div className={s.platformCard}>
                   <div className={s.platfromHeader}>
                     <span>Bid Response</span>
-                    <span>+64.4%</span>
+                    <span>
+                      +64.4% <BsArrowUpShort />
+                    </span>
                   </div>
                   <div>
                     <span className={s.descr}>8888888888</span>
@@ -47,7 +53,9 @@ export const DashBoardPage = () => {
                 <div className={s.platformCard}>
                   <div className={s.platfromHeader}>
                     <span>Impressions</span>
-                    <span>+64.4%</span>
+                    <span>
+                      +64.4% <BsArrowUpShort />
+                    </span>
                   </div>
                   <div>
                     <span className={s.descr}>8888888888</span>
@@ -58,7 +66,9 @@ export const DashBoardPage = () => {
                 <div className={s.platformCard}>
                   <div className={s.platfromHeader}>
                     <span>Win Rate %</span>
-                    <span>+6.4%</span>
+                    <span>
+                      +6.4% <BsArrowUpShort />
+                    </span>
                   </div>
                   <div>
                     <span className={s.descr}>15%</span>
@@ -69,7 +79,9 @@ export const DashBoardPage = () => {
                 <div className={s.platformCard}>
                   <div className={s.platfromHeader}>
                     <span>Timeouts %</span>
-                    <span>+6.4%</span>
+                    <span>
+                      +6.4% <BsArrowUpShort />
+                    </span>
                   </div>
                   <div>
                     <span className={s.descr}>1.51</span>
@@ -80,7 +92,9 @@ export const DashBoardPage = () => {
                 <div className={s.platformCard}>
                   <div className={s.platfromHeader}>
                     <span>Spend</span>
-                    <span>-65.4%</span>
+                    <span>
+                      -65.4% <BsArrowUpShort />
+                    </span>
                   </div>
                   <div>
                     <span className={s.descr}>$ 15678.08</span>

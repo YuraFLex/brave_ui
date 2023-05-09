@@ -1,3 +1,4 @@
+import { UserAuthMenu } from 'components/UserAuthMenu/UserAuthMenu';
 import logo from '../../images/logo.png';
 import s from './Header.module.scss';
 
@@ -19,10 +20,8 @@ export const Header = () => {
               <span> 2</span>
             </li>
           </ul>
-
-          <span className={s.user}>User name</span>
-          <button className={s.logoutBtn}>Log out</button>
         </div>
+        <UserAuthMenu />
       </header>
     </>
   );

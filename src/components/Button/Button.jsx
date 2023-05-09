@@ -8,3 +8,11 @@ export const Button = ({ type, text }) => {
     </button>
   );
 };
+
+export const LogOutButton = ({ text, clickHeandler }) => {
+  return (
+    <button className={s.buttonLogOut} onClick={clickHeandler}>
+      {text}
+    </button>
+  );
+};

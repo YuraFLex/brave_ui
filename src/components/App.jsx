@@ -1,37 +1,51 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
+// import { HomePage } from 'pages/HomePage/HomePage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
 import { DashBoardPage } from 'pages/DashBoardPage/DashBoardPage';
 import { ReportsPage } from 'pages/ReportsPage/ReportsPage';
 
-import { selectIsLoginIn } from 'redux/auth/authSelectors';
+import { PrivateRoute } from 'HOCs/PrivateRoute';
+import { PublicRoute } from 'HOCs/PublicRoute';
 
 export const App = () => {
-  const isAuth = useSelector(selectIsLoginIn);
-
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage isAuth={isAuth} />} />
-      <Route
-        path="/registration"
-        element={<RegistrationPage isAuth={isAuth} />}
-      />
-      <Route
-        path="/"
-        element={
-          isAuth ? (
-            <Layout>
-              <Route index element={<DashBoardPage />} />
-              <Route path="reports" element={<ReportsPage />} />
-            </Layout>
-          ) : (
-            <Navigate to="/login" replace />
-          )
-        }
-      />
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <PrivateRoute>
+              <DashBoardPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <PrivateRoute>
+              <ReportsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <PublicRoute restricted>
+              <RegistrationPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute restricted>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+      </Route>
     </Routes>
   );
 };

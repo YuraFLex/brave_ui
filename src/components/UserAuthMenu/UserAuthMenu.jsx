@@ -12,6 +12,7 @@ export const UserAuthMenu = () => {
   const clickHeandler = () => {
     dispatch(logout());
   };
+
   return (
     <div className={s.userAuthMenu}>
       <p>Welcome: {name}</p>

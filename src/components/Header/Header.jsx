@@ -1,5 +1,6 @@
 import { UserAuthMenu } from 'components/UserAuthMenu/UserAuthMenu';
 import logo from '../../images/logo.png';
+
 import s from './Header.module.scss';
 
 export const Header = () => {

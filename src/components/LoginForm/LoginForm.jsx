@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Button } from 'components/Button/Button';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/authOperations';
+
+import { Button } from 'components/Button/Button';
 
 import s from './LoginForm.module.scss';
 
@@ -14,6 +15,7 @@ export const LoginForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(login({ email, password }));
+
     setEmail('');
     setPassword('');
   };

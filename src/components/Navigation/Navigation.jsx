@@ -1,13 +1,11 @@
 import { Link } from './Navigation.styled';
-// import { useSelector } from 'react-redux';
-// import { selectIsLoginIn } from 'redux/auth/authSelectors';
 
-import s from './Navigation.module.scss';
 import { TbReportSearch } from 'react-icons/tb';
 import { MdSpaceDashboard } from 'react-icons/md';
 
+import s from './Navigation.module.scss';
+
 export const Navigation = () => {
-  // const isAuath = useSelector(selectIsLoginIn)
   return (
     <nav className={s.nav}>
       {/* <div className={s.menuBurger}>

@@ -1,9 +1,8 @@
-import { Button } from 'components/Button/Button';
 import { useState } from 'react';
-// import axios from 'axios';
-
 import { useDispatch } from 'react-redux';
 import { registration } from '../../redux/auth/authOperations';
+
+import { Button } from 'components/Button/Button';
 
 import s from './RegisterForm.module.scss';
 
@@ -19,6 +18,7 @@ export const RegistrationForm = () => {
     e.preventDefault();
     dispatch(registration({ name, email, password }));
 
+    setName('');
     setEmail('');
     setPassword('');
   };

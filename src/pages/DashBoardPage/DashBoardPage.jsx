@@ -21,7 +21,7 @@ export const DashBoardPage = () => {
     <>
       <Wraper>
         <AccordionContainer>
-          <Accordion title={'Platform Activity'}>
+          <Accordion title={'Platform Activity'} defaultOpen={true}>
             <ul className={s.platfromList}>
               <li className={s.platfromItem}>
                 <div className={s.platformCard}>

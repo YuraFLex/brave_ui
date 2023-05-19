@@ -1,15 +1,15 @@
 import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/auth/authSelectors';
+import { selectIsLoginIn } from 'redux/auth/authSelectors';
 
 import { Navigation } from 'components/Navigation/Navigation';
 import { Header } from 'components/Header/Header';
 
 export const AppBar = () => {
-  const token = useSelector(selectToken);
+  const isLogedIn = useSelector(selectIsLoginIn);
 
   return (
     <>
-      {token && (
+      {isLogedIn && (
         <>
           <Header />
           <Navigation />

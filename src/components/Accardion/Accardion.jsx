@@ -9,8 +9,8 @@ const icons = {
   collapsed: <FaPlus />,
 };
 
-export const Accordion = ({ title, children }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+export const Accordion = ({ title, children, defaultOpen = false }) => {
+  const [isExpanded, setIsExpanded] = useState(defaultOpen);
 
   const toggleAccordion = () => {
     setIsExpanded(!isExpanded);

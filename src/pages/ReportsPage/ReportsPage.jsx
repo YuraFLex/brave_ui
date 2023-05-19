@@ -7,7 +7,7 @@ export const ReportsPage = () => {
     <>
       <Wraper>
         <AccordionContainer>
-          <Accordion title={'Reports Summary'}>
+          <Accordion title={'Reports Summary'} defaultOpen={true}>
             <h1>Reports info 1</h1>
           </Accordion>
           <Accordion title={'Reports Detailed'}>

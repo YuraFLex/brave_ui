@@ -21,8 +21,8 @@ export const Header = () => {
               <span> 2</span>
             </li>
           </ul>
-        </div>
         <UserAuthMenu />
+        </div>
       </header>
     </>
   );

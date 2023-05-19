@@ -1,12 +1,12 @@
-export const selectUserName = state => {
-  return state?.auth?.user?.name;
-};
 export const selectUserEmail = state => {
   return state?.auth?.user?.email;
 };
-export const selectToken = state => {
-  return state.auth.token;
-};
+export const selectUserType = state => {
+  return state?.auth?.user?.type
+}
+export const selectUserPartner = state => {
+  return state?.auth?.user?.partner
+}
 export const selectIsLoginIn = state => {
   return state.auth.isLoggedIn;
 };

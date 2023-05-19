@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5050';
+axios.defaults.baseURL = 'http://localhost:3020';
 
 const token = {
   set(token) {
@@ -12,19 +12,6 @@ const token = {
   },
 };
 
-export const registration = createAsyncThunk(
-  'auth/registration',
-  async (userData, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post('/api/registration', userData);
-      token.set(data.accessToken);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
 export const login = createAsyncThunk(
   'auth/login',
   async (userData, { rejectWithValue }) => {
@@ -32,18 +19,6 @@ export const login = createAsyncThunk(
       const { data } = await axios.post('/api/login', userData);
       token.set(data.accessToken);
       return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const logout = createAsyncThunk(
-  'auth/logout',
-  async (_, { rejectWithValue }) => {
-    try {
-      await axios.post('/api/logout');
-      token.unset();
     } catch (error) {
       return rejectWithValue(error.message);
     }

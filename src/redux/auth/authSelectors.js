@@ -1,6 +1,9 @@
 export const selectUserEmail = state => {
   return state?.auth?.user?.email;
 };
+export const selectUserId = state => {
+  return state?.auth?.user?.id;
+}
 export const selectUserType = state => {
   return state?.auth?.user?.type
 }
@@ -16,3 +19,6 @@ export const selectIsLoading = state => {
 export const selectError = state => {
   return state.auth.error;
 };
+export const selectIsActive = state => {
+  return state.auth.isActive;
+}

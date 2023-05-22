@@ -4,7 +4,7 @@ import {
   selectUserEmail,
   selectUserType,
   selectUserPartner,
-  selectIsLoginIn,
+  selectIsActive,
 } from 'redux/auth/authSelectors';
 import { logout } from '../../redux/auth/authSlice';
 
@@ -15,7 +15,9 @@ export const UserAuthMenu = () => {
   const email = useSelector(selectUserEmail);
   const type = useSelector(selectUserType);
   const partner = useSelector(selectUserPartner);
-  const isLogedIn = useSelector(selectIsLoginIn);
+  const isActive = useSelector(selectIsActive);
+
+  const isAccessAllowed = Boolean(isActive);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -28,7 +30,7 @@ export const UserAuthMenu = () => {
         <span className={s.userInfoDescr}>{type}</span> Partner:{' '}
         <span className={s.userInfoDescr}>{partner}</span>
       </span>
-      {isLogedIn && <LogOutButton clickHeandler={handleLogout} />}
+      {isAccessAllowed && <LogOutButton clickHeandler={handleLogout} />}
     </div>
   );
 };

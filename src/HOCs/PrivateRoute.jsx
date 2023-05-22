@@ -28,6 +28,6 @@ export const PrivateRoute = ({ children }) => {
   }
 
   if (!isActive) {
-    return <Navigate to="/check" />;
+    return <Navigate to="/accessdenied" />;
   }
 };

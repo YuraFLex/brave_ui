@@ -6,7 +6,7 @@ import { ReportsPage } from 'pages/ReportsPage/ReportsPage';
 
 import { PrivateRoute } from 'HOCs/PrivateRoute';
 import { PublicRoute } from 'HOCs/PublicRoute';
-import { HomePage } from 'pages/HomePage/HomePage';
+import { AccessDenied } from 'pages/AccessDenied/AccessDenied';
 
 export const App = () => {
   return (
@@ -38,10 +38,10 @@ export const App = () => {
           }
         />
         <Route
-          path="/check"
+          path="/accessdenied"
           element={
             <PublicRoute>
-              <HomePage />
+              <AccessDenied />
             </PublicRoute>
           }
         />

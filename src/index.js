@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/brave_ui">
           <App />
         </BrowserRouter>
       </PersistGate>

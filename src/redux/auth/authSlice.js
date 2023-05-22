@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, getIsActive } from './authOperations';
+import { login } from './authOperations';
 
 const initialState = {
   user: {
@@ -7,7 +7,7 @@ const initialState = {
     email: '',
     password: '',
   },
-  isActive: true,
+  isActive: null,
   isLoading: false,
   isLoggedIn: false,
   error: null,
@@ -31,24 +31,30 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.user = user;
       state.isLoggedIn = true;
-      state.isActive = isActive;
+      if (isActive !== state.isActive) {
+        state.isActive = isActive;
+      }
     },
     [login.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
     },
-    [getIsActive.pending]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [getIsActive.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
-      state.isActive = payload;
-    },
-    [getIsActive.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
+    // [getIsActive.pending]: (state) => {
+    //   state.isLoading = true;
+    //   state.error = null;
+    // },
+    // [getIsActive.fulfilled]: (state, { payload }) => {
+    //   state.isLoading = false;
+
+    //   // Проверяем, отличается ли новое значение isActive от текущего
+    //   if (payload !== state.isActive) {
+    //     state.isActive = payload;
+    //   }
+    // },
+    // [getIsActive.rejected]: (state, { payload }) => {
+    //   state.isLoading = false;
+    //   state.error = payload;
+    // },
   },
 });
 

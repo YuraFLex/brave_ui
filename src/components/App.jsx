@@ -1,8 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-// import { HomePage } from 'pages/HomePage/HomePage';
 import { LoginPage } from 'pages/LoginPage/LoginPage';
-import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
 import { DashBoardPage } from 'pages/DashBoardPage/DashBoardPage';
 import { ReportsPage } from 'pages/ReportsPage/ReportsPage';
 
@@ -27,14 +25,6 @@ export const App = () => {
             <PrivateRoute>
               <ReportsPage />
             </PrivateRoute>
-          }
-        />
-        <Route
-          path="/registration"
-          element={
-            <PublicRoute restricted>
-              <RegistrationPage />
-            </PublicRoute>
           }
         />
         <Route

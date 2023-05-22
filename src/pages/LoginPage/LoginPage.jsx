@@ -1,7 +1,7 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
+
 import s from './LoginPage.module.scss';
 import logo from '../../images/logo.png';
-
 
 export const LoginPage = () => {
   return (
@@ -10,9 +10,7 @@ export const LoginPage = () => {
         <img className={s.logo} src={logo} alt="" />
       </div>
       <LoginForm />
-      <p>
-        DashBoard Partners &#169; 2023 
-      </p>
+      <p className={s.copy}>DashBoard Partners &#169; 2023</p>
     </div>
   );
 };

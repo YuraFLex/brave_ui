@@ -1,27 +1,35 @@
-// import { useEffect } from 'react';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
-import {
-  selectIsLoginIn,
-  // selectIsActive,
-  // selectUserId,
-} from 'redux/auth/authSelectors';
+// import { useSelector } from 'react-redux';
+// import { selectIsLoginIn } from 'redux/auth/authSelectors';
+// import { Navigate } from 'react-router-dom';
+
+// export const PrivateRoute = ({ children }) => {
+//   // const dispatch = useDispatch();
+
+//   const isLogedIn = useSelector(selectIsLoginIn);
+//   return isLogedIn ? children : <Navigate to="/login" />;
+// };
+
+import { useSelector } from 'react-redux';
+import { selectIsLoginIn, selectIsActive } from 'redux/auth/authSelectors';
 import { Navigate } from 'react-router-dom';
-// import { getIsActive } from 'redux/auth/authOperations';
 
 export const PrivateRoute = ({ children }) => {
-  // const dispatch = useDispatch();
-  // const id = useSelector(selectUserId);
-  // const isActiveValue = useSelector(selectIsActive);
-  // const isActive = isActiveValue === 1;
-  // console.log('isActive in PrivateRoute:', isActive);
+  const isLoggedIn = useSelector(selectIsLoginIn);
+  const isActive = useSelector(selectIsActive);
 
-  // useEffect(() => {
-  //   dispatch(getIsActive(id));
-  // }, [dispatch, id]);
+  // Проверка на наличие значения isActive и перевод его в булевое значение
+  const isAccessAllowed = isActive === 0;
 
-  const isLogedIn = useSelector(selectIsLoginIn);
-  return isLogedIn ? children : <Navigate to="/login" />;
+  // Если пользователь залогинен и доступ разрешен, рендерим компоненты маршрута
+  if (isLoggedIn && isAccessAllowed) {
+    return children;
+  }
+
+  // Если пользователь не залогинен, перенаправляем на страницу входа
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+
+  // Если доступ запрещен, перенаправляем на страницу с ограниченным доступом
+  return <Navigate to="/login" />;
 };

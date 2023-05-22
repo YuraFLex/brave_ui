@@ -18,3 +18,14 @@ export const Loader = () => {
     </div>
   );
 };
+
+export const LoaderBtn = () => {
+  return (
+    <div className={s.ldsellipsis}>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
+};

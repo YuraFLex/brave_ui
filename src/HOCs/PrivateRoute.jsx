@@ -17,19 +17,17 @@ export const PrivateRoute = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoginIn);
   const isActive = useSelector(selectIsActive);
 
-  // Проверка на наличие значения isActive и перевод его в булевое значение
-  const isAccessAllowed = isActive === 0;
+  const isAccessAllowed = Boolean(isActive);
 
-  // Если пользователь залогинен и доступ разрешен, рендерим компоненты маршрута
   if (isLoggedIn && isAccessAllowed) {
     return children;
   }
 
-  // Если пользователь не залогинен, перенаправляем на страницу входа
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
 
-  // Если доступ запрещен, перенаправляем на страницу с ограниченным доступом
-  return <Navigate to="/login" />;
+  if (!isActive) {
+    return <Navigate to="/check" />;
+  }
 };

@@ -20,5 +20,5 @@ export const selectError = state => {
   return state.auth.error;
 };
 export const selectIsActive = state => {
-  return state.auth.isActive;
+  return state?.auth?.user?.isActive;
 }

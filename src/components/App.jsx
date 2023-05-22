@@ -6,6 +6,7 @@ import { ReportsPage } from 'pages/ReportsPage/ReportsPage';
 
 import { PrivateRoute } from 'HOCs/PrivateRoute';
 import { PublicRoute } from 'HOCs/PublicRoute';
+import { HomePage } from 'pages/HomePage/HomePage';
 
 export const App = () => {
   return (
@@ -27,11 +28,20 @@ export const App = () => {
             </PrivateRoute>
           }
         />
+
         <Route
           path="/login"
           element={
             <PublicRoute restricted>
               <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/check"
+          element={
+            <PublicRoute>
+              <HomePage />
             </PublicRoute>
           }
         />

@@ -6,8 +6,8 @@ const initialState = {
     name: '',
     email: '',
     password: '',
+    isActive: null,
   },
-  isActive: null,
   isLoading: false,
   isLoggedIn: false,
   error: null,
@@ -31,9 +31,7 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.user = user;
       state.isLoggedIn = true;
-      if (isActive !== state.isActive) {
-        state.isActive = isActive;
-      }
+      state.isActive = isActive
     },
     [login.rejected]: (state, { payload }) => {
       state.isLoading = false;

@@ -14,3 +14,13 @@
   background-color: transparent;
   color: #fff;
 }
+
+.buttonLogOutMob {
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  @media screen and (min-width: 667px) {
+    display: none;
+  }
+}

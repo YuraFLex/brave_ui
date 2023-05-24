@@ -18,3 +18,12 @@ export const LogOutButton = ({ text, clickHeandler }) => {
     </button>
   );
 };
+
+export const LogOutButtonMobile = ({ text, clickHeandler }) => {
+  return (
+    <button className={s.buttonLogOutMob} onClick={clickHeandler}>
+      <IoIosLogOut size={30} />
+      {text}
+    </button>
+  );
+};

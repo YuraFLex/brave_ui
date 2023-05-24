@@ -45,6 +45,10 @@ code {
 #root {
   display: flex;
   flex-wrap: wrap;
+
+  @media screen and (max-width: 666px) {
+    padding: 0 15px;
+  }
 }
 
 main {

@@ -3,6 +3,10 @@
   font-size: 18px;
   gap: 30px;
   align-items: center;
+  @media screen and (max-width: 1240px) {
+    gap: 10px;
+    font-size: 14px;
+  }
 }
 
 .userInfo {
@@ -12,8 +16,12 @@
   gap: 5px;
   border-radius: 8px;
   border: 1px solid #9bd8ff;
+
+  @media screen and (max-width: 1240px) {
+    padding: 5px;
   }
-  
-.userInfoDescr {  
+}
+
+.userInfoDescr {
   font-weight: 600;
 }

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 export const Link = styled(NavLink)`
   display: inline-flex;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   padding: 10px 0;
   color: inherit;
   width: 100%;
@@ -22,5 +22,10 @@ export const Link = styled(NavLink)`
     background-color: rgb(0 0 0 / 18%);
     border-radius: 4px;
     padding: 10px;
+  }
+
+  @media screen and (max-width: 920px) {
+    
+    font-size: 14px;
   }
 `;

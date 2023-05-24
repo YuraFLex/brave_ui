@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/brave_ui/static/css/main.6d24a68b.css",
+    "main.css": "/brave_ui/static/css/main.0afe9eaf.css",
     "main.js": "/brave_ui/static/js/main.77fd1ea0.js",
     "static/media/WorkSans-SemiBold.ttf": "/brave_ui/static/media/WorkSans-SemiBold.7e77b58a707807fcd6e4.ttf",
     "static/media/WorkSans-Bold.ttf": "/brave_ui/static/media/WorkSans-Bold.1b7953cecdd0234f6de9.ttf",
@@ -8,11 +8,11 @@
     "static/media/WorkSans-Regular.ttf": "/brave_ui/static/media/WorkSans-Regular.4be086328ba304c25f49.ttf",
     "static/media/logo.png": "/brave_ui/static/media/logo.527189a0b549fe978050.png",
     "index.html": "/brave_ui/index.html",
-    "main.6d24a68b.css.map": "/brave_ui/static/css/main.6d24a68b.css.map",
+    "main.0afe9eaf.css.map": "/brave_ui/static/css/main.0afe9eaf.css.map",
     "main.77fd1ea0.js.map": "/brave_ui/static/js/main.77fd1ea0.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d24a68b.css",
+    "static/css/main.0afe9eaf.css",
     "static/js/main.77fd1ea0.js"
   ]
 }

@@ -47,7 +47,7 @@ code {
   flex-wrap: wrap;
 
   @media screen and (max-width: 666px) {
-    padding: 0 15px;
+    padding: 0px 15px 100px 15px;
   }
 }
 

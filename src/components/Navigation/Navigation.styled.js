@@ -3,25 +3,29 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Link = styled(NavLink)`
-  display: inline-flex;
+  display: flex;
   text-decoration: none;
   font-size: 18px;
-  padding: 10px 0;
+  padding: 5px;
   color: inherit;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 5px;
 
   &:hover {
-    background-color: rgb(0 0 0 / 18%);
+    background-color: rgb(0 153 250 / 10%);
     border-radius: 4px;
-    padding: 10px;
+    padding: 5px;
   }
 
   &.active {
-    background-color: rgb(0 0 0 / 18%);
-    border-radius: 4px;
-    padding: 10px;
+    background-color: rgb(0 153 250 / 10%);
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  
+  @media screen and (max-width: 666px) {
+    flex-direction: column;
+    align-items: center;
   }
 
   @media screen and (max-width: 920px) {

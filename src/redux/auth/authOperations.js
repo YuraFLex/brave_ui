@@ -16,19 +16,6 @@ export const login = createAsyncThunk(
   }
 );
 
-// export const login = createAsyncThunk(
-//   'auth/login',
-//   async (userData, { rejectWithValue }) => {
-//     try {
-//       const { data } = await axios.post('/api/login', userData);
-//       const isActive = !!data.isActive;
-//       return { ...data, isActive };
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 
 
 export const getIsActive = createAsyncThunk(

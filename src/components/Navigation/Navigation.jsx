@@ -15,7 +15,7 @@ export const Navigation = () => {
     <nav className={s.nav}>
       {isAccessAllowed && (
         <ul className={s.navlist}>
-          <li>
+          <li className={s.navItem}>
             <Link to="/" end>
               <span>
                 <MdSpaceDashboard className={s.icon} />
@@ -23,7 +23,7 @@ export const Navigation = () => {
               Dashboard
             </Link>
           </li>
-          <li>
+          <li className={s.navItem}>
             <Link to="reports">
               <span>
                 <TbReportSearch className={s.icon} />

@@ -9,17 +9,17 @@ export const Link = styled(NavLink)`
   padding: 5px;
   color: inherit;
   width: 100%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
 
   &:hover {
-    background-color: rgb(0 153 250 / 10%);
-    border-radius: 4px;
-    padding: 5px;
+    background-color: #0198f8;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.6);
   }
 
   &.active {
-    background-color: rgb(0 153 250 / 10%);
-    border-radius: 10px;
-    padding: 5px;
+    background-color: #0198f8;
+    box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.6);
   }
 
   

@@ -28,7 +28,9 @@ export const UserAuthMenu = () => {
       <span className={s.userInfo}>
         Welcome: <span className={s.userInfoDescr}>{email}</span> Type:{' '}
         <span className={s.userInfoDescr}>{type}</span> Partner:{' '}
-        <span className={s.userInfoDescr}>{partner}</span>
+        <span className={`${s.userInfoDescr} ${s.userInfoDescrWidth}`}>
+          {partner}
+        </span>
       </span>
       {isAccessAllowed && <LogOutButton clickHeandler={handleLogout} />}
     </div>

@@ -4,6 +4,7 @@ import s from './Navigation.module.scss';
 // import { RxHamburgerMenu } from 'react-icons/rx';
 import { TbReportSearch } from 'react-icons/tb';
 import { MdSpaceDashboard } from 'react-icons/md';
+import { FaUserCog } from 'react-icons/fa';
 import logo from '../../images/logo.png';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,24 +24,11 @@ export const NavigationMobile = () => {
     dispatch(logout());
   };
 
-  // const handleToggleMenu = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
   return (
     <nav className={s.mobNav}>
       {isAccessAllowed && (
         <>
-          {/* <button className={s.buttonBurger} onClick={handleToggleMenu}>
-            <RxHamburgerMenu />
-          </button> */}
-
-          <ul
-            // className={cn(s.navlistMob, {
-            //   [s.isOpenMenu]: isOpen,
-            // })}
-            className={s.navlistMob}
-          >
+          <ul className={s.navlistMob}>
             <li className={s.navItemMobile}>
               <Link to="/" end>
                 <MdSpaceDashboard className={s.iconMenuMobile} />
@@ -51,6 +39,12 @@ export const NavigationMobile = () => {
               <Link to="reports">
                 <TbReportSearch className={s.iconMenuMobile} />
                 <p>Reports</p>
+              </Link>
+            </li>
+            <li className={s.navItemMobile}>
+              <Link to="usersetting">
+                <FaUserCog className={s.iconMenuMobile} />
+                <p>User</p>
               </Link>
             </li>
           </ul>

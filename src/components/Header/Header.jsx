@@ -12,22 +12,7 @@ export const Header = () => {
     <>
       <header className={s.header}>
         {isAccessAllowed && <NavigationMobile />}
-        {/* <a className="link" href="/brave_ui">
-          <img className={s.logo} src={logo} alt="logo" />
-        </a> */}
         <div className={s.headerMenu}>
-          {isAccessAllowed && (
-            <ul className={s.menuList}>
-              <li className={s.menuItem}>
-                <span>Incoming QPS:</span>
-                <span> 1</span>
-              </li>
-              <li className={s.menuItem}>
-                <span>Outgoing QPS:</span>
-                <span> 2</span>
-              </li>
-            </ul>
-          )}
           <UserAuthMenu />
         </div>
       </header>

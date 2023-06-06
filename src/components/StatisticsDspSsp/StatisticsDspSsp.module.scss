@@ -1,0 +1,33 @@
+.platfromList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  @media screen and (max-width: 1240px) {
+    justify-content: center;
+  }
+}
+
+.platfromItem {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 290px;
+  width: 100%;
+  // width: calc((100% - 80px) / 5);
+}
+
+.platformCard {
+}
+
+.platfromHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.descr {
+  font-weight: 700;
+}

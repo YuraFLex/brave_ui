@@ -7,6 +7,7 @@ import { ReportsPage } from 'pages/ReportsPage/ReportsPage';
 import { PrivateRoute } from 'HOCs/PrivateRoute';
 import { PublicRoute } from 'HOCs/PublicRoute';
 import { AccessDenied } from 'pages/AccessDenied/AccessDenied';
+import { UserPage } from 'pages/UserPage/UserPage';
 
 export const App = () => {
   return (
@@ -25,6 +26,14 @@ export const App = () => {
           element={
             <PrivateRoute>
               <ReportsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/usersetting"
+          element={
+            <PrivateRoute>
+              <UserPage />
             </PrivateRoute>
           }
         />

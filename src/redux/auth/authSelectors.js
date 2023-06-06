@@ -10,6 +10,9 @@ export const selectUserType = state => {
 export const selectUserPartner = state => {
   return state?.auth?.user?.partner
 }
+export const selectUserPartnerId = state => {
+  return state?.auth?.user?.partner_id
+}
 export const selectIsLoginIn = state => {
   return state.auth.isLoggedIn;
 };

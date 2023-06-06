@@ -1,0 +1,25 @@
+.UserInfoBox {
+  display: flex;
+}
+
+.UserInfoList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  //   border: 1px solid #0099fa;
+  border-radius: 8px;
+}
+
+.UserInfoItem {
+  display: flex;
+
+  padding: 10px 20px;
+
+  &:not(:last-child) {
+    // border-bottom: 1px solid #0099fa;
+  }
+
+  & p {
+    margin-left: 5px;
+  }
+}

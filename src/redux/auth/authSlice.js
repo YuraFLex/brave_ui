@@ -3,10 +3,10 @@ import { login } from './authOperations';
 
 const initialState = {
   user: {
-    name: '',
     email: '',
     password: '',
     isActive: null,
+    partner_id: null,
   },
   isLoading: false,
   isLoggedIn: false,
@@ -31,28 +31,13 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.user = user;
       state.isLoggedIn = true;
+      state.partner_id = state.user.partner_id
       state.isActive = isActive
     },
     [login.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
     },
-    // [getIsActive.pending]: (state) => {
-    //   state.isLoading = true;
-    //   state.error = null;
-    // },
-    // [getIsActive.fulfilled]: (state, { payload }) => {
-    //   state.isLoading = false;
-
-    //   // Проверяем, отличается ли новое значение isActive от текущего
-    //   if (payload !== state.isActive) {
-    //     state.isActive = payload;
-    //   }
-    // },
-    // [getIsActive.rejected]: (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = payload;
-    // },
   },
 });
 

@@ -2,7 +2,7 @@
   "name": "brave_ui",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://YuraFLex.github.io/brave_ui/",
+  "homepage": "https://braveglobal.tv/",
   "dependencies": {
     "@babel/node": "^7.20.7",
     "@reduxjs/toolkit": "^1.8.6",

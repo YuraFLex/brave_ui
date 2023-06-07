@@ -8,6 +8,13 @@ export const UserPage = () => {
   return (
     <Wraper>
       <AccordionContainer>
+        <Accordion title={'ATTENTION'} defaultOpen={true}>
+          <h1>This page is still under construction!</h1>
+          <h3>
+            If you have any ideas and concerns, you can message me on Telegram
+            @Yura_FLex
+          </h3>
+        </Accordion>
         <Accordion title={'User Info'} defaultOpen={true}>
           <UserInfo />
         </Accordion>

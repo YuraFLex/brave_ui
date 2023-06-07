@@ -20,9 +20,29 @@
   }
 }
 
+.logTitle {
+  text-align: center;
+}
+
+.logSubTitile {
+  font-size: 16px;
+}
+
 .logLabel {
+  position: relative;
   display: flex;
   flex-direction: column;
+}
+
+.logLabelText {
+  position: absolute;
+  background-color: #fff;
+  top: 15px;
+  left: 10px;
+  transition: color 0.5s, transform 0.5s;
+  transform-origin: top left;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .logInput {
@@ -30,4 +50,19 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   margin-top: 11px;
+}
+
+.logInput::placeholder {
+  opacity: 0;
+  transition: opacity 0.5 50ms;
+}
+
+.logInput:focus::placeholder {
+  opacity: 1;
+}
+
+.logInput:focus + .logLabelText,
+.logInput:not(:placeholder-shown) + .logLabelText {
+  color: #0198f8;
+  transform: translateY(-20px) scale(0.85);
 }

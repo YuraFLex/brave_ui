@@ -48,7 +48,7 @@ export const NavigationMobile = () => {
               </Link>
             </li>
           </ul>
-          <a className="link" href="/brave_ui">
+          <a className="link" href="/">
             <img className={s.logoMobile} src={logo} alt="logo" />
           </a>
 

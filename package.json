@@ -2,7 +2,7 @@
   "name": "brave_ui",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://braveglobal.tv:8080/",
+  "homepage": "http://braveglobal.tv/",
   "dependencies": {
     "@babel/node": "^7.20.7",
     "@reduxjs/toolkit": "^1.8.6",

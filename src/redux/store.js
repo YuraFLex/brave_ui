@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
+import { statisticsReducer } from './statistics/statisticsSlice';
 
 import {
   persistStore,
@@ -21,9 +22,17 @@ const authPersistConfig = {
 
 const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 
+const statisticsPersistConfig = {
+  key: 'statistics',
+  storage,
+};
+
+const statisticsPersistedReducer = persistReducer(statisticsPersistConfig, statisticsReducer);
+
 export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
+    statistics: statisticsPersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

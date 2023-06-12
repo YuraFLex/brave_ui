@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'http://204.62.13.40:3020/api';
-axios.defaults.baseURL = 'http://localhost:3020/api';
+axios.defaults.baseURL = 'http://204.62.13.40:3020/api';
+// axios.defaults.baseURL = 'http://localhost:3020/api';
 
 export const login = createAsyncThunk(
   'auth/login',

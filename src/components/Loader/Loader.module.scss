@@ -1,9 +1,9 @@
 .bacdrop {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   z-index: 10;
-  background-color: #ffffffc0;
+  background-color: #0d0e186d;
   top: 0;
   left: 0;
 }
@@ -166,7 +166,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #0099fa;
+  background: #6bc6ff;
   margin: -4px 0 0 -4px;
 }
 .ldsRoller div:nth-child(1) {

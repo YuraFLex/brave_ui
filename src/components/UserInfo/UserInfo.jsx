@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectUserEmail,
@@ -6,11 +7,30 @@ import {
 } from 'redux/auth/authSelectors';
 
 import s from './UserInfo.module.scss';
+import { MdOutlineDone } from 'react-icons/md';
+import { FaRegEdit } from 'react-icons/fa';
 
 export const UserInfo = () => {
   const userEmail = useSelector(selectUserEmail);
   const userType = useSelector(selectUserType);
   const userPartner = useSelector(selectUserPartner);
+  const [fullName, setFullName] = useState(
+    'Apple Inc., USA: Cupertino, California'
+  );
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
+  const handleChange = e => {
+    setFullName(e.target.value);
+  };
+
   return (
     <>
       <div className={s.UserInfoBox}>
@@ -26,7 +46,26 @@ export const UserInfo = () => {
           </li>
           <li className={s.UserInfoItem}>
             <h4>Full name, and legal company name:</h4>{' '}
-            <p>Apple Inc., USA: Cupertino, California</p>
+            {isEditing ? (
+              <input
+                className={s.UserInfoEditText}
+                type="text"
+                value={fullName}
+                onChange={handleChange}
+              />
+            ) : (
+              <span className={s.UserInfoAboutCompany}>
+                {fullName}{' '}
+                <button onClick={handleEdit} className={s.UserInfoBtnEdit}>
+                  <FaRegEdit />
+                </button>
+              </span>
+            )}
+            {isEditing && (
+              <button onClick={handleSave} className={s.UserInfoBtnEdit}>
+                <MdOutlineDone />
+              </button>
+            )}
           </li>
         </ul>
       </div>

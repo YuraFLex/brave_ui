@@ -12,14 +12,28 @@
 
 .UserInfoItem {
   display: flex;
-
   padding: 10px 20px;
+  align-items: center;
+  gap: 10px;
 
   &:not(:last-child) {
     // border-bottom: 1px solid #0099fa;
   }
+}
 
-  & p {
-    margin-left: 5px;
-  }
+.UserInfoBtnEdit {
+  border: none;
+  background-color: transparent;
+}
+
+.UserInfoEditText {
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.UserInfoAboutCompany {
+  display: inline-flex;
+  align-items: center;
 }

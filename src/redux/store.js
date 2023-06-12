@@ -13,6 +13,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { changePasswordReducer } from './changePassword/changePasswordSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -29,10 +30,18 @@ const statisticsPersistConfig = {
 
 const statisticsPersistedReducer = persistReducer(statisticsPersistConfig, statisticsReducer);
 
+const changePasswordPersistConfig = {
+  key: 'changePassword',
+  storage,
+}
+const changePasswordPersistedReducer = persistReducer(changePasswordPersistConfig, changePasswordReducer)
+
+
 export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
     statistics: statisticsPersistedReducer,
+    changePassword: changePasswordPersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

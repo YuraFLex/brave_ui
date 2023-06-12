@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/authOperations';
-import { LoaderBtn } from 'components/Loader/Loader';
-import { selectIsLoading } from 'redux/auth/authSelectors';
+import { LoaderBtn } from '../Loader/Loader';
+import { selectIsLoading } from '../../redux/auth/authSelectors';
 
 import { Button } from 'components/Button/Button';
 

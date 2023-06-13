@@ -27,5 +27,4 @@ const statisticsSlice = createSlice({
     },
 });
 
-// export const { clearStatistics } = statisticsSlice.actions;
 export const statisticsReducer = statisticsSlice.reducer;

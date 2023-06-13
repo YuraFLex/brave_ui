@@ -8,6 +8,7 @@ import { selectIsLoadingchangePassword } from 'redux/changePassword/changePasswo
 import { LoaderNew } from 'components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { GoEye, GoEyeClosed } from 'react-icons/go';
 
 export const ChangeUserPassword = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,10 @@ export const ChangeUserPassword = () => {
     newPassword: '',
     confirmPassword: '',
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const isLoadnig = useSelector(selectIsLoadingchangePassword);
 
@@ -49,7 +54,7 @@ export const ChangeUserPassword = () => {
         <label className={s.ChangeUserPasswordLabel}>
           <input
             className={s.ChangeUserPasswordInput}
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             placeholder="********"
             onChange={e =>
               setPasswordData({ ...passwordData, oldPassword: e.target.value })
@@ -57,11 +62,22 @@ export const ChangeUserPassword = () => {
             value={passwordData.oldPassword}
           />
           <span className={s.ChangeUserPasswordLabelText}>Old Password</span>
+          <button
+            className={s.ChangeUserPasswordBtnIcon}
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <GoEyeClosed className={s.ChangeUserPasswordIcon} />
+            ) : (
+              <GoEye />
+            )}
+          </button>
         </label>
         <label className={s.ChangeUserPasswordLabel}>
           <input
             className={s.ChangeUserPasswordInput}
-            type="password"
+            type={showNewPassword ? 'text' : 'password'}
             placeholder="********"
             onChange={e =>
               setPasswordData({ ...passwordData, newPassword: e.target.value })
@@ -69,11 +85,22 @@ export const ChangeUserPassword = () => {
             value={passwordData.newPassword}
           />
           <span className={s.ChangeUserPasswordLabelText}>New Password</span>
+          <button
+            className={s.ChangeUserPasswordBtnIcon}
+            type="button"
+            onClick={() => setShowNewPassword(!showNewPassword)}
+          >
+            {showNewPassword ? (
+              <GoEyeClosed className={s.ChangeUserPasswordIcon} />
+            ) : (
+              <GoEye />
+            )}
+          </button>
         </label>
         <label className={s.ChangeUserPasswordLabel}>
           <input
             className={s.ChangeUserPasswordInput}
-            type="password"
+            type={showConfirmPassword ? 'text' : 'password'}
             placeholder="********"
             onChange={e =>
               setPasswordData({
@@ -86,6 +113,17 @@ export const ChangeUserPassword = () => {
           <span className={s.ChangeUserPasswordLabelText}>
             Confirm New Password
           </span>
+          <button
+            className={s.ChangeUserPasswordBtnIcon}
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+          >
+            {showConfirmPassword ? (
+              <GoEyeClosed className={s.ChangeUserPasswordIcon} />
+            ) : (
+              <GoEye />
+            )}
+          </button>
         </label>
         <button className={s.ChangeUserPasswordSubmitBtn} type="submit">
           Change Password

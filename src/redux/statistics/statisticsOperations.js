@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_BASE_URL } from '../../constans/urls';
 
-axios.defaults.baseURL = 'http://204.62.13.40:3020/api';
-// axios.defaults.baseURL = 'http://localhost:3020/api';
+axios.defaults.baseURL = `${API_BASE_URL}`;
 
 export const fetchStatistics = createAsyncThunk(
     'statistics/fetchStatistics',

@@ -56,14 +56,18 @@ export const UserInfo = () => {
             ) : (
               <span className={s.UserInfoAboutCompany}>
                 {fullName}{' '}
-                <button onClick={handleEdit} className={s.UserInfoBtnEdit}>
+                <button
+                  onClick={handleEdit}
+                  className={s.UserInfoBtnEdit}
+                  style={{ marginLeft: '10px' }}
+                >
                   <FaRegEdit />
                 </button>
               </span>
             )}
             {isEditing && (
               <button onClick={handleSave} className={s.UserInfoBtnEdit}>
-                <MdOutlineDone />
+                <MdOutlineDone className={s.UserInfoBtnSave} />
               </button>
             )}
           </li>

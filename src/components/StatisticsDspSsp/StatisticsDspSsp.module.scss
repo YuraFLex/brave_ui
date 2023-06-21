@@ -12,11 +12,11 @@
 
 .platfromItem {
   padding: 10px 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #0099fa;
   border-radius: 4px;
   max-width: 290px;
   width: 100%;
-  // width: calc((100% - 80px) / 5);
+  background-color: #0099fa17;
 }
 
 .platformCard {
@@ -24,8 +24,8 @@
 
 .platfromHeader {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .descr {

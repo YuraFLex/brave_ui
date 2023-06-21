@@ -8,7 +8,8 @@ import { selectIsLoadingchangePassword } from 'redux/changePassword/changePasswo
 import { LoaderNew } from 'components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GoEye, GoEyeClosed } from 'react-icons/go';
+// import { GoEye, GoEyeClosed } from 'react-icons/go';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 export const ChangeUserPassword = () => {
   const dispatch = useDispatch();
@@ -68,9 +69,9 @@ export const ChangeUserPassword = () => {
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
-              <GoEyeClosed className={s.ChangeUserPasswordIcon} />
+              <AiOutlineEyeInvisible className={s.ChangeUserPasswordIcon} />
             ) : (
-              <GoEye />
+              <AiOutlineEye className={s.ChangeUserPasswordIconOpenEye} />
             )}
           </button>
         </label>
@@ -91,9 +92,9 @@ export const ChangeUserPassword = () => {
             onClick={() => setShowNewPassword(!showNewPassword)}
           >
             {showNewPassword ? (
-              <GoEyeClosed className={s.ChangeUserPasswordIcon} />
+              <AiOutlineEyeInvisible className={s.ChangeUserPasswordIcon} />
             ) : (
-              <GoEye />
+              <AiOutlineEye className={s.ChangeUserPasswordIconOpenEye} />
             )}
           </button>
         </label>
@@ -119,9 +120,9 @@ export const ChangeUserPassword = () => {
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
           >
             {showConfirmPassword ? (
-              <GoEyeClosed className={s.ChangeUserPasswordIcon} />
+              <AiOutlineEyeInvisible className={s.ChangeUserPasswordIcon} />
             ) : (
-              <GoEye />
+              <AiOutlineEye className={s.ChangeUserPasswordIconOpenEye} />
             )}
           </button>
         </label>

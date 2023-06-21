@@ -24,16 +24,28 @@
 .UserInfoBtnEdit {
   border: none;
   background-color: transparent;
+  color: #009afa51;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+
+  &:hover {
+    color: #0099fa91;
+  }
 }
 
 .UserInfoEditText {
   width: 300px;
-  border: 1px solid #ccc;
-  padding: 10px;
+  border: 1px solid #dededf;
+  padding: 5px 10px;
   border-radius: 10px;
 }
 
 .UserInfoAboutCompany {
   display: inline-flex;
   align-items: center;
+}
+
+.UserInfoBtnSave {
+  width: 25px;
+  height: 25px;
 }

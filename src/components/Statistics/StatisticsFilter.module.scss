@@ -1,0 +1,52 @@
+.StatisticsFilterBox {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.StatisticsFilterForm {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.StatisticsFilterSelect {
+  padding: 5px;
+  border: 1px solid #0099fa;
+  border-radius: 10px;
+  max-width: 200px;
+}
+
+.StatisticsFilterDatePickerContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.StatisticsFilterDatePicker {
+  border: 1px solid #0099fa;
+  padding: 5px;
+  border-radius: 10px;
+
+  &:focus {
+    border: 1px solid #0670b1;
+  }
+}
+
+.StatisticsFilterBtnSubmit {
+  background: #0099fa;
+  border: 1px solid #0099fa;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50%;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+
+  &:hover {
+    background: #fff;
+    color: #0099fa;
+  }
+}

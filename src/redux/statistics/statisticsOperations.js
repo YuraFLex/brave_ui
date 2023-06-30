@@ -6,15 +6,13 @@ axios.defaults.baseURL = `${API_BASE_URL}`;
 
 export const fetchStatistics = createAsyncThunk(
     'statistics/fetchStatistics',
-    async ({ partnerId, type }, { rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
+        console.log('data', data);
         try {
-            const response = await axios.get(`/statistics/${partnerId}/${type}`);
-            console.log('Данные отправленные на сервер', response.data);
+            const response = await axios.get(`/statistics/${data.partnerId}/${data.type}`, { params: data });
             return response.data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
     }
 );
-
-

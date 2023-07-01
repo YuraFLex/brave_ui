@@ -154,11 +154,12 @@ export const StatisticsFilter = () => {
           onChange={handleChangEndpoint}
         >
           <option value="all">All</option>
-          {list.map(({ id, name }) => (
-            <option key={id} value={id}>
-              {name}
-            </option>
-          ))}
+          {list &&
+            list.map(({ id, name }) => (
+              <option key={id} value={id}>
+                {name}
+              </option>
+            ))}
         </select>
 
         <button className={s.StatisticsFilterBtnSubmit} type="submit">

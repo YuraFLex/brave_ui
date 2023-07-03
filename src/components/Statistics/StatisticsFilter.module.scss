@@ -8,25 +8,33 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+  }
 }
 
 .StatisticsFilterSelect {
   padding: 5px;
   border: 1px solid #0099fa;
   border-radius: 10px;
-  max-width: 200px;
+  width: 150px;
 }
 
 .StatisticsFilterDatePickerContainer {
   display: flex;
   align-items: center;
   gap: 10px;
+
+  @media screen and (max-width: 1100px) {
+    flex-direction: column;
+  }
 }
 
 .StatisticsFilterDatePicker {
   border: 1px solid #0099fa;
   padding: 5px;
   border-radius: 10px;
+  width: 150px;
 
   &:focus {
     border: 1px solid #0670b1;

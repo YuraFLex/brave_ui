@@ -24,9 +24,9 @@ export const StatisticsFilter = () => {
   const isLoading = useSelector(selectIsLoadingStatistics);
   const list = useSelector(selectIsEndPointList);
 
-  useEffect(() => {
-    dispatch(fetchStatistics({ partnerId: id, type }));
-  }, [dispatch, id, type]);
+  // useEffect(() => {
+  //   dispatch(fetchStatistics({ partnerId: id, type }));
+  // }, [dispatch, id, type]);
 
   useEffect(() => {
     dispatch(fetchEndPoint({ partnerId: id, type }));
@@ -122,7 +122,7 @@ export const StatisticsFilter = () => {
 
         {isPeriod === 'custom' && (
           <div className={s.StatisticsFilterDatePickerContainer}>
-            <div className={s.StatisticsFilterDatePickerLabel}>Start Date:</div>
+            <p className={s.StatisticsFilterDatePickerLabel}>Start Date:</p>
             <DatePicker
               selected={selectedStartDate}
               onChange={handleStartDateChange}
@@ -133,7 +133,7 @@ export const StatisticsFilter = () => {
               endDate={selectedEndDate}
               dateFormat="dd/MM/yyyy"
             />
-            <div className={s.StatisticsFilterDatePickerLabel}>End Date:</div>
+            <p className={s.StatisticsFilterDatePickerLabel}>End Date:</p>
             <DatePicker
               selected={selectedEndDate}
               onChange={handleEndDateChange}

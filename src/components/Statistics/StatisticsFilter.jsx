@@ -95,10 +95,6 @@ export const StatisticsFilter = () => {
 
     dispatch(fetchStatistics(data));
     console.log('данные отправленные на сервер:', data);
-    setIsPeriod('');
-    setIsEndpoint('');
-    setSelectedStartDate(null);
-    setSelectedEndDate(null);
   };
 
   if (isLoading) {

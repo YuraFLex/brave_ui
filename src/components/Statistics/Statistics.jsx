@@ -36,9 +36,19 @@ export const Statistics = () => {
       <li className={s.platfromItem}>
         <div className={s.platformCard}>
           <div className={s.platfromHeader}>
-            <span>Impression:</span>
+            <span>Spend:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.impressions_sum)}
+              {renderValue(statisticsData && statisticsData.impressions_sum)} $
+            </span>
+          </div>
+        </div>
+      </li>
+      <li className={s.platfromItem}>
+        <div className={s.platformCard}>
+          <div className={s.platfromHeader}>
+            <span>Impressions:</span>
+            <span className={s.descr}>
+              {renderValue(statisticsData && statisticsData.impressions_cnt)}
             </span>
           </div>
         </div>

@@ -24,9 +24,9 @@ export const StatisticsFilter = () => {
   const isLoading = useSelector(selectIsLoadingStatistics);
   const list = useSelector(selectIsEndPointList);
 
-  // useEffect(() => {
-  //   dispatch(fetchStatistics({ partnerId: id, type }));
-  // }, [dispatch, id, type]);
+  useEffect(() => {
+    dispatch(fetchStatistics({ partnerId: id, type }));
+  }, [dispatch, id, type]);
 
   useEffect(() => {
     dispatch(fetchEndPoint({ partnerId: id, type }));

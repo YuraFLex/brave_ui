@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { GoEye, GoEyeClosed } from 'react-icons/go';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { Button } from 'components/Button/Button';
 
 export const ChangeUserPassword = () => {
   const dispatch = useDispatch();
@@ -126,9 +127,10 @@ export const ChangeUserPassword = () => {
             )}
           </button>
         </label>
-        <button className={s.ChangeUserPasswordSubmitBtn} type="submit">
+        <Button type="submit" text="Change Password" />
+        {/* <button className={s.ChangeUserPasswordSubmitBtn} type="submit">
           Change Password
-        </button>
+        </button> */}
       </form>
     </div>
   );

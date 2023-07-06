@@ -1,3 +1,12 @@
+export const selectIsUserName = state => {
+  return state?.auth?.user?.first_name;
+}
+export const selectIsUserLastName = state => {
+  return state?.auth?.user?.last_name;
+}
+export const selectIsUserLegalName = state => {
+  return state?.auth?.user?.legal_name;
+}
 export const selectUserEmail = state => {
   return state?.auth?.user?.email;
 };

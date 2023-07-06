@@ -4,6 +4,9 @@ import {
   selectUserEmail,
   selectUserType,
   selectUserPartner,
+  selectIsUserName,
+  selectIsUserLastName,
+  selectIsUserLegalName,
 } from 'redux/auth/authSelectors';
 
 import s from './UserInfo.module.scss';
@@ -11,6 +14,9 @@ import { MdOutlineDone } from 'react-icons/md';
 import { FaRegEdit } from 'react-icons/fa';
 
 export const UserInfo = () => {
+  const firstName = useSelector(selectIsUserName);
+  const lastName = useSelector(selectIsUserLastName);
+  const legalName = useSelector(selectIsUserLegalName);
   const userEmail = useSelector(selectUserEmail);
   const userType = useSelector(selectUserType);
   const userPartner = useSelector(selectUserPartner);
@@ -36,6 +42,12 @@ export const UserInfo = () => {
       <div className={s.UserInfoBox}>
         <ul className={s.UserInfoList}>
           <li className={s.UserInfoItem}>
+            <h4>First Name:</h4> <p>{firstName}</p>
+          </li>
+          <li className={s.UserInfoItem}>
+            <h4>Last Name:</h4> <p>{lastName}</p>
+          </li>
+          <li className={s.UserInfoItem}>
             <h4>Email:</h4> <p>{userEmail}</p>
           </li>
           <li className={s.UserInfoItem}>
@@ -45,8 +57,8 @@ export const UserInfo = () => {
             <h4>Partner:</h4> <p>{userPartner}</p>
           </li>
           <li className={s.UserInfoItem}>
-            <h4>Full name, and legal company name:</h4>{' '}
-            {isEditing ? (
+            <h4>Legal Name:</h4> <p>{legalName}</p>
+            {/* {isEditing ? (
               <input
                 className={s.UserInfoEditText}
                 type="text"
@@ -69,7 +81,7 @@ export const UserInfo = () => {
               <button onClick={handleSave} className={s.UserInfoBtnEdit}>
                 <MdOutlineDone className={s.UserInfoBtnSave} />
               </button>
-            )}
+            )} */}
           </li>
         </ul>
       </div>

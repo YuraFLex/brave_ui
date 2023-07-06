@@ -39,7 +39,7 @@ export const LoginForm = () => {
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="exsample@mail.com"
+          placeholder="example@mail.com"
         />
         <span className={s.logLabelText}>Email:</span>
       </label>

@@ -11,7 +11,7 @@ export const login = createAsyncThunk(
     console.log('userData:', userData);
     try {
       const { data } = await axios.post('/login', userData);
-      console.log('Данные отправленные на сервер:', data);
+      console.log('Данные c сервера:', data);
 
       // Успешная авторизация
       if (data.success) {

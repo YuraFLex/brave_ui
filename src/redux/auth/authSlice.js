@@ -3,6 +3,9 @@ import { login } from './authOperations';
 
 const initialState = {
   user: {
+    first_name: '',
+    last_name: '',
+    legal_name: '',
     email: '',
     password: '',
     isActive: null,
@@ -32,6 +35,9 @@ const authSlice = createSlice({
       state.user = user;
       state.isLoggedIn = true;
       state.partner_id = state.user.partner_id
+      state.first_name = state.user.first_name
+      state.last_name = state.user.last_name
+      state.legal_name = state.user.legal_name
       state.isActive = isActive
     },
     [login.rejected]: (state, { payload }) => {

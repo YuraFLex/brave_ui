@@ -13,8 +13,8 @@ import { fetchEndPoint } from 'redux/endPoints/endPointOperations';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 export const StatisticsFilter = () => {
-  const [isPeriod, setIsPeriod] = useState('');
-  const [isEndpoint, setIsEndpoint] = useState('');
+  const [isPeriod, setIsPeriod] = useState('today');
+  const [isEndpoint, setIsEndpoint] = useState('all');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
 
@@ -36,7 +36,7 @@ export const StatisticsFilter = () => {
     setIsPeriod(e.target.value);
   }
 
-  const handleChangEndpoint = e => {
+  const handleChangeEndpoint = e => {
     setIsEndpoint(e.target.value);
   };
 
@@ -147,7 +147,7 @@ export const StatisticsFilter = () => {
         <select
           className={s.StatisticsFilterSelect}
           value={isEndpoint}
-          onChange={handleChangEndpoint}
+          onChange={handleChangeEndpoint}
         >
           <option value="all">All</option>
           {list &&

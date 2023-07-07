@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchStatistics } from 'redux/statistics/statisticsOperations';
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-
 import { RxUpdate } from 'react-icons/rx';
 import s from './StatisticsFilter.module.scss';
 import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
@@ -53,6 +51,10 @@ export const StatisticsFilter = () => {
     let convertedDate = null;
 
     switch (date) {
+      case 'today':
+        currentDate.setHours(0, 0, 0, 0);
+        convertedDate = Math.floor(currentDate.getTime() / 1000);
+        break;
       case 'yesterday':
         currentDate.setDate(currentDate.getDate() - 1);
         convertedDate = Math.floor(currentDate.getTime() / 1000);

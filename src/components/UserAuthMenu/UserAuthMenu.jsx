@@ -24,7 +24,8 @@ export const UserAuthMenu = () => {
   return (
     <div className={s.userAuthMenu}>
       <span className={s.userInfo}>
-        Welcome: <span className={s.userInfoDescr}>{firstName}</span>
+        <span>Welcome:</span>
+        <span className={s.userInfoDescr}>{firstName}</span>
         <span className={s.userInfoDescr}>{lastName}</span>
       </span>
       {isAccessAllowed && <LogOutButton clickHeandler={handleLogout} />}

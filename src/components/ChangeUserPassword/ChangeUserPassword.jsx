@@ -29,8 +29,6 @@ export const ChangeUserPassword = () => {
 
   const isLoadnig = useSelector(selectIsLoadingchangePassword);
 
-  console.log('Айли юзера:', userId);
-  console.log('Loader: ', isLoadnig);
   console.log('Данные для отправки на сервер:', passwordData);
 
   const onSubmit = e => {

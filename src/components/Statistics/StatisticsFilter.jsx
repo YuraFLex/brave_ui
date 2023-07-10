@@ -34,6 +34,16 @@ export const StatisticsFilter = () => {
     setIsPeriod(e.target.value);
   }
 
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     dispatch(fetchStatistics({ partnerId: id, type }));
+  //   }, 5 * 60 * 1000);
+
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, [dispatch, id, type]);
+
   const handleChangeEndpoint = e => {
     setIsEndpoint(e.target.value);
   };
@@ -46,53 +56,53 @@ export const StatisticsFilter = () => {
     setSelectedEndDate(date);
   };
 
-  const convertToUnixtime = date => {
-    const currentDate = new Date();
-    let convertedDate = null;
+  // const convertToUnixtime = date => {
+  //   const currentDate = new Date();
+  //   let convertedDate = null;
 
-    switch (date) {
-      case 'today':
-        currentDate.setHours(0, 0, 0, 0);
-        convertedDate = Math.floor(currentDate.getTime() / 1000);
-        break;
-      case 'yesterday':
-        currentDate.setDate(currentDate.getDate() - 1);
-        convertedDate = Math.floor(currentDate.getTime() / 1000);
-        break;
-      case 'lastweek':
-        currentDate.setDate(currentDate.getDate() - 7);
-        convertedDate = Math.floor(currentDate.getTime() / 1000);
-        break;
-      case 'lastmonth':
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        convertedDate = Math.floor(currentDate.getTime() / 1000);
-        break;
-      default:
-        break;
-    }
+  //   switch (date) {
+  //     case 'today':
+  //       currentDate.setHours(0, 0, 0, 0);
+  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
+  //       break;
+  //     case 'yesterday':
+  //       currentDate.setDate(currentDate.getDate() - 1);
+  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
+  //       break;
+  //     case 'lastweek':
+  //       currentDate.setDate(currentDate.getDate() - 7);
+  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
+  //       break;
+  //     case 'lastmonth':
+  //       currentDate.setMonth(currentDate.getMonth() - 1);
+  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
+  //       break;
+  //     default:
+  //       break;
+  //   }
 
-    return convertedDate;
-  };
+  //   return convertedDate;
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    const startDateUnix = selectedStartDate
-      ? Math.floor(selectedStartDate.getTime() / 1000)
-      : null;
-    const endDateUnix = selectedEndDate
-      ? Math.floor(selectedEndDate.getTime() / 1000)
-      : null;
+    // const startDateUnix = selectedStartDate
+    //   ? Math.floor(selectedStartDate.getTime() / 1000)
+    //   : null;
+    // const endDateUnix = selectedEndDate
+    //   ? Math.floor(selectedEndDate.getTime() / 1000)
+    //   : null;
 
-    const periodUnix = convertToUnixtime(isPeriod);
+    // const periodUnix = convertToUnixtime(isPeriod);
 
     const data = {
       partnerId: id,
       type,
       endPoint: isEndpoint || 'all',
-      period: periodUnix,
-      startDate: startDateUnix,
-      endDate: endDateUnix,
+      period: isPeriod,
+      startDate: selectedStartDate,
+      endDate: selectedEndDate,
     };
 
     dispatch(fetchStatistics(data));

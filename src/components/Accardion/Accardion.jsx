@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaPlus, FaMinus, FaArrowDown, FaArrowRight } from 'react-icons/fa';
+import { BiRightArrow, BiDownArrow } from 'react-icons/bi';
 
 import cn from 'classnames';
 import s from './Accardion.module.scss';
 
 const icons = {
-  expanded: <FaMinus />,
-  collapsed: <FaPlus />,
+  expanded: <BiDownArrow />,
+  collapsed: <BiRightArrow />,
 };
 
 export const Accordion = ({ title, children, defaultOpen = false }) => {

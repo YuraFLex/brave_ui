@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
 import { statisticsReducer } from './statistics/statisticsSlice';
+import { changePasswordReducer } from './changePassword/changePasswordSlice';
 import { endPointReducer } from './endPoints/endPointSlice';
+import { summaryReportsReducer } from './reports/summaryReports/summaryReportsSlice';
 
 import {
   persistStore,
@@ -14,7 +16,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { changePasswordReducer } from './changePassword/changePasswordSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -44,12 +45,21 @@ const endPointPersistConfig = {
 
 const endPointPersistedReducer = persistReducer(endPointPersistConfig, endPointReducer)
 
+const summaryReportsPersistConfig = {
+  key: 'summaryReports',
+  storage,
+}
+
+const summaryReportsPersistedReducer = persistReducer(summaryReportsPersistConfig, summaryReportsReducer)
+
+
 export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
     statistics: statisticsPersistedReducer,
     changePassword: changePasswordPersistedReducer,
     endPoint: endPointPersistedReducer,
+    summaryReports: summaryReportsPersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

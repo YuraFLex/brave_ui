@@ -1,23 +1,31 @@
 import { Accordion } from 'components/Accardion/Accardion';
 import { AccordionContainer } from 'components/Accardion/AccardionConteiner';
-import { AdjustTable } from 'components/Reports/SummaryReport/AdjustTable';
-import { ReportSetting } from 'components/Reports/SummaryReport/ReportSetting';
+import { SummaryReports } from 'components/Reports/SummaryReport/SummaryReports';
 import { Wraper } from 'components/Wraper/Wraper';
+import { ShowSummaryReports } from 'components/Reports/SummaryReport/ShowSummaryReports';
 
 export const ReportsPage = () => {
   return (
     <>
       <Wraper>
-        <h2>Summary Reports</h2>
         <AccordionContainer>
-          <Accordion title={'Report Settings'} defaultOpen={true}>
-            <ReportSetting />
+          <Accordion title={'Summary Reports'} defaultOpen={true}>
+            <SummaryReports />
           </Accordion>
-          <Accordion title={'Adjust Table'} defaultOpen={true}>
-            <AdjustTable />
-          </Accordion>
+
           <Accordion title={'Report'}>
-            <h1>Report</h1>
+            <ShowSummaryReports />
+          </Accordion>
+        </AccordionContainer>
+        <AccordionContainer>
+          <Accordion title={'Detailed Reports'}>
+            <h3>Comming soon...</h3>
+            {/* <SummaryReports /> */}
+          </Accordion>
+
+          <Accordion title={'Report'}>
+            <h3>Comming soon...</h3>
+            {/* <ShowSummaryReports /> */}
           </Accordion>
         </AccordionContainer>
       </Wraper>

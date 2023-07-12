@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchStatistics } from 'redux/statistics/statisticsOperations';
 import DatePicker from 'react-datepicker';
-import { RxUpdate } from 'react-icons/rx';
+// import { RxUpdate } from 'react-icons/rx';
 import s from './StatisticsFilter.module.scss';
 import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
 import { selectIsLoadingStatistics } from 'redux/statistics/statisticsSelectors';
 import { LoaderNew } from 'components/Loader/Loader';
 import { fetchEndPoint } from 'redux/endPoints/endPointOperations';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
+import { FaSync } from 'react-icons/fa';
 
 export const StatisticsFilter = () => {
   const [isPeriod, setIsPeriod] = useState('today');
@@ -34,16 +35,6 @@ export const StatisticsFilter = () => {
     setIsPeriod(e.target.value);
   }
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     dispatch(fetchStatistics({ partnerId: id, type }));
-  //   }, 5 * 60 * 1000);
-
-  //   return () => {
-  //     clearInterval(intervalId);
-  //   };
-  // }, [dispatch, id, type]);
-
   const handleChangeEndpoint = e => {
     setIsEndpoint(e.target.value);
   };
@@ -56,50 +47,13 @@ export const StatisticsFilter = () => {
     setSelectedEndDate(date);
   };
 
-  // const convertToUnixtime = date => {
-  //   const currentDate = new Date();
-  //   let convertedDate = null;
-
-  //   switch (date) {
-  //     case 'today':
-  //       currentDate.setHours(0, 0, 0, 0);
-  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
-  //       break;
-  //     case 'yesterday':
-  //       currentDate.setDate(currentDate.getDate() - 1);
-  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
-  //       break;
-  //     case 'lastweek':
-  //       currentDate.setDate(currentDate.getDate() - 7);
-  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
-  //       break;
-  //     case 'lastmonth':
-  //       currentDate.setMonth(currentDate.getMonth() - 1);
-  //       convertedDate = Math.floor(currentDate.getTime() / 1000);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-
-  //   return convertedDate;
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
-
-    // const startDateUnix = selectedStartDate
-    //   ? Math.floor(selectedStartDate.getTime() / 1000)
-    //   : null;
-    // const endDateUnix = selectedEndDate
-    //   ? Math.floor(selectedEndDate.getTime() / 1000)
-    //   : null;
-
-    // const periodUnix = convertToUnixtime(isPeriod);
 
     const data = {
       partnerId: id,
       type,
-      endPoint: isEndpoint || 'all',
+      endPoint: isEndpoint,
       period: isPeriod,
       startDate: selectedStartDate,
       endDate: selectedEndDate,
@@ -171,7 +125,7 @@ export const StatisticsFilter = () => {
         </select>
 
         <button className={s.StatisticsFilterBtnSubmit} type="submit">
-          <RxUpdate />
+          <FaSync />
         </button>
       </form>
     </div>

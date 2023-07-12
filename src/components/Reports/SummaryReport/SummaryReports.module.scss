@@ -1,0 +1,78 @@
+.ReportSettingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ReportSettingContainer {
+  display: flex;
+  // flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+.ReportSettingInner {
+  width: calc((100% - 40px) / 2);
+}
+
+.ReportSettingFilterBox {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.DatePicker {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ReportSettingSelect,
+.ReportSettingDatePicker {
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #0099fa;
+  border-radius: 4px;
+}
+
+.ReportSettingTitle {
+  margin-bottom: 20px;
+}
+
+.ReportSettingList {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.ReportSettingItem {
+  // width: calc((100% - 40px) / 2);
+}
+
+.ReportSettingLabel {
+  margin-left: 5px;
+}
+
+.ReportSettingBtnBox {
+  display: flex;
+  gap: 20px;
+}
+
+.ReportSettingTableBtn {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 5px 20px;
+  background-color: #0099fa;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}

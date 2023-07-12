@@ -6,13 +6,21 @@
 
 .ReportSettingContainer {
   display: flex;
-  // flex-direction: column;
   width: 100%;
   gap: 20px;
+
+  @media screen and (max-width: 852px) {
+    // justify-content: center;
+    flex-direction: column;
+  }
 }
 
 .ReportSettingInner {
   width: calc((100% - 40px) / 2);
+
+  @media screen and (max-width: 852px) {
+    width: 100%;
+  }
 }
 
 .ReportSettingFilterBox {
@@ -23,6 +31,10 @@
 
   &:not(:last-child) {
     margin-bottom: 5px;
+  }
+
+  @media screen and (max-width: 852px) {
+    width: 100%;
   }
 }
 

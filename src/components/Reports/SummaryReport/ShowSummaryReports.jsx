@@ -20,6 +20,7 @@ export const ShowSummaryReports = () => {
     { label: 'Responses', dataKey: 'responses' },
     { label: 'Gross Point', dataKey: 'gross_point' },
     { label: 'Timeouts', dataKey: 'timeouts' },
+    { label: 'Timeouts %', dataKey: 'time_outs', unit: '%' },
   ].filter(item => selectedLabels.includes(item.label));
 
   return (

@@ -6,6 +6,8 @@ import { selectedSummaryReportsData } from 'redux/reports/summaryReports/summary
 export const ShowSummaryReports = () => {
   const data = useSelector(selectedSummaryReportsData);
 
+  console.log('ReportsData:', data);
+
   if (!data) {
     return <div>Please Run the report to see the data</div>;
   }
@@ -21,7 +23,11 @@ export const ShowSummaryReports = () => {
     { label: 'Gross Point', dataKey: 'gross_point' },
     { label: 'Timeouts', dataKey: 'timeouts' },
     { label: 'Timeouts %', dataKey: 'time_outs', unit: '%' },
-  ].filter(item => selectedLabels.includes(item.label));
+  ].filter(
+    item =>
+      selectedLabels.includes(item.label) &&
+      data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
+  );
 
   return (
     <ul className={s.platfromList}>

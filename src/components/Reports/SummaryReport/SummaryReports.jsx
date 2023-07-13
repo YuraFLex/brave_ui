@@ -34,6 +34,7 @@ export const SummaryReports = () => {
   const summaryReportsData = useSelector(selectedSummaryReportsData);
 
   console.log('summaryReportsData:', summaryReportsData);
+  console.log('checkedItems:', checkedItems);
 
   const handleChangeSummary = e => {
     setIsSummary(e.target.value);
@@ -60,10 +61,11 @@ export const SummaryReports = () => {
   };
 
   const handleChangeColumns = label => {
-    setCheckedItems(prevCheckedItems => ({
-      ...prevCheckedItems,
-      [label]: !prevCheckedItems[label],
-    }));
+    setCheckedItems(prevCheckedItems => {
+      const updatedCheckedItems = { ...prevCheckedItems };
+      updatedCheckedItems[label] = !updatedCheckedItems[label];
+      return updatedCheckedItems;
+    });
   };
 
   const handleSelectAll = () => {

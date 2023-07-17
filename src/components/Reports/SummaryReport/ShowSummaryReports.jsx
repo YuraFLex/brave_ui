@@ -20,7 +20,6 @@ export const ShowSummaryReports = () => {
     { label: 'Impressions', dataKey: 'impressions' },
     { label: 'Requests', dataKey: 'requests' },
     { label: 'Responses', dataKey: 'responses' },
-    { label: 'Gross Point', dataKey: 'gross_point' },
     { label: 'Timeouts', dataKey: 'timeouts' },
     { label: 'Timeouts %', dataKey: 'time_outs', unit: '%' },
   ].filter(

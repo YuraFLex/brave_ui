@@ -3,6 +3,7 @@ import { AccordionContainer } from 'components/Accardion/AccardionConteiner';
 import { SummaryReports } from 'components/Reports/SummaryReport/SummaryReports';
 import { Wraper } from 'components/Wraper/Wraper';
 import { ShowSummaryReports } from 'components/Reports/SummaryReport/ShowSummaryReports';
+import { DetailedReport } from 'components/Reports/DetailedReport/DetailedReport';
 
 export const ReportsPage = () => {
   return (
@@ -18,9 +19,8 @@ export const ReportsPage = () => {
           </Accordion>
         </AccordionContainer>
         <AccordionContainer>
-          <Accordion title={'Detailed Reports'}>
-            <h3>Comming soon...</h3>
-            {/* <SummaryReports /> */}
+          <Accordion title={'Detailed Reports'} defaultOpen={true}>
+            <DetailedReport />
           </Accordion>
 
           <Accordion title={'Report'}>

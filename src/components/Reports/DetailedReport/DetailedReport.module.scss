@@ -1,0 +1,69 @@
+.DetailedReportForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.DetailedReportContainer {
+  display: flex;
+  gap: 50px;
+}
+
+.DetailedReportBox {
+  width: calc((100% - 100px) / 3);
+}
+
+.DetailedReportSubTitle {
+  margin-bottom: 10px;
+}
+
+.DetailedReportInner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.DetailedReportSelect,
+.DetailedReportDatePicker {
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #0099fa;
+  border-radius: 4px;
+}
+
+.DetailedReportSelect {
+  width: 100%;
+}
+
+.DetailedReportList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-bottom: 10px;
+}
+
+.DetailedReportLabel {
+  margin-left: 5px;
+}
+
+.DetailedReportBtnBox {
+  display: flex;
+  gap: 20px;
+}
+
+.DetailedReportBtn {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 5px 20px;
+  background-color: #0099fa;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}

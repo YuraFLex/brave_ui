@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchSummaryReports } from "./summaryReportsOperations";
 
 const initialState = {
-    summaryReports: null,
+    summaryReportsData: null,
     isLoading: false,
     error: null,
 }

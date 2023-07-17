@@ -4,6 +4,7 @@ import { statisticsReducer } from './statistics/statisticsSlice';
 import { changePasswordReducer } from './changePassword/changePasswordSlice';
 import { endPointReducer } from './endPoints/endPointSlice';
 import { summaryReportsReducer } from './reports/summaryReports/summaryReportsSlice';
+import { detailedReportReducer } from './reports/detailedReport/detailedReportSlice';
 
 import {
   persistStore,
@@ -53,6 +54,17 @@ const summaryReportsPersistConfig = {
 const summaryReportsPersistedReducer = persistReducer(summaryReportsPersistConfig, summaryReportsReducer)
 
 
+const detailedReportPersistConfig = {
+  key: 'detailedReport',
+  storage,
+}
+
+const detailedReportPersistedReducer = persistReducer(detailedReportPersistConfig, detailedReportReducer)
+
+
+
+
+
 export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
@@ -60,6 +72,7 @@ export const store = configureStore({
     changePassword: changePasswordPersistedReducer,
     endPoint: endPointPersistedReducer,
     summaryReports: summaryReportsPersistedReducer,
+    detailedReport: detailedReportPersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

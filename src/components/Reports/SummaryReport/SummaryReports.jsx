@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 import { Button } from 'components/Button/Button';
 import { fetchSummaryReports } from 'redux/reports/summaryReports/summaryReportsOperations';
 import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
@@ -14,10 +13,8 @@ import s from './SummaryReports.module.scss';
 import { LoaderNew } from 'components/Loader/Loader';
 
 export const SummaryReports = () => {
-  const [isSummary, setIsSummary] = useState('company');
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
-  const [isEndpoint, setIsEndpoint] = useState('all');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const [checkedItems, setCheckedItems] = useState({
@@ -27,7 +24,6 @@ export const SummaryReports = () => {
   });
 
   const dispatch = useDispatch();
-  const list = useSelector(selectIsEndPointList);
   const id = useSelector(selectUserPartnerId);
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedSummaryReportsIsLoading);
@@ -36,20 +32,12 @@ export const SummaryReports = () => {
   console.log('summaryReportsData:', summaryReportsData);
   console.log('checkedItems:', checkedItems);
 
-  const handleChangeSummary = e => {
-    setIsSummary(e.target.value);
-  };
-
-  const handleChangeDisplay = e => {
-    setIsDisplay(e.target.value);
-  };
-
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
   }
 
-  const handleChangEndpoint = e => {
-    setIsEndpoint(e.target.value);
+  const handleChangeDisplay = e => {
+    setIsDisplay(e.target.value);
   };
 
   const handleStartDateChange = date => {
@@ -86,7 +74,6 @@ export const SummaryReports = () => {
     'Impressions',
     'Requests',
     'Responses',
-    'Gross Point',
     'Timeouts',
     'Timeouts %',
   ];
@@ -100,12 +87,10 @@ export const SummaryReports = () => {
     const data = {
       partner_id: id,
       type: type,
-      summary: isSummary,
       displayBy: isDisplay,
       period: isPeriod,
       startDate: selectedStartDate,
       endDate: selectedEndDate,
-      endpointId: isEndpoint,
       checkedItems: { labels, isChecked },
     };
 
@@ -123,30 +108,7 @@ export const SummaryReports = () => {
         <div className={s.ReportSettingContainer}>
           <div className={s.ReportSettingInner}>
             <div className={s.ReportSettingFilterBox}>
-              <h4>Summary by</h4>
-              <select
-                className={s.ReportSettingSelect}
-                value={isSummary}
-                onChange={handleChangeSummary}
-              >
-                <option value="company">Company</option>
-              </select>
-
-              <h4>Display by</h4>
-              <select
-                className={s.ReportSettingSelect}
-                value={isDisplay}
-                onChange={handleChangeDisplay}
-              >
-                <option value="day">Day</option>
-                <option value="hour">Hour</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
-              </select>
-            </div>
-
-            <div className={s.ReportSettingFilterBox}>
-              <h4>Select Period</h4>
+              <h4>Select Period:</h4>
               <select
                 className={s.ReportSettingSelect}
                 value={isPeriod}
@@ -189,20 +151,16 @@ export const SummaryReports = () => {
             </div>
 
             <div className={s.ReportSettingFilterBox}>
-              <h4>End Point</h4>
-
+              <h4>Display by:</h4>
               <select
                 className={s.ReportSettingSelect}
-                value={isEndpoint}
-                onChange={handleChangEndpoint}
+                value={isDisplay}
+                onChange={handleChangeDisplay}
               >
-                <option value="all">All</option>
-                {list &&
-                  list.map(({ id, name }) => (
-                    <option key={id} value={id}>
-                      {name}
-                    </option>
-                  ))}
+                <option value="day">Day</option>
+                <option value="hour">Hour</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
               </select>
             </div>
           </div>
@@ -217,6 +175,8 @@ export const SummaryReports = () => {
                     onChange={() => handleChangeColumns(label)}
                   />
                   <label className={s.ReportSettingLabel}>{label}</label>
+
+                  <div className={s.SummaryReportsCheckmark}></div>
                 </li>
               ))}
             </ul>

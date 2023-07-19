@@ -103,6 +103,7 @@ export const ShowSummaryReports = () => {
             : null}
         </tbody>
       </table>
+      <button className={s.ShowSummaryReportsDownloadBtn}>Download CSV</button>
     </div>
   );
 };

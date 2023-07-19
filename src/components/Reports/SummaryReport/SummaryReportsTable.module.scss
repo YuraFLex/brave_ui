@@ -1,19 +1,67 @@
-.SummaryReportsTable {
+.ShowSummaryReportsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ShowSummaryReportsDownloadBtn {
+  margin-right: auto;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 5px 20px;
+  background-color: #0099fa;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.ShowSummaryReportsTable {
   width: 100%;
   border-collapse: collapse;
 }
 
-.SummaryReportsTableTh,
-.SummaryReportsTableTd {
+.ShowSummaryReportsTh,
+.ShowSummaryReportsTd {
   padding: 8px;
   text-align: left;
   border: 1px solid #ddd;
 }
 
-.SummaryReportsTableTh {
+.ShowSummaryReportsTh {
   background-color: #f2f2f2;
 }
 
-.SummaryReportsTableTr:hover {
+.ShowSummaryReportsTr:hover {
   background-color: #edf3f8;
+}
+
+.platfromList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  @media screen and (max-width: 1240px) {
+    justify-content: center;
+  }
+}
+
+.platfromItem {
+  padding: 10px 20px;
+  border: 1px solid #0099fa;
+  border-radius: 4px;
+  max-width: 290px;
+  width: 100%;
+  background-color: #0099fa17;
+}
+
+.platfromHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.descr {
+  font-weight: 700;
 }

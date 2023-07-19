@@ -85,7 +85,6 @@ export const DetailedReport = () => {
     'Spend',
     'App Name',
     'App Bundle',
-    'App Store URL',
     'Traffic Type',
     'Size',
     'Region',
@@ -232,14 +231,13 @@ export const DetailedReport = () => {
             >
               <option value="allRegions">All Regions</option>
               <option value="eu">EU</option>
-              <option value="useast">USEAST</option>
-              <option value="uswest">USWEST</option>
+              <option value="useast">US-EAST</option>
             </select>
           </div>
         </div>
 
         <div className={s.DetailedReportBox}>
-          <h4 className={s.DetailedReportSubTitle}>Colums</h4>
+          <h4 className={s.DetailedReportSubTitle}>Columns</h4>
           <ul className={s.DetailedReportList}>
             {columsLabel.map(label => (
               <li className={s.DetailedReportItem} key={label}>

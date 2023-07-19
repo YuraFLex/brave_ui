@@ -30,7 +30,6 @@ export const SummaryReports = () => {
   const summaryReportsData = useSelector(selectedSummaryReportsData);
 
   console.log('summaryReportsData:', summaryReportsData);
-  console.log('checkedItems:', checkedItems);
 
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
@@ -95,7 +94,7 @@ export const SummaryReports = () => {
     };
 
     dispatch(fetchSummaryReports(data));
-    console.log('Data:', data);
+    console.log('Data to server:', data);
   };
 
   if (isLoading) {

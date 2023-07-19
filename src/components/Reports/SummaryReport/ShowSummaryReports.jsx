@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import s from '../../Statistics/Statistics.module.scss';
+import s from './SummaryReportsTable.module.scss';
 import { selectedSummaryReportsData } from 'redux/reports/summaryReports/summaryReportsSelectors';
 
 export const ShowSummaryReports = () => {
@@ -9,7 +9,7 @@ export const ShowSummaryReports = () => {
   console.log('ReportsData:', data);
 
   if (!data) {
-    return <div>Please Run the report to see the data</div>;
+    return <div>Please run the report to see the data</div>;
   }
 
   const selectedLabels = data.labels;
@@ -17,10 +17,10 @@ export const ShowSummaryReports = () => {
   const itemsToRender = [
     { label: 'Spend', dataKey: 'spend', unit: '$' },
     { label: 'Win Rate %', dataKey: 'win_rate', unit: '%' },
-    { label: 'Impressions', dataKey: 'impressions' },
-    { label: 'Requests', dataKey: 'requests' },
-    { label: 'Responses', dataKey: 'responses' },
-    { label: 'Timeouts', dataKey: 'timeouts' },
+    { label: 'Impressions', dataKey: 'impressions', unit: '' },
+    { label: 'Requests', dataKey: 'requests', unit: '' },
+    { label: 'Responses', dataKey: 'responses', unit: '' },
+    { label: 'Timeouts', dataKey: 'timeouts', unit: '' },
     { label: 'Timeouts %', dataKey: 'time_outs', unit: '%' },
   ].filter(
     item =>
@@ -28,7 +28,38 @@ export const ShowSummaryReports = () => {
       data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
   );
 
-  return (
+  if (data.time_interval && data.time_interval.length > 0) {
+    itemsToRender.push({ label: 'Date', dataKey: 'time_interval' });
+  }
+
+  const periodToday =
+    (data.period === 'today' || data.period === 'yesterday') &&
+    (data.displayBy === 'day' ||
+      data.displayBy === 'month' ||
+      data.displayBy === 'year') &&
+    data.spend.length > 0 &&
+    data.win_rate.length > 0 &&
+    data.impressions.length > 0 &&
+    data.requests.length > 0 &&
+    data.responses.length > 0 &&
+    data.timeouts.length > 0 &&
+    data.time_outs.length > 0;
+
+  // Проверяем, что хотя бы одна колонка выбрана и itemsToRender не пустой
+  const atLeastOneLabelChecked = itemsToRender.some(
+    item => data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
+  );
+
+  // Если нет выбранных колонок для отображения, выводим сообщение с просьбой выбрать хотя бы одну колонку
+  if (
+    !atLeastOneLabelChecked ||
+    itemsToRender.length === 0 ||
+    data.isChecked === false
+  ) {
+    return <div>Please select at least one column to display.</div>;
+  }
+
+  return periodToday ? (
     <ul className={s.platfromList}>
       {itemsToRender.map((item, index) => (
         <li className={s.platfromItem} key={index}>
@@ -36,12 +67,43 @@ export const ShowSummaryReports = () => {
             <div className={s.platfromHeader}>
               <span>{item.label}:</span>
               <span className={s.descr}>
-                {data[item.dataKey]} {item.unit}
+                {data[item.dataKey][data[item.dataKey].length - 1]}
+                {item.unit}
               </span>
             </div>
           </div>
         </li>
       ))}
     </ul>
+  ) : (
+    <div className={s.ShowSummaryReportsWrapper}>
+      <table className={s.ShowSummaryReportsTable}>
+        <thead>
+          <tr>
+            {itemsToRender.map(item => (
+              <th key={item.label} className={s.ShowSummaryReportsTh}>
+                {item.label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data[itemsToRender[0].dataKey].map((_, index) => (
+            <tr key={index} className={s.ShowSummaryReportsTr}>
+              {itemsToRender.map(item => (
+                <td key={item.label} className={s.ShowSummaryReportsTd}>
+                  {item.unit
+                    ? `${data[item.dataKey][index]}${item.unit}`
+                    : data[item.dataKey][index]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* <button className={s.ShowSummaryReportsDownloadBtn} type="button">
+        Download CSV
+      </button> */}
+    </div>
   );
 };

@@ -88,22 +88,21 @@ export const ShowSummaryReports = () => {
           </tr>
         </thead>
         <tbody>
-          {data[itemsToRender[0].dataKey].map((_, index) => (
-            <tr key={index} className={s.ShowSummaryReportsTr}>
-              {itemsToRender.map(item => (
-                <td key={item.label} className={s.ShowSummaryReportsTd}>
-                  {item.unit
-                    ? `${data[item.dataKey][index]}${item.unit}`
-                    : data[item.dataKey][index]}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {Array.isArray(data[itemsToRender[0].dataKey])
+            ? data[itemsToRender[0].dataKey].map((_, index) => (
+                <tr key={index} className={s.ShowSummaryReportsTr}>
+                  {itemsToRender.map(item => (
+                    <td key={item.label} className={s.ShowSummaryReportsTd}>
+                      {item.unit
+                        ? `${data[item.dataKey][index]}${item.unit}`
+                        : data[item.dataKey][index]}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            : null}
         </tbody>
       </table>
-      {/* <button className={s.ShowSummaryReportsDownloadBtn} type="button">
-        Download CSV
-      </button> */}
     </div>
   );
 };

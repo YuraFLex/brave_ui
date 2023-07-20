@@ -38,7 +38,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Spend:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.impressions_sum)} $
+              $ {renderValue(statisticsData && statisticsData.impressions_sum)}
             </span>
           </div>
         </div>

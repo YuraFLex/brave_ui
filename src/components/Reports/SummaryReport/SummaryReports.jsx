@@ -76,9 +76,9 @@ export const SummaryReports = () => {
   const columsLabel = [
     'Spend',
     'Win Rate %',
-    'Impressions',
     'Requests',
     'Responses',
+    'Impressions',
     'Timeouts',
     'Timeouts %',
   ];

@@ -17,9 +17,9 @@ export const ShowSummaryReports = () => {
   const itemsToRender = [
     { label: 'Spend', dataKey: 'spend', unit: '$' },
     { label: 'Win Rate %', dataKey: 'win_rate', unit: '%' },
-    { label: 'Impressions', dataKey: 'impressions', unit: '' },
     { label: 'Requests', dataKey: 'requests', unit: '' },
     { label: 'Responses', dataKey: 'responses', unit: '' },
+    { label: 'Impressions', dataKey: 'impressions', unit: '' },
     { label: 'Timeouts', dataKey: 'timeouts', unit: '' },
     { label: 'Timeouts %', dataKey: 'time_outs', unit: '%' },
   ].filter(
@@ -29,7 +29,11 @@ export const ShowSummaryReports = () => {
   );
 
   if (data.time_interval && data.time_interval.length > 0) {
-    itemsToRender.push({ label: 'Date', dataKey: 'time_interval' });
+    itemsToRender.unshift({
+      label: 'Date',
+      dataKey: 'time_interval',
+      unit: '',
+    });
   }
 
   const periodToday =
@@ -67,8 +71,16 @@ export const ShowSummaryReports = () => {
             <div className={s.platfromHeader}>
               <span>{item.label}:</span>
               <span className={s.descr}>
-                {data[item.dataKey][data[item.dataKey].length - 1]}
-                {item.unit}
+                {item.unit === '$'
+                  ? `${item.unit} ${
+                      data[item.dataKey][data[item.dataKey].length - 1]
+                    }`
+                  : ''}
+                {item.unit !== '$'
+                  ? `${data[item.dataKey][data[item.dataKey].length - 1]}${
+                      item.unit
+                    }`
+                  : ''}
               </span>
             </div>
           </div>
@@ -93,9 +105,12 @@ export const ShowSummaryReports = () => {
                 <tr key={index} className={s.ShowSummaryReportsTr}>
                   {itemsToRender.map(item => (
                     <td key={item.label} className={s.ShowSummaryReportsTd}>
-                      {item.unit
+                      {item.unit === '$'
+                        ? `${item.unit} ${data[item.dataKey][index]}`
+                        : ''}
+                      {item.unit !== '$'
                         ? `${data[item.dataKey][index]}${item.unit}`
-                        : data[item.dataKey][index]}
+                        : ''}
                     </td>
                   ))}
                 </tr>

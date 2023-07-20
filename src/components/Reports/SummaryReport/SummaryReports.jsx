@@ -162,8 +162,8 @@ export const SummaryReports = () => {
                 value={isDisplay}
                 onChange={handleChangeDisplay}
               >
-                <option value="day">Day</option>
                 <option value="hour">Hour</option>
+                <option value="day">Day</option>
                 <option value="month">Month</option>
                 <option value="year">Year</option>
               </select>

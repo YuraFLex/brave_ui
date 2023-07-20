@@ -64,7 +64,13 @@ export const SummaryReports = () => {
   };
 
   const handleDeleteAll = () => {
-    setCheckedItems({});
+    setCheckedItems(prevCheckedItems => {
+      const updatedCheckedItems = {};
+      Object.keys(prevCheckedItems).forEach(label => {
+        updatedCheckedItems[label] = false;
+      });
+      return updatedCheckedItems;
+    });
   };
 
   const columsLabel = [

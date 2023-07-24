@@ -1,12 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import s from './SummaryReportsTable.module.scss';
 import { selectedSummaryReportsData } from 'redux/reports/summaryReports/summaryReportsSelectors';
+import { downloadSummaryReportsCSV } from 'redux/reports/summaryReports/summaryReportsOperations';
 
 export const ShowSummaryReports = () => {
   const data = useSelector(selectedSummaryReportsData);
 
   console.log('ReportsData:', data);
+
+  const dispatch = useDispatch();
 
   if (!data) {
     return <div>Please run the report to see the data</div>;
@@ -63,6 +66,29 @@ export const ShowSummaryReports = () => {
     return <div>Please select at least one column to display.</div>;
   }
 
+  const handleDownloadCsv = () => {
+    const dataToSend = {
+      items: itemsToRender
+        .filter(
+          item =>
+            selectedLabels.includes(item.label) &&
+            data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
+        )
+        .map(item => ({
+          label: item.label,
+          data: data[item.dataKey].filter(
+            (_, index) =>
+              data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
+          ),
+          unit: item.unit,
+        })),
+      time_interval: data.time_interval, // Включаем time_interval в dataToSend
+    };
+
+    dispatch(downloadSummaryReportsCSV(dataToSend));
+    console.log('Data to send:', dataToSend);
+  };
+
   return periodToday ? (
     <ul className={s.platfromList}>
       {itemsToRender.map((item, index) => (
@@ -89,6 +115,12 @@ export const ShowSummaryReports = () => {
     </ul>
   ) : (
     <div className={s.ShowSummaryReportsWrapper}>
+      <button
+        className={s.ShowSummaryReportsDownloadBtn}
+        onClick={handleDownloadCsv}
+      >
+        Download CSV
+      </button>
       <table className={s.ShowSummaryReportsTable}>
         <thead>
           <tr>
@@ -118,7 +150,6 @@ export const ShowSummaryReports = () => {
             : null}
         </tbody>
       </table>
-      <button className={s.ShowSummaryReportsDownloadBtn}>Download CSV</button>
     </div>
   );
 };

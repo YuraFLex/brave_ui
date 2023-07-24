@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaPlus, FaMinus, FaArrowDown, FaArrowRight } from 'react-icons/fa';
+// import { FaPlus, FaMinus, FaArrowDown, FaArrowRight } from 'react-icons/fa';
 import { BiRightArrow, BiDownArrow } from 'react-icons/bi';
 
 import cn from 'classnames';

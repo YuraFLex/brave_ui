@@ -91,11 +91,11 @@ export const DetailedReport = () => {
     'Spend',
     'App Name',
     'App Bundle',
-    'Traffic Type',
+    'Type',
     'Size',
     'Region',
     'Impressions',
-    'Platform',
+    // 'Platform',
   ];
 
   const handleSubmit = e => {

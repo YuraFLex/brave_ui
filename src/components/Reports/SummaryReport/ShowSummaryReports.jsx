@@ -7,7 +7,7 @@ import { downloadSummaryReportsCSV } from 'redux/reports/summaryReports/summaryR
 export const ShowSummaryReports = () => {
   const data = useSelector(selectedSummaryReportsData);
 
-  console.log('ReportsData:', data);
+  console.log('Summary reports data:', data);
 
   const dispatch = useDispatch();
 
@@ -114,42 +114,44 @@ export const ShowSummaryReports = () => {
       ))}
     </ul>
   ) : (
-    <div className={s.ShowSummaryReportsWrapper}>
+    <div>
       <button
         className={s.ShowSummaryReportsDownloadBtn}
         onClick={handleDownloadCsv}
       >
         Download CSV
       </button>
-      <table className={s.ShowSummaryReportsTable}>
-        <thead>
-          <tr>
-            {itemsToRender.map(item => (
-              <th key={item.label} className={s.ShowSummaryReportsTh}>
-                {item.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(data[itemsToRender[0].dataKey])
-            ? data[itemsToRender[0].dataKey].map((_, index) => (
-                <tr key={index} className={s.ShowSummaryReportsTr}>
-                  {itemsToRender.map(item => (
-                    <td key={item.label} className={s.ShowSummaryReportsTd}>
-                      {item.unit === '$'
-                        ? `${item.unit} ${data[item.dataKey][index]}`
-                        : ''}
-                      {item.unit !== '$'
-                        ? `${data[item.dataKey][index]}${item.unit}`
-                        : ''}
-                    </td>
-                  ))}
-                </tr>
-              ))
-            : null}
-        </tbody>
-      </table>
+      <div className={s.ShowSummaryReportsWrapper}>
+        <table className={s.ShowSummaryReportsTable}>
+          <thead>
+            <tr>
+              {itemsToRender.map(item => (
+                <th key={item.label} className={s.ShowSummaryReportsTh}>
+                  {item.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(data[itemsToRender[0].dataKey])
+              ? data[itemsToRender[0].dataKey].map((_, index) => (
+                  <tr key={index} className={s.ShowSummaryReportsTr}>
+                    {itemsToRender.map(item => (
+                      <td key={item.label} className={s.ShowSummaryReportsTd}>
+                        {item.unit === '$'
+                          ? `${item.unit} ${data[item.dataKey][index]}`
+                          : ''}
+                        {item.unit !== '$'
+                          ? `${data[item.dataKey][index]}${item.unit}`
+                          : ''}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              : null}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

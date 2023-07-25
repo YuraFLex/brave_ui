@@ -1,3 +1,57 @@
+.ShowDetailedReportList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  @media screen and (max-width: 1240px) {
+    justify-content: center;
+  }
+}
+
+.ShowDetailedReportItem {
+  padding: 10px 20px;
+  border: 1px solid #0099fa;
+  border-radius: 4px;
+  max-width: 290px;
+  width: 100%;
+  background-color: #0099fa17;
+}
+
+.ShowDetailedReportCardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ShowDetailedReportDescr {
+  font-weight: 700;
+  overflow: overlay;
+  padding-bottom: 5px;
+
+  &::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #009afa39;
+    border-radius: 20px;
+    // height: 90%;
+    padding-top: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #009bfb8e;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #1678c2;
+  }
+}
+
 .ShowSummaryReportsWrapper {
   display: flex;
   flex-direction: column;
@@ -15,6 +69,7 @@
   color: #fff;
   border: 1px solid #ccc;
   border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 .ShowSummaryReportsTable {
@@ -35,35 +90,4 @@
 
 .ShowSummaryReportsTr:hover {
   background-color: #edf3f8;
-}
-
-.platfromList {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  @media screen and (max-width: 1240px) {
-    justify-content: center;
-  }
-}
-
-.platfromItem {
-  padding: 10px 20px;
-  border: 1px solid #0099fa;
-  border-radius: 4px;
-  max-width: 290px;
-  width: 100%;
-  background-color: #0099fa17;
-}
-
-.platfromHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.descr {
-  font-weight: 700;
 }

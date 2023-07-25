@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.be28b115.css",
-    "main.js": "/static/js/main.78e2435d.js",
+    "main.css": "/static/css/main.6809afa6.css",
+    "main.js": "/static/js/main.814fa58c.js",
     "static/media/WorkSans-SemiBold.ttf": "/static/media/WorkSans-SemiBold.7e77b58a707807fcd6e4.ttf",
     "static/media/WorkSans-Bold.ttf": "/static/media/WorkSans-Bold.1b7953cecdd0234f6de9.ttf",
     "static/media/WorkSans-Light.ttf": "/static/media/WorkSans-Light.c88271c9e6b20b44943d.ttf",
     "static/media/WorkSans-Regular.ttf": "/static/media/WorkSans-Regular.4be086328ba304c25f49.ttf",
     "static/media/logo.png": "/static/media/logo.527189a0b549fe978050.png",
     "index.html": "/index.html",
-    "main.be28b115.css.map": "/static/css/main.be28b115.css.map",
-    "main.78e2435d.js.map": "/static/js/main.78e2435d.js.map"
+    "main.6809afa6.css.map": "/static/css/main.6809afa6.css.map",
+    "main.814fa58c.js.map": "/static/js/main.814fa58c.js.map"
   },
   "entrypoints": [
-    "static/css/main.be28b115.css",
-    "static/js/main.78e2435d.js"
+    "static/css/main.6809afa6.css",
+    "static/js/main.814fa58c.js"
   ]
 }

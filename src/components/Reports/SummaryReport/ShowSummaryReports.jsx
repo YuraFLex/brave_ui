@@ -82,7 +82,7 @@ export const ShowSummaryReports = () => {
           ),
           unit: item.unit,
         })),
-      time_interval: data.time_interval, // Включаем time_interval в dataToSend
+      time_interval: data.time_interval,
     };
 
     dispatch(downloadSummaryReportsCSV(dataToSend));

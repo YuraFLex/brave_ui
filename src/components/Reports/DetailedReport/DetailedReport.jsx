@@ -78,7 +78,13 @@ export const DetailedReport = () => {
   };
 
   const handleDeleteAll = () => {
-    setCheckedItems({});
+    setCheckedItems(prevCheckedItems => {
+      const updatedCheckedItems = {};
+      Object.keys(prevCheckedItems).forEach(label => {
+        updatedCheckedItems[label] = false;
+      });
+      return updatedCheckedItems;
+    });
   };
 
   const columsLabel = [
@@ -113,7 +119,7 @@ export const DetailedReport = () => {
     };
 
     dispatch(fetchDetailedReports(data));
-    console.log('Данные отправленные на сервер:', data);
+    console.log('Detailed Report Данные отправленные на сервер:', data);
   };
 
   if (isLoading) {
@@ -174,8 +180,8 @@ export const DetailedReport = () => {
               value={isDisplay}
               onChange={handleChangeDisplay}
             >
-              <option value="day">Day</option>
               <option value="hour">Hour</option>
+              <option value="day">Day</option>
               <option value="month">Month</option>
               <option value="year">Year</option>
             </select>

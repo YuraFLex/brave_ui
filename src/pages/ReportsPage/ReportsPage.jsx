@@ -4,6 +4,7 @@ import { SummaryReports } from 'components/Reports/SummaryReport/SummaryReports'
 import { Wraper } from 'components/Wraper/Wraper';
 import { ShowSummaryReports } from 'components/Reports/SummaryReport/ShowSummaryReports';
 import { DetailedReport } from 'components/Reports/DetailedReport/DetailedReport';
+import { ShowDetailedReport } from 'components/Reports/DetailedReport/ShowDetailedReport';
 
 export const ReportsPage = () => {
   return (
@@ -24,8 +25,7 @@ export const ReportsPage = () => {
           </Accordion>
 
           <Accordion title={'Report'}>
-            <h3>Comming soon...</h3>
-            {/* <ShowSummaryReports /> */}
+            <ShowDetailedReport />
           </Accordion>
         </AccordionContainer>
       </Wraper>

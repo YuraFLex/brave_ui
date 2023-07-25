@@ -1,5 +1,5 @@
 export const selectedDetaliedReportsData = state => {
-    return state?.detailedReport?.detailedReportData;
+    return state?.detailedReport?.detailedReportsData;
 }
 
 export const selectedDetaliedReportsIsLoading = state => {

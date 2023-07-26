@@ -17,10 +17,17 @@ export const ShowDetailedReport = () => {
 
   const selectedLabels = data.labels;
 
+  const allValuesEmpty = arr => arr.every(value => value.trim() === '');
+
+  // Заменяем App Bundle на данные в зависимости от их наличия
+  let appBundleDataKey = allValuesEmpty(data.bundle_domain)
+    ? 'site_domain'
+    : 'bundle_domain';
+
   const itemsToRender = [
     { label: 'Spend', dataKey: 'spend', unit: '$' },
     { label: 'App Name', dataKey: 'app_name' },
-    { label: 'App Bundle', dataKey: 'app_bundle' },
+    { label: 'App Bundle', dataKey: appBundleDataKey },
     { label: 'Type', dataKey: 'traffic_type' },
     { label: 'Size', dataKey: 'size' },
     { label: 'Region', dataKey: 'region' },

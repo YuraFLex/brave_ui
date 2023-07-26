@@ -25,7 +25,7 @@ export const ShowDetailedReport = () => {
     { label: 'Size', dataKey: 'size' },
     { label: 'Region', dataKey: 'region' },
     { label: 'Impressions', dataKey: 'impressions' },
-    // { label: 'Platform', dataKey: 'pub_id' },
+    { label: 'Platform', dataKey: 'platform' },
   ].filter(
     item =>
       selectedLabels.includes(item.label) &&

@@ -37,13 +37,13 @@ export const DetailedReport = () => {
   const id = useSelector(selectUserPartnerId);
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedDetaliedReportsIsLoading);
-  // const sizesList = useSelector(selectIsSizes);
+  const sizesList = useSelector(selectIsSizes);
 
   // console.log('sizesList:', sizesList);
 
-  // useEffect(() => {
-  //   dispatch(fetchSizes({ partnerId: id, type }));
-  // }, [dispatch, id, type]);
+   useEffect(() => {
+     dispatch(fetchSizes({ partnerId: id, type }));
+   }, [dispatch, id, type]);
 
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
@@ -213,6 +213,11 @@ export const DetailedReport = () => {
               onChange={handleChangeSize}
             >
               <option value="allSize">All Size</option>
+              {sizesList.map((size, index) => (
+                <option key={index} value={size.size}>
+                  {size.size}
+                </option>
+              ))}
             </select>
           </div>
 

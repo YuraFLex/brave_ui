@@ -12,11 +12,9 @@ import s from './DetailedReport.module.scss';
 import {
   fetchDetailedReports,
   fetchSizes,
-  // fetchSizes,
 } from 'redux/reports/detailedReport/detailedReportOperation';
 import {
   selectIsSizes,
-  // selectIsSizes,
   selectedDetaliedReportsIsLoading,
 } from 'redux/reports/detailedReport/detailedReportSelectors';
 import { LoaderNew } from 'components/Loader/Loader';

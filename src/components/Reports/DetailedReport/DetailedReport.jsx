@@ -1,5 +1,6 @@
 import { Button } from 'components/Button/Button';
 import {
+  useEffect,
   // useEffect,
   useState,
 } from 'react';
@@ -10,9 +11,11 @@ import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
 import s from './DetailedReport.module.scss';
 import {
   fetchDetailedReports,
+  fetchSizes,
   // fetchSizes,
 } from 'redux/reports/detailedReport/detailedReportOperation';
 import {
+  selectIsSizes,
   // selectIsSizes,
   selectedDetaliedReportsIsLoading,
 } from 'redux/reports/detailedReport/detailedReportSelectors';
@@ -37,13 +40,11 @@ export const DetailedReport = () => {
   const id = useSelector(selectUserPartnerId);
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedDetaliedReportsIsLoading);
-  // const sizesList = useSelector(selectIsSizes);
+  const sizesList = useSelector(selectIsSizes);
 
-  // console.log('sizesList:', sizesList);
-
-  // useEffect(() => {
-  //   dispatch(fetchSizes({ partnerId: id, type }));
-  // }, [dispatch, id, type]);
+  useEffect(() => {
+    dispatch(fetchSizes({ partnerId: id, type }));
+  }, [dispatch, id, type]);
 
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
@@ -213,6 +214,11 @@ export const DetailedReport = () => {
               onChange={handleChangeSize}
             >
               <option value="allSize">All Size</option>
+              {sizesList.map((size, index) => (
+                <option key={index} value={size.size}>
+                  {size.size}
+                </option>
+              ))}
             </select>
           </div>
 

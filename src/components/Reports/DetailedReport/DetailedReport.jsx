@@ -1,9 +1,5 @@
 import { Button } from 'components/Button/Button';
-import {
-  useEffect,
-  // useEffect,
-  useState,
-} from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -212,11 +208,12 @@ export const DetailedReport = () => {
               onChange={handleChangeSize}
             >
               <option value="allSize">All Size</option>
-              {sizesList.map((size, index) => (
-                <option key={index} value={size.size}>
-                  {size.size}
-                </option>
-              ))}
+              {sizesList &&
+                sizesList.map((size, index) => (
+                  <option key={index} value={size.size}>
+                    {size.size}
+                  </option>
+                ))}
             </select>
           </div>
 

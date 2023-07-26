@@ -29,14 +29,7 @@ export const downloadSummaryReportsCSV = createAsyncThunk(
 
             console.log('response в запросе:', response);
 
-            // Получаем имя файла из заголовков ответа (если он есть)
-            const contentDispositionHeader = response.headers["content-disposition"];
-            let fileName = "summary-report.csv"; // Имя файла по умолчанию
-
-            if (contentDispositionHeader) {
-                const fileNameMatch = contentDispositionHeader.match(/filename[^;=\n]*=(UTF-8(['"]*))?(.*$)/i);
-                fileName = fileNameMatch ? fileNameMatch[3] : fileName;
-            }
+            let fileName = "reports.csv";
 
             const blob = new Blob([response.data], { type: 'text/csv' });
             const downloadUrl = URL.createObjectURL(blob);

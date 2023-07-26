@@ -1,12 +1,21 @@
 import { Button } from 'components/Button/Button';
-import { useState } from 'react';
+import {
+  // useEffect,
+  useState,
+} from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
 import s from './DetailedReport.module.scss';
-import { fetchDetailedReports } from 'redux/reports/detailedReport/detailedReportOperation';
-import { selectedDetaliedReportsIsLoading } from 'redux/reports/detailedReport/detailedReportSelectors';
+import {
+  fetchDetailedReports,
+  // fetchSizes,
+} from 'redux/reports/detailedReport/detailedReportOperation';
+import {
+  // selectIsSizes,
+  selectedDetaliedReportsIsLoading,
+} from 'redux/reports/detailedReport/detailedReportSelectors';
 import { LoaderNew } from 'components/Loader/Loader';
 
 export const DetailedReport = () => {
@@ -28,6 +37,13 @@ export const DetailedReport = () => {
   const id = useSelector(selectUserPartnerId);
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedDetaliedReportsIsLoading);
+  // const sizesList = useSelector(selectIsSizes);
+
+  // console.log('sizesList:', sizesList);
+
+  // useEffect(() => {
+  //   dispatch(fetchSizes({ partnerId: id, type }));
+  // }, [dispatch, id, type]);
 
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
@@ -95,7 +111,7 @@ export const DetailedReport = () => {
     'Size',
     'Region',
     'Impressions',
-    // 'Platform',
+    'Platform',
   ];
 
   const handleSubmit = e => {
@@ -180,7 +196,6 @@ export const DetailedReport = () => {
               value={isDisplay}
               onChange={handleChangeDisplay}
             >
-              <option value="hour">Hour</option>
               <option value="day">Day</option>
               <option value="month">Month</option>
               <option value="year">Year</option>

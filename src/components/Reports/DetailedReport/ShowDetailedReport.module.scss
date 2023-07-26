@@ -58,6 +58,26 @@
   gap: 20px;
   max-height: 660px;
   overflow: overlay;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #009afa39;
+    border-radius: 20px;
+    // height: 90%;
+    padding-top: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #009bfb8e;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #1678c2;
+  }
 }
 
 .ShowSummaryReportsDownloadBtn {

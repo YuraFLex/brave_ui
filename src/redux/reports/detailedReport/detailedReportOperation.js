@@ -21,3 +21,18 @@ export const fetchDetailedReports = createAsyncThunk(
         }
     }
 )
+
+
+export const fetchSizes = createAsyncThunk(
+    'detailedReport/fetchSizes',
+
+    async ({ partnerId, type }, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`/reports/detalied/${partnerId}/${type}`)
+
+            return response.data
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+)

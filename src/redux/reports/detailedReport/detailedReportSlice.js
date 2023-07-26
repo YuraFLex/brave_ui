@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchDetailedReports } from "./detailedReportOperation";
+import { fetchDetailedReports, fetchSizes } from "./detailedReportOperation";
 
 const initialState = {
     detailedReportsData: null,
+    sizesList: null,
     isLoading: false,
     error: null,
 }
@@ -23,7 +24,21 @@ const detailedReportSlice = createSlice({
         [fetchDetailedReports.rejected]: (state, { payload }) => {
             state.isLoading = false;
             state.error = payload;
-        }
+        },
+        [fetchSizes.pending]: (state) => {
+            state.isLoading = true;
+            state.error = null;
+        },
+        [fetchSizes.fulfilled]: (state, { payload }) => {
+            state.isLoading = false;
+            state.sizesList = payload;
+        },
+        [fetchSizes.rejected]: (state, { payload }) => {
+            state.isLoading = false;
+            state.error = payload;
+        },
+
+
     }
 })
 

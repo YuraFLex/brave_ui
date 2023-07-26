@@ -99,7 +99,7 @@ export const ShowDetailedReport = () => {
               <span>{item.label}:</span>
               <span className={s.ShowDetailedReportDescr}>
                 {item.unit === '$'
-                  ? `${item.unit} ${
+                  ? `${item.unit}${
                       data[item.dataKey][data[item.dataKey].length - 1]
                     }`
                   : ''}
@@ -138,7 +138,7 @@ export const ShowDetailedReport = () => {
                     {itemsToRender.map(item => (
                       <td key={item.label} className={s.ShowSummaryReportsTd}>
                         {item.unit === '$'
-                          ? `${item.unit} ${data[item.dataKey][index]}`
+                          ? `${item.unit}${data[item.dataKey][index]}`
                           : ''}
                         {item.unit !== '$'
                           ? `${data[item.dataKey][index]}`

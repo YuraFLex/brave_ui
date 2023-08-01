@@ -11,12 +11,14 @@ import {
 } from 'redux/reports/summaryReports/summaryReportsSelectors';
 import s from './SummaryReports.module.scss';
 import { LoaderNew } from 'components/Loader/Loader';
+import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 export const SummaryReports = () => {
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [endPointUrl, setEndPointUrl] = useState('all');
   const [checkedItems, setCheckedItems] = useState({
     Spend: true,
     Impressions: true,
@@ -28,6 +30,7 @@ export const SummaryReports = () => {
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedSummaryReportsIsLoading);
   const summaryReportsData = useSelector(selectedSummaryReportsData);
+  const EPUList = useSelector(selectIsEndPointList);
 
   console.log('summaryReportsData:', summaryReportsData);
 
@@ -45,6 +48,10 @@ export const SummaryReports = () => {
 
   const handleEndDateChange = date => {
     setSelectedEndDate(date);
+  };
+
+  const handleChangeEndPoint = e => {
+    setEndPointUrl(e.target.value);
   };
 
   const handleChangeColumns = label => {
@@ -96,6 +103,7 @@ export const SummaryReports = () => {
       period: isPeriod,
       startDate: selectedStartDate,
       endDate: selectedEndDate,
+      endPointUrl: endPointUrl,
       checkedItems: { labels, isChecked },
     };
 
@@ -170,6 +178,32 @@ export const SummaryReports = () => {
               </select>
             </div>
           </div>
+
+          <div className={s.ReportSettingInner}>
+            <div className={s.ReportSettingFilterBox}>
+              {type === 'DSP' ? (
+                <>
+                  <h4>EP URL:</h4>
+                  <select
+                    className={s.ReportSettingSelect}
+                    value={endPointUrl}
+                    onChange={handleChangeEndPoint}
+                  >
+                    <option value="all">Company</option>
+                    {EPUList &&
+                      EPUList.map(({ id, point }) => (
+                        <option key={id} value={id}>
+                          {point}
+                        </option>
+                      ))}
+                  </select>
+                </>
+              ) : (
+                ''
+              )}
+            </div>
+          </div>
+
           <div className={s.ReportSettingInner}>
             <h4 className={s.ReportSettingTitle}>Columns</h4>
             <ul className={s.ReportSettingList}>

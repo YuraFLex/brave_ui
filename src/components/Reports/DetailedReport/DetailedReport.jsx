@@ -14,6 +14,7 @@ import {
   selectedDetaliedReportsIsLoading,
 } from 'redux/reports/detailedReport/detailedReportSelectors';
 import { LoaderNew } from 'components/Loader/Loader';
+import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 export const DetailedReport = () => {
   const [isDisplay, setIsDisplay] = useState('day');
@@ -22,18 +23,18 @@ export const DetailedReport = () => {
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const [selectedSize, setSelectedSize] = useState('allSize');
   const [selectedTrafficType, setSelectedTrafficType] = useState('allTypes');
-  const [selectedPlatform, setSelectedPlatform] = useState('allPlatform');
-  const [selectedRegion, setSelectedRegion] = useState('allRegions');
+  const [endPointUrl, setEndPointUrl] = useState('all');
   const [checkedItems, setCheckedItems] = useState({
     Spend: true,
     Impressions: true,
-    Region: true,
+    'App Name': true,
   });
 
   const dispatch = useDispatch();
   const id = useSelector(selectUserPartnerId);
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedDetaliedReportsIsLoading);
+  const EPUList = useSelector(selectIsEndPointList);
   const sizesList = useSelector(selectIsSizes);
 
   useEffect(() => {
@@ -64,12 +65,8 @@ export const DetailedReport = () => {
     setSelectedTrafficType(e.target.value);
   };
 
-  const handleChangePlatform = e => {
-    setSelectedPlatform(e.target.value);
-  };
-
-  const handleChangeRegion = e => {
-    setSelectedRegion(e.target.value);
+  const handleChangeEndPoint = e => {
+    setEndPointUrl(e.target.value);
   };
 
   const handleChangeColumns = label => {
@@ -104,9 +101,7 @@ export const DetailedReport = () => {
     'App Bundle',
     'Type',
     'Size',
-    'Region',
     'Impressions',
-    'Platform',
   ];
 
   const handleSubmit = e => {
@@ -124,8 +119,7 @@ export const DetailedReport = () => {
       endDate: selectedEndDate,
       size: selectedSize,
       trafficType: selectedTrafficType,
-      platform: selectedPlatform,
-      region: selectedRegion,
+      endPointUrl: endPointUrl,
       checkedItems: { labels, isChecked },
     };
 
@@ -201,6 +195,28 @@ export const DetailedReport = () => {
 
         <div className={s.DetailedReportBox}>
           <div className={s.DetailedReportInner}>
+            {type === 'DSP' ? (
+              <>
+                <h4>EP URL:</h4>
+                <select
+                  className={s.DetailedReportSelect}
+                  value={endPointUrl}
+                  onChange={handleChangeEndPoint}
+                >
+                  <option value="all">Company</option>
+                  {EPUList &&
+                    EPUList.map(({ id, point }) => (
+                      <option key={id} value={id}>
+                        {point}
+                      </option>
+                    ))}
+                </select>
+              </>
+            ) : (
+              ''
+            )}
+          </div>
+          <div className={s.DetailedReportInner}>
             <h4>Ad Size:</h4>
 
             <select
@@ -231,30 +247,6 @@ export const DetailedReport = () => {
               <option value="video">Video</option>
               <option value="ctv">CTV</option>
               <option value="audio">Audio</option>
-            </select>
-          </div>
-          <div className={s.DetailedReportInner}>
-            <h4>Platform:</h4>
-            <select
-              className={s.DetailedReportSelect}
-              value={selectedPlatform}
-              onChange={handleChangePlatform}
-            >
-              <option value="allPlatform">All Platform</option>
-              <option value="web">Web</option>
-              <option value="app">App</option>
-            </select>
-          </div>
-          <div className={s.DetailedReportInner}>
-            <h4>Region:</h4>
-            <select
-              className={s.DetailedReportSelect}
-              value={selectedRegion}
-              onChange={handleChangeRegion}
-            >
-              <option value="allRegions">All Regions</option>
-              <option value="eu">EU</option>
-              <option value="useast">US-EAST</option>
             </select>
           </div>
         </div>

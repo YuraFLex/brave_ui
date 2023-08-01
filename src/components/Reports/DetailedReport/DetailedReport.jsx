@@ -150,7 +150,8 @@ export const DetailedReport = () => {
             >
               <option value="today">Today</option>
               <option value="yesterday">Yesterday</option>
-              <option value="lastweek">Last Week</option>
+              <option value="lastweek">Last 7 Days</option>
+              <option value="thismonth">This Month</option>
               <option value="lastmonth">Last Month</option>
               <option value="custom">Custom</option>
             </select>

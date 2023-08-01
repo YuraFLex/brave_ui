@@ -16,26 +16,6 @@ export const Statistics = () => {
       <li className={s.platfromItem}>
         <div className={s.platformCard}>
           <div className={s.platfromHeader}>
-            <span>Bid Count:</span>
-            <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.bids_cnt)}
-            </span>
-          </div>
-        </div>
-      </li>
-      <li className={s.platfromItem}>
-        <div className={s.platformCard}>
-          <div className={s.platfromHeader}>
-            <span>Bid Sum:</span>
-            <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.bids_sum)}
-            </span>
-          </div>
-        </div>
-      </li>
-      <li className={s.platfromItem}>
-        <div className={s.platformCard}>
-          <div className={s.platfromHeader}>
             <span>Spend:</span>
             <span className={s.descr}>
               $ {renderValue(statisticsData && statisticsData.spend)}
@@ -49,6 +29,36 @@ export const Statistics = () => {
             <span>Impressions:</span>
             <span className={s.descr}>
               {renderValue(statisticsData && statisticsData.impressions_cnt)}
+            </span>
+          </div>
+        </div>
+      </li>
+      <li className={s.platfromItem}>
+        <div className={s.platformCard}>
+          <div className={s.platfromHeader}>
+            <span>Responses:</span>
+            <span className={s.descr}>
+              {renderValue(statisticsData && statisticsData.responses)}
+            </span>
+          </div>
+        </div>
+      </li>
+      <li className={s.platfromItem}>
+        <div className={s.platformCard}>
+          <div className={s.platfromHeader}>
+            <span>Timeout %:</span>
+            <span className={s.descr}>
+              {renderValue(statisticsData && statisticsData.time_outs)} %
+            </span>
+          </div>
+        </div>
+      </li>
+      <li className={s.platfromItem}>
+        <div className={s.platformCard}>
+          <div className={s.platfromHeader}>
+            <span>Win rate %:</span>
+            <span className={s.descr}>
+              {renderValue(statisticsData && statisticsData.win_rate)} %
             </span>
           </div>
         </div>

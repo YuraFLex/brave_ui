@@ -28,7 +28,9 @@ export const StatisticsFilter = () => {
   }, [dispatch, id, type]);
 
   useEffect(() => {
-    dispatch(fetchEndPoint({ partnerId: id, type }));
+    if (type === 'DSP') {
+      dispatch(fetchEndPoint({ partnerId: id, type }));
+    }
   }, [dispatch, id, type]);
 
   function handleChangePeriod(e) {
@@ -70,6 +72,7 @@ export const StatisticsFilter = () => {
   return (
     <div className={s.StatisticsFilterBox}>
       <form className={s.StatisticsFilterForm} onSubmit={handleSubmit}>
+        <p>Period:</p>
         <select
           className={s.StatisticsFilterSelect}
           value={isPeriod}
@@ -110,19 +113,26 @@ export const StatisticsFilter = () => {
           </div>
         )}
 
-        <select
-          className={s.StatisticsFilterSelect}
-          value={isEndpoint}
-          onChange={handleChangeEndpoint}
-        >
-          <option value="all">All</option>
-          {list &&
-            list.map(({ id, name }) => (
-              <option key={id} value={id}>
-                {name}
-              </option>
-            ))}
-        </select>
+        {type === 'DSP' ? (
+          <>
+            <p>EP URL:</p>
+            <select
+              className={s.StatisticsFilterSelect}
+              value={isEndpoint}
+              onChange={handleChangeEndpoint}
+            >
+              <option value="all">All</option>
+              {list &&
+                list.map(({ id, point }) => (
+                  <option key={id} value={id}>
+                    {point}
+                  </option>
+                ))}
+            </select>
+          </>
+        ) : (
+          ''
+        )}
 
         <button className={s.StatisticsFilterBtnSubmit} type="submit">
           <FaSync />

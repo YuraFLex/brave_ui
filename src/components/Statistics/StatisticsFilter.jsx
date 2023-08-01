@@ -121,7 +121,7 @@ export const StatisticsFilter = () => {
               value={isEndpoint}
               onChange={handleChangeEndpoint}
             >
-              <option value="all">All</option>
+              <option value="all">Company</option>
               {list &&
                 list.map(({ id, point }) => (
                   <option key={id} value={id}>

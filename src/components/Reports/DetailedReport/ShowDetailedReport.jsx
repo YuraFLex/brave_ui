@@ -46,25 +46,10 @@ export const ShowDetailedReport = () => {
     });
   }
 
-  const periodToday =
-    (data.period === 'today' || data.period === 'yesterday') &&
-    (data.displayBy === 'day' ||
-      data.displayBy === 'month' ||
-      data.displayBy === 'year') &&
-    data.spend.length > 0 &&
-    data.app_name.length > 0 &&
-    data.app_bundle.length > 0 &&
-    data.traffic_type.length > 0 &&
-    data.size.length > 0 &&
-    data.region.length > 0 &&
-    data.impressions.length > 0 &&
-    data.pub_id.length > 0;
-
   const atLeastOneLabelChecked = itemsToRender.some(
     item => data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
   );
 
-  // Если нет выбранных колонок для отображения, выводим сообщение с просьбой выбрать хотя бы одну колонку
   if (
     !atLeastOneLabelChecked ||
     itemsToRender.length === 0 ||
@@ -96,29 +81,7 @@ export const ShowDetailedReport = () => {
     console.log('Data to send:', dataToSend);
   };
 
-  return periodToday ? (
-    <ul className={s.ShowDetailedReportList}>
-      {itemsToRender.map((item, index) => (
-        <li className={s.ShowDetailedReportItem} key={index}>
-          <div className={s.platformCard}>
-            <div className={s.ShowDetailedReportCardHeader}>
-              <span>{item.label}:</span>
-              <span className={s.ShowDetailedReportDescr}>
-                {item.unit === '$'
-                  ? `${item.unit}${
-                      data[item.dataKey][data[item.dataKey].length - 1]
-                    }`
-                  : ''}
-                {item.unit !== '$'
-                  ? `${data[item.dataKey][data[item.dataKey].length - 1]}`
-                  : ''}
-              </span>
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  ) : (
+  return (
     <div>
       <button
         className={s.ShowSummaryReportsDownloadBtn}

@@ -25,12 +25,12 @@ export const ShowDetailedReport = () => {
 
   const itemsToRender = [
     { label: 'Spend', dataKey: 'spend', unit: '$' },
+    { label: 'Impressions', dataKey: 'impressions' },
     { label: 'App Name', dataKey: 'app_name' },
     { label: 'App Bundle', dataKey: appBundleDataKey },
     { label: 'Type', dataKey: 'traffic_type' },
     { label: 'Size', dataKey: 'size' },
     { label: 'Region', dataKey: 'region' },
-    { label: 'Impressions', dataKey: 'impressions' },
     { label: 'Platform', dataKey: 'platform' },
   ].filter(
     item =>

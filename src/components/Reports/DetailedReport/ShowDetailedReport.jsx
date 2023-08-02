@@ -19,7 +19,6 @@ export const ShowDetailedReport = () => {
 
   const allValuesEmpty = arr => arr.every(value => value.trim() === '');
 
-  // Заменяем App Bundle на данные в зависимости от их наличия
   let appBundleDataKey = allValuesEmpty(data.bundle_domain)
     ? 'site_domain'
     : 'bundle_domain';
@@ -145,11 +144,12 @@ export const ShowDetailedReport = () => {
                     {itemsToRender.map(item => (
                       <td key={item.label} className={s.ShowSummaryReportsTd}>
                         {item.unit === '$'
-                          ? `${item.unit}${data[item.dataKey][index]}`
-                          : ''}
-                        {item.unit !== '$'
-                          ? `${data[item.dataKey][index]}`
-                          : ''}
+                          ? data[item.dataKey][index]
+                            ? `${item.unit}${data[item.dataKey][index]}`
+                            : 'N/A'
+                          : data[item.dataKey][index]
+                          ? data[item.dataKey][index]
+                          : 'N/A'}
                       </td>
                     ))}
                   </tr>

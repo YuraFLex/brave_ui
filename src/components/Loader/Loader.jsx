@@ -1,5 +1,5 @@
 import s from '../Loader/Loader.module.scss';
-
+import './FadingText.css';
 export const Loader = () => {
   return (
     <div className={s.bacdrop}>
@@ -45,12 +45,34 @@ export const LoaderNew = () => {
   );
 };
 
-export const Spiner = () => {
+export const FadingText = () => {
   return (
-    <div className={s.bacdrop}>
-      <div className={s.ldsRipple}>
-        <div></div>
-        <div></div>
+    <div id="inTurnFadingTextG" className="inTurnFadingTextG">
+      <div id="inTurnFadingTextG_1" className="letter">
+        B
+      </div>
+      <div id="inTurnFadingTextG_2" className="letter">
+        R
+      </div>
+      <div id="inTurnFadingTextG_3" className="letter">
+        A
+      </div>
+      <div id="inTurnFadingTextG_4" className="letter">
+        V
+      </div>
+      <div id="inTurnFadingTextG_5" className="letter">
+        E
+      </div>
+    </div>
+  );
+};
+
+export const LoaderBrave = () => {
+  return (
+    <div className="loader-bacdrop">
+      <div className="loader">
+        <span>BRAVE</span>
+        <span>BRAVE</span>
       </div>
     </div>
   );

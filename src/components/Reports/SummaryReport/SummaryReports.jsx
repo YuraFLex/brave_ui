@@ -10,7 +10,7 @@ import {
   selectedSummaryReportsIsLoading,
 } from 'redux/reports/summaryReports/summaryReportsSelectors';
 import s from './SummaryReports.module.scss';
-import { LoaderNew } from 'components/Loader/Loader';
+import { LoaderBrave } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 export const SummaryReports = () => {
@@ -112,7 +112,7 @@ export const SummaryReports = () => {
   };
 
   if (isLoading) {
-    return <LoaderNew />;
+    return <LoaderBrave />;
   }
 
   return (

@@ -13,7 +13,7 @@ import {
   selectIsSizes,
   selectedDetaliedReportsIsLoading,
 } from 'redux/reports/detailedReport/detailedReportSelectors';
-import { LoaderNew } from 'components/Loader/Loader';
+import { LoaderBrave } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 export const DetailedReport = () => {
@@ -128,7 +128,7 @@ export const DetailedReport = () => {
   };
 
   if (isLoading) {
-    return <LoaderNew />;
+    return <LoaderBrave />;
   }
 
   return (

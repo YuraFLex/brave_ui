@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import s from './StatisticsFilter.module.scss';
 import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
 import { selectIsLoadingStatistics } from 'redux/statistics/statisticsSelectors';
-import { LoaderNew } from 'components/Loader/Loader';
+import { LoaderBrave } from 'components/Loader/Loader';
 import { fetchEndPoint } from 'redux/endPoints/endPointOperations';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 import { FaSync } from 'react-icons/fa';
@@ -66,7 +66,7 @@ export const StatisticsFilter = () => {
   };
 
   if (isLoading) {
-    return <LoaderNew />;
+    return <LoaderBrave />;
   }
 
   return (

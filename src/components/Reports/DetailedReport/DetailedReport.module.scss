@@ -11,6 +11,9 @@
 
 .DetailedReportBox {
   width: calc((100% - 100px) / 3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .DetailedReportSubTitle {
@@ -22,10 +25,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
 }
 
 .DetailedReportSelect,

@@ -5,7 +5,7 @@ import s from './ChangeUserPassword.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePassword } from 'redux/changePassword/changePasswordOperations';
 import { selectIsLoadingchangePassword } from 'redux/changePassword/changePasswordSelectors';
-import { LoaderNew } from 'components/Loader/Loader';
+import { LoaderBrave } from 'components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { GoEye, GoEyeClosed } from 'react-icons/go';
@@ -43,7 +43,7 @@ export const ChangeUserPassword = () => {
   };
 
   if (isLoadnig) {
-    return <LoaderNew />;
+    return <LoaderBrave />;
   }
 
   return (

@@ -97,6 +97,11 @@
   border-collapse: collapse;
 }
 
+.ShowSummaryReportsTableThead .ShowSummaryReportsTh {
+  position: sticky;
+  top: -1px;
+}
+
 .ShowSummaryReportsTh,
 .ShowSummaryReportsTd {
   padding: 8px;

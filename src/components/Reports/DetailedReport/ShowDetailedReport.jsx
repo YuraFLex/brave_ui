@@ -91,7 +91,7 @@ export const ShowDetailedReport = () => {
       </button>
       <div className={s.ShowSummaryReportsWrapper}>
         <table className={s.ShowSummaryReportsTable}>
-          <thead>
+          <thead className={s.ShowSummaryReportsTableThead}>
             <tr>
               {itemsToRender.map(item => (
                 <th key={item.label} className={s.ShowSummaryReportsTh}>

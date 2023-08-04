@@ -199,7 +199,22 @@ export const SummaryReports = () => {
                   </select>
                 </>
               ) : (
-                ''
+                <>
+                  <h4>EP URL:</h4>
+                  <select
+                    className={s.ReportSettingSelect}
+                    value={endPointUrl}
+                    onChange={handleChangeEndPoint}
+                  >
+                    <option value="all">Company</option>
+                    {EPUList &&
+                      EPUList.map(({ id, pass }) => (
+                        <option key={id} value={id}>
+                          {pass}
+                        </option>
+                      ))}
+                  </select>
+                </>
               )}
             </div>
           </div>

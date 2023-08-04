@@ -28,9 +28,7 @@ export const StatisticsFilter = () => {
   }, [dispatch, id, type]);
 
   useEffect(() => {
-    if (type === 'DSP') {
-      dispatch(fetchEndPoint({ partnerId: id, type }));
-    }
+    dispatch(fetchEndPoint({ partnerId: id, type }));
   }, [dispatch, id, type]);
 
   function handleChangePeriod(e) {
@@ -132,7 +130,22 @@ export const StatisticsFilter = () => {
             </select>
           </>
         ) : (
-          ''
+          <>
+            <p>EP URL:</p>
+            <select
+              className={s.StatisticsFilterSelect}
+              value={isEndpoint}
+              onChange={handleChangeEndpoint}
+            >
+              <option value="all">Company</option>
+              {list &&
+                list.map(({ id, pass }) => (
+                  <option key={id} value={id}>
+                    {pass}
+                  </option>
+                ))}
+            </select>
+          </>
         )}
 
         <button className={s.StatisticsFilterBtnSubmit} type="submit">

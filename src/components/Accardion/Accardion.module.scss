@@ -4,6 +4,7 @@
   font-size: 15px;
   display: flex;
   color: #919da4;
+  cursor: pointer;
 
   &:not(:last-child) {
     border-bottom: 1px solid rgba(34, 36, 38, 0.15);

@@ -13,7 +13,6 @@ export const login = createAsyncThunk(
       const { data } = await axios.post('/login', userData);
       console.log('Данные c сервера:', data);
 
-      // Успешная авторизация
       if (data.success) {
         toast.success(data.message);
       } else {

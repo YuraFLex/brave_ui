@@ -19,6 +19,7 @@ export const ReportsPage = () => {
             <ShowSummaryReports />
           </Accordion>
         </AccordionContainer>
+
         <AccordionContainer>
           <Accordion title={'Detailed Reports'} defaultOpen={true}>
             <DetailedReport />

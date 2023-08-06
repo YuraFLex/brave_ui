@@ -24,10 +24,10 @@ export const ShowDetailedReport = () => {
     : 'bundle_domain';
 
   const itemsToRender = [
+    { label: 'App Bundle', dataKey: appBundleDataKey },
     { label: 'Spend', dataKey: 'spend', unit: '$' },
     { label: 'Impressions', dataKey: 'impressions' },
     { label: 'App Name', dataKey: 'app_name' },
-    { label: 'App Bundle', dataKey: appBundleDataKey },
     { label: 'Type', dataKey: 'traffic_type' },
     { label: 'Size', dataKey: 'size' },
     { label: 'Region', dataKey: 'region' },

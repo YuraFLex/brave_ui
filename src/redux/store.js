@@ -5,6 +5,7 @@ import { changePasswordReducer } from './changePassword/changePasswordSlice';
 import { endPointReducer } from './endPoints/endPointSlice';
 import { summaryReportsReducer } from './reports/summaryReports/summaryReportsSlice';
 import { detailedReportReducer } from './reports/detailedReport/detailedReportSlice';
+import { fetchSizesReducer } from './reports/sizes/sizesSlice';
 
 import {
   persistStore,
@@ -61,8 +62,12 @@ const detailedReportPersistConfig = {
 
 const detailedReportPersistedReducer = persistReducer(detailedReportPersistConfig, detailedReportReducer)
 
+const fetchSizesPersistConfig = {
+  key: 'sizes',
+  storage,
+}
 
-
+const fetchSizesPersistedReducer = persistReducer(fetchSizesPersistConfig, fetchSizesReducer)
 
 
 export const store = configureStore({
@@ -73,6 +78,7 @@ export const store = configureStore({
     endPoint: endPointPersistedReducer,
     summaryReports: summaryReportsPersistedReducer,
     detailedReport: detailedReportPersistedReducer,
+    sizes: fetchSizesPersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

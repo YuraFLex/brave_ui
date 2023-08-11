@@ -10,6 +10,6 @@ export const selectedDetaliedReportsError = state => {
     return state?.detailedReport?.error;
 }
 
-export const selectIsSizes = state => {
-    return state?.detailedReport?.sizesList;
-}
+// export const selectIsSizes = state => {
+//     return state?.detailedReport?.sizesList;
+// }

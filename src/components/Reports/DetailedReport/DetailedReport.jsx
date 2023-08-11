@@ -5,18 +5,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
 import s from './DetailedReport.module.scss';
-import {
-  fetchDetailedReports,
-  fetchSizes,
-} from 'redux/reports/detailedReport/detailedReportOperation';
-import {
-  selectIsSizes,
-  selectedDetaliedReportsIsLoading,
-} from 'redux/reports/detailedReport/detailedReportSelectors';
+import { fetchDetailedReports } from 'redux/reports/detailedReport/detailedReportOperation';
+import { selectedDetaliedReportsIsLoading } from 'redux/reports/detailedReport/detailedReportSelectors';
 import { LoaderBrave } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 import '../../../index.css';
+import { fetchSizes } from 'redux/reports/sizes/sizesOperation';
+import { sizesData } from 'redux/reports/sizes/sizesSelectors';
 
 export const DetailedReport = () => {
   const [isDisplay, setIsDisplay] = useState('day');
@@ -38,7 +34,7 @@ export const DetailedReport = () => {
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedDetaliedReportsIsLoading);
   const EPUList = useSelector(selectIsEndPointList);
-  const sizesList = useSelector(selectIsSizes);
+  const sizesList = useSelector(sizesData);
 
   useEffect(() => {
     dispatch(fetchSizes({ partnerId: id, type }));
@@ -103,8 +99,8 @@ export const DetailedReport = () => {
   };
 
   const columsLabel = [
-    'Spend',
     'App Name',
+    'Spend',
     'App Bundle',
     'Type',
     'Size',
@@ -253,23 +249,27 @@ export const DetailedReport = () => {
               </>
             )}
           </div>
-          <div className={s.DetailedReportInner}>
-            <h4>Ad Size:</h4>
+          {sizesList ? (
+            <div className={s.DetailedReportInner}>
+              <h4>Ad Size:</h4>
 
-            <select
-              className={s.DetailedReportSelect}
-              value={selectedSize}
-              onChange={handleChangeSize}
-            >
-              <option value="allSize">All Size</option>
-              {sizesList &&
-                sizesList.map((size, index) => (
-                  <option key={index} value={size.size}>
-                    {size.size}
-                  </option>
-                ))}
-            </select>
-          </div>
+              <select
+                className={s.DetailedReportSelect}
+                value={selectedSize}
+                onChange={handleChangeSize}
+              >
+                <option value="allSize">All Size</option>
+                {sizesList &&
+                  sizesList.map((size, index) => (
+                    <option key={index} value={size.size}>
+                      {size.size}
+                    </option>
+                  ))}
+              </select>
+            </div>
+          ) : (
+            'Loading...'
+          )}
 
           <div className={s.DetailedReportInner}>
             <h4>Traffic Type:</h4>

@@ -16,6 +16,7 @@ export const StatisticsFilter = () => {
   const [isEndpoint, setIsEndpoint] = useState('all');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
+  // const [timeZone, setTimeZone] = useState('utc');
 
   const dispatch = useDispatch();
   const id = useSelector(selectUserPartnerId);
@@ -47,6 +48,10 @@ export const StatisticsFilter = () => {
     setSelectedEndDate(date);
   };
 
+  // const handleChangeTimeZone = e => {
+  //   setTimeZone(e.target.value);
+  // };
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -57,6 +62,7 @@ export const StatisticsFilter = () => {
       period: isPeriod,
       startDate: selectedStartDate,
       endDate: selectedEndDate,
+      // timeZone: timeZone,
     };
 
     dispatch(fetchStatistics(data));
@@ -83,6 +89,17 @@ export const StatisticsFilter = () => {
           <option value="lastmonth">Last Month</option>
           <option value="custom">Custom</option>
         </select>
+
+        {/* <p>Time Zone:</p>
+        <select
+          className={s.StatisticsFilterSelect}
+          value={timeZone}
+          onChange={handleChangeTimeZone}
+        >
+          <option value="utc">UTC</option>
+          <option value="pst">PST</option>
+          <option value="est">EST</option>
+        </select> */}
 
         {isPeriod === 'custom' && (
           <div className={s.StatisticsFilterDatePickerContainer}>

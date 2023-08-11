@@ -48,6 +48,13 @@
   margin-bottom: 10px;
 }
 
+.DetailedReportItem {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 .DetailedReportLabel {
   margin-left: 5px;
 }

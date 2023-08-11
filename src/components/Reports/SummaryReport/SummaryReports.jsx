@@ -13,9 +13,12 @@ import s from './SummaryReports.module.scss';
 import { LoaderBrave } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
+import '../../../index.css';
+
 export const SummaryReports = () => {
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
+  // const [timeZone, setTimeZone] = useState('utc');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const [endPointUrl, setEndPointUrl] = useState('all');
@@ -45,6 +48,10 @@ export const SummaryReports = () => {
   const handleStartDateChange = date => {
     setSelectedStartDate(date);
   };
+
+  // const handleChangeTimeZone = e => {
+  //   setTimeZone(e.target.value);
+  // };
 
   const handleEndDateChange = date => {
     setSelectedEndDate(date);
@@ -99,6 +106,7 @@ export const SummaryReports = () => {
     const data = {
       partner_id: id,
       type: type,
+      // timeZone: timeZone,
       displayBy: isDisplay,
       period: isPeriod,
       startDate: selectedStartDate,
@@ -177,6 +185,19 @@ export const SummaryReports = () => {
                 <option value="year">Year</option>
               </select>
             </div>
+
+            {/* <div className={s.ReportSettingFilterBox}>
+              <h4>Time Zone:</h4>
+              <select
+                className={s.ReportSettingSelect}
+                value={timeZone}
+                onChange={handleChangeTimeZone}
+              >
+                <option value="utc">UTC</option>
+                <option value="pst">PST</option>
+                <option value="est">EST</option>
+              </select>
+            </div> */}
           </div>
 
           <div className={s.ReportSettingInner}>
@@ -222,18 +243,25 @@ export const SummaryReports = () => {
           <div className={s.ReportSettingInner}>
             <h4 className={s.ReportSettingTitle}>Columns</h4>
             <ul className={s.ReportSettingList}>
-              {columsLabel.map(label => (
-                <li className={s.ReportSettingItem} key={label}>
-                  <input
-                    type="checkbox"
-                    checked={!!checkedItems[label]}
-                    onChange={() => handleChangeColumns(label)}
-                  />
-                  <label className={s.ReportSettingLabel}>{label}</label>
+              {columsLabel.map(label => {
+                const formattedLabel = label
+                  .replace(/\s+/g, '-')
+                  .replace(/%/g, '');
 
-                  <div className={s.SummaryReportsCheckmark}></div>
-                </li>
-              ))}
+                return (
+                  <li className={s.ReportSettingItem} key={label}>
+                    <input
+                      type="checkbox"
+                      id={formattedLabel}
+                      className="hidden-xs-up"
+                      checked={!!checkedItems[label]}
+                      onChange={() => handleChangeColumns(label)}
+                    />
+                    <label htmlFor={formattedLabel} className="cbx"></label>
+                    {label}
+                  </li>
+                );
+              })}
             </ul>
 
             <div className={s.ReportSettingBtnBox}>

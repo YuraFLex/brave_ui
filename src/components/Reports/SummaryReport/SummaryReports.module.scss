@@ -68,6 +68,10 @@
 
 .ReportSettingItem {
   // width: calc((100% - 40px) / 2);
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .ReportSettingLabel {

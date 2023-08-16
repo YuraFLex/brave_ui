@@ -50,6 +50,18 @@ export const ShowSummaryReports = () => {
       resizable: true,
       sortable: true,
       valueFormatter: params => `$ ${params.value}`,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const floatValueA = parseFloat(
+          valueA.replace('$', '').replace(',', '')
+        );
+        const floatValueB = parseFloat(
+          valueB.replace('$', '').replace(',', '')
+        );
+        if (floatValueA === floatValueB) {
+          return 0;
+        }
+        return floatValueA < floatValueB ? -1 : 1;
+      },
     },
     {
       headerName: 'Win Rate %',
@@ -57,24 +69,56 @@ export const ShowSummaryReports = () => {
       resizable: true,
       sortable: true,
       valueFormatter: params => `${params.value} %`,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const floatValueA = parseFloat(valueA.replace('%', ''));
+        const floatValueB = parseFloat(valueB.replace('%', ''));
+        if (floatValueA === floatValueB) {
+          return 0;
+        }
+        return floatValueA < floatValueB ? -1 : 1;
+      },
     },
     {
       headerName: 'Requests',
       field: 'requests',
       resizable: true,
       sortable: true,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const intValueA = parseInt(valueA.replace(/,/g, ''));
+        const intValueB = parseInt(valueB.replace(/,/g, ''));
+        if (intValueA === intValueB) {
+          return 0;
+        }
+        return intValueA < intValueB ? -1 : 1;
+      },
     },
     {
       headerName: 'Responses',
       field: 'responses',
       resizable: true,
       sortable: true,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const intValueA = parseInt(valueA.replace(/,/g, ''));
+        const intValueB = parseInt(valueB.replace(/,/g, ''));
+        if (intValueA === intValueB) {
+          return 0;
+        }
+        return intValueA < intValueB ? -1 : 1;
+      },
     },
     {
       headerName: 'Impressions',
       field: 'impressions',
       resizable: true,
       sortable: true,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const intValueA = parseInt(valueA.replace(/,/g, ''));
+        const intValueB = parseInt(valueB.replace(/,/g, ''));
+        if (intValueA === intValueB) {
+          return 0;
+        }
+        return intValueA < intValueB ? -1 : 1;
+      },
     },
     {
       headerName: 'Timeouts',
@@ -88,6 +132,14 @@ export const ShowSummaryReports = () => {
       resizable: true,
       sortable: true,
       valueFormatter: params => `${params.value} %`,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const floatValueA = parseFloat(valueA.replace('%', ''));
+        const floatValueB = parseFloat(valueB.replace('%', ''));
+        if (floatValueA === floatValueB) {
+          return 0;
+        }
+        return floatValueA < floatValueB ? -1 : 1;
+      },
     },
   ];
 

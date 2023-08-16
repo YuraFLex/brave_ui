@@ -55,6 +55,18 @@ export const ShowDetailedReport = () => {
       resizable: true,
       sortable: true,
       valueFormatter: params => `$ ${params.value}`,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const floatValueA = parseFloat(
+          valueA.replace('$', '').replace(',', '')
+        );
+        const floatValueB = parseFloat(
+          valueB.replace('$', '').replace(',', '')
+        );
+        if (floatValueA === floatValueB) {
+          return 0;
+        }
+        return floatValueA < floatValueB ? -1 : 1;
+      },
     },
     {
       headerName: 'App Bundle',
@@ -74,6 +86,14 @@ export const ShowDetailedReport = () => {
       field: 'impressions',
       resizable: true,
       sortable: true,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const intValueA = parseInt(valueA.replace(/,/g, ''));
+        const intValueB = parseInt(valueB.replace(/,/g, ''));
+        if (intValueA === intValueB) {
+          return 0;
+        }
+        return intValueA < intValueB ? -1 : 1;
+      },
     },
   ];
 

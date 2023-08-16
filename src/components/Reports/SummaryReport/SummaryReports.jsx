@@ -18,15 +18,9 @@ import '../../../index.css';
 export const SummaryReports = () => {
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
-  // const [timeZone, setTimeZone] = useState('utc');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const [endPointUrl, setEndPointUrl] = useState('all');
-  const [checkedItems, setCheckedItems] = useState({
-    Spend: true,
-    Impressions: true,
-    Requests: true,
-  });
 
   const dispatch = useDispatch();
   const id = useSelector(selectUserPartnerId);
@@ -49,10 +43,6 @@ export const SummaryReports = () => {
     setSelectedStartDate(date);
   };
 
-  // const handleChangeTimeZone = e => {
-  //   setTimeZone(e.target.value);
-  // };
-
   const handleEndDateChange = date => {
     setSelectedEndDate(date);
   };
@@ -61,58 +51,17 @@ export const SummaryReports = () => {
     setEndPointUrl(e.target.value);
   };
 
-  const handleChangeColumns = label => {
-    setCheckedItems(prevCheckedItems => {
-      const updatedCheckedItems = { ...prevCheckedItems };
-      updatedCheckedItems[label] = !updatedCheckedItems[label];
-      return updatedCheckedItems;
-    });
-  };
-
-  const handleSelectAll = () => {
-    const newCheckedItems = {};
-    columsLabel.forEach(label => {
-      newCheckedItems[label] = true;
-    });
-    setCheckedItems(newCheckedItems);
-  };
-
-  const handleDeleteAll = () => {
-    setCheckedItems(prevCheckedItems => {
-      const updatedCheckedItems = {};
-      Object.keys(prevCheckedItems).forEach(label => {
-        updatedCheckedItems[label] = false;
-      });
-      return updatedCheckedItems;
-    });
-  };
-
-  const columsLabel = [
-    'Spend',
-    'Win Rate %',
-    'Requests',
-    'Responses',
-    'Impressions',
-    'Timeouts',
-    'Timeouts %',
-  ];
-
   const handleSubmit = e => {
     e.preventDefault();
-
-    const labels = Object.keys(checkedItems);
-    const isChecked = Object.values(checkedItems);
 
     const data = {
       partner_id: id,
       type: type,
-      // timeZone: timeZone,
       displayBy: isDisplay,
       period: isPeriod,
       startDate: selectedStartDate,
       endDate: selectedEndDate,
       endPointUrl: endPointUrl,
-      checkedItems: { labels, isChecked },
     };
 
     dispatch(fetchSummaryReports(data));
@@ -185,19 +134,6 @@ export const SummaryReports = () => {
                 <option value="year">Year</option>
               </select>
             </div>
-
-            {/* <div className={s.ReportSettingFilterBox}>
-              <h4>Time Zone:</h4>
-              <select
-                className={s.ReportSettingSelect}
-                value={timeZone}
-                onChange={handleChangeTimeZone}
-              >
-                <option value="utc">UTC</option>
-                <option value="pst">PST</option>
-                <option value="est">EST</option>
-              </select>
-            </div> */}
           </div>
 
           <div className={s.ReportSettingInner}>
@@ -237,48 +173,6 @@ export const SummaryReports = () => {
                   </select>
                 </>
               )}
-            </div>
-          </div>
-
-          <div className={s.ReportSettingInner}>
-            <h4 className={s.ReportSettingTitle}>Columns</h4>
-            <ul className={s.ReportSettingList}>
-              {columsLabel.map(label => {
-                const formattedLabel = label
-                  .replace(/\s+/g, '-')
-                  .replace(/%/g, '');
-
-                return (
-                  <li className={s.ReportSettingItem} key={label}>
-                    <input
-                      type="checkbox"
-                      id={formattedLabel}
-                      className="hidden-xs-up"
-                      checked={!!checkedItems[label]}
-                      onChange={() => handleChangeColumns(label)}
-                    />
-                    <label htmlFor={formattedLabel} className="cbx"></label>
-                    {label}
-                  </li>
-                );
-              })}
-            </ul>
-
-            <div className={s.ReportSettingBtnBox}>
-              <button
-                className={s.ReportSettingTableBtn}
-                type="button"
-                onClick={handleSelectAll}
-              >
-                Select All
-              </button>
-              <button
-                className={s.ReportSettingTableBtn}
-                type="button"
-                onClick={handleDeleteAll}
-              >
-                Delete All
-              </button>
             </div>
           </div>
         </div>

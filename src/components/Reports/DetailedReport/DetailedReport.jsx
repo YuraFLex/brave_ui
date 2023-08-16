@@ -17,17 +17,11 @@ import { sizesData } from 'redux/reports/sizes/sizesSelectors';
 export const DetailedReport = () => {
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
-  // const [timeZone, setTimeZone] = useState('utc');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const [selectedSize, setSelectedSize] = useState('allSize');
   const [selectedTrafficType, setSelectedTrafficType] = useState('allTypes');
   const [endPointUrl, setEndPointUrl] = useState('all');
-  const [checkedItems, setCheckedItems] = useState({
-    Spend: true,
-    Impressions: true,
-    'App Name': true,
-  });
 
   const dispatch = useDispatch();
   const id = useSelector(selectUserPartnerId);
@@ -47,10 +41,6 @@ export const DetailedReport = () => {
   const handleChangeDisplay = e => {
     setIsDisplay(e.target.value);
   };
-
-  // const handleChangeTimeZone = e => {
-  //   setTimeZone(e.target.value);
-  // };
 
   const handleStartDateChange = date => {
     setSelectedStartDate(date);
@@ -72,51 +62,12 @@ export const DetailedReport = () => {
     setEndPointUrl(e.target.value);
   };
 
-  const handleChangeColumns = label => {
-    setCheckedItems(prevCheckedItems => {
-      const updatedCheckedItems = { ...prevCheckedItems };
-      updatedCheckedItems[label] = !updatedCheckedItems[label];
-      return updatedCheckedItems;
-    });
-  };
-
-  const handleSelectAll = () => {
-    const newCheckedItems = {};
-    columsLabel.forEach(label => {
-      newCheckedItems[label] = true;
-    });
-    setCheckedItems(newCheckedItems);
-  };
-
-  const handleDeleteAll = () => {
-    setCheckedItems(prevCheckedItems => {
-      const updatedCheckedItems = {};
-      Object.keys(prevCheckedItems).forEach(label => {
-        updatedCheckedItems[label] = false;
-      });
-      return updatedCheckedItems;
-    });
-  };
-
-  const columsLabel = [
-    'App Name',
-    'Spend',
-    'App Bundle',
-    'Type',
-    'Size',
-    'Impressions',
-  ];
-
   const handleSubmit = e => {
     e.preventDefault();
-
-    const labels = Object.keys(checkedItems);
-    const isChecked = Object.values(checkedItems);
 
     const data = {
       partner_id: id,
       type: type,
-      // timeZone: timeZone,
       period: isPeriod,
       displayBy: isDisplay,
       startDate: selectedStartDate,
@@ -124,7 +75,6 @@ export const DetailedReport = () => {
       size: selectedSize,
       trafficType: selectedTrafficType,
       endPointUrl: endPointUrl,
-      checkedItems: { labels, isChecked },
     };
 
     dispatch(fetchDetailedReports(data));
@@ -195,20 +145,6 @@ export const DetailedReport = () => {
               <option value="year">Year</option>
             </select>
           </div>
-
-          {/* <div className={s.DetailedReportInner}>
-            <h4>Time zone:</h4>
-
-            <select
-              className={s.DetailedReportSelect}
-              value={timeZone}
-              onChange={handleChangeTimeZone}
-            >
-              <option value="utc">UTC</option>
-              <option value="pst">PST</option>
-              <option value="est">EST</option>
-            </select>
-          </div> */}
         </div>
 
         <div className={s.DetailedReportBox}>
@@ -285,60 +221,6 @@ export const DetailedReport = () => {
               <option value="ctv">CTV</option>
               <option value="audio">Audio</option>
             </select>
-          </div>
-        </div>
-
-        <div className={s.DetailedReportBox}>
-          <h4 className={s.DetailedReportSubTitle}>Columns</h4>
-          <ul className={s.DetailedReportList}>
-            {columsLabel.map(label => {
-              const formattedLabel =
-                label.replace(/\s+/g, '-').replace(/%/g, '') + 'd';
-
-              return (
-                <li className={s.DetailedReportItem} key={label}>
-                  <input
-                    type="checkbox"
-                    id={formattedLabel}
-                    className="hidden-xs-up"
-                    checked={!!checkedItems[label]}
-                    onChange={() => handleChangeColumns(label)}
-                  />
-                  <label htmlFor={formattedLabel} className="cbx"></label>
-                  {label}
-                </li>
-              );
-            })}
-          </ul>
-
-          {/* <ul className={s.DetailedReportList}>
-            {columsLabel.map(label => (
-              <li className={s.DetailedReportItem} key={label}>
-                <input
-                  type="checkbox"
-                  checked={!!checkedItems[label]}
-                  onChange={() => handleChangeColumns(label)}
-                />
-                <label className={s.DetailedReportLabel}>{label}</label>
-              </li>
-            ))}
-          </ul> */}
-
-          <div className={s.DetailedReportBtnBox}>
-            <button
-              className={s.DetailedReportBtn}
-              type="button"
-              onClick={handleSelectAll}
-            >
-              Select All
-            </button>
-            <button
-              className={s.DetailedReportBtn}
-              type="button"
-              onClick={handleDeleteAll}
-            >
-              Delete All
-            </button>
           </div>
         </div>
       </div>

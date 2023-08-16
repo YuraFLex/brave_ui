@@ -10,6 +10,8 @@
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "ag-grid-community": "^30.0.6",
+    "ag-grid-react": "^30.0.6",
     "axios": "^1.4.0",
     "canvasjs": "^1.8.3",
     "canvasjs-react-charts": "^1.0.5",

@@ -255,6 +255,17 @@ img {
   cursor: pointer;
 }
 
+#Date:checked ~ .cbx {
+  border-color: transparent;
+  background: #0099fa;
+  animation: jelly 0.5s ease;
+}
+
+#Date:checked ~ .cbx:after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
 #Spend:checked ~ .cbx {
   border-color: transparent;
   background: #0099fa;
@@ -328,6 +339,17 @@ img {
 }
 
 #Timeouts-:checked ~ .cbx:after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+#Dated:checked ~ .cbx {
+  border-color: transparent;
+  background: #0099fa;
+  animation: jelly 0.5s ease;
+}
+
+#Dated:checked ~ .cbx:after {
   opacity: 1;
   transform: rotate(45deg) scale(1);
 }

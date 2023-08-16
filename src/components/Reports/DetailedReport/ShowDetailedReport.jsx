@@ -1,125 +1,183 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-balham.css';
+import { AllCommunityModules } from 'ag-grid-react';
+import { useSelector } from 'react-redux';
 import { selectedDetaliedReportsData } from 'redux/reports/detailedReport/detailedReportSelectors';
 import s from './ShowDetailedReport.module.scss';
-import { downloadSummaryReportsCSV } from 'redux/reports/summaryReports/summaryReportsOperations';
 
 export const ShowDetailedReport = () => {
-  const data = useSelector(selectedDetaliedReportsData);
+  const [rowData, setRowData] = useState([]);
+  const detailedData = useSelector(selectedDetaliedReportsData);
+  const [gridApi, setGridApi] = useState(null);
+  const [pageSize, setPageSize] = useState(25);
+  const [visibleColumns, setVisibleColumns] = useState([
+    'time_interval',
+    'app_name',
+    'spend',
+    'impressions',
+  ]);
 
-  console.log('Detalied report data:', data);
+  useEffect(() => {
+    if (detailedData && detailedData.app_name) {
+      const newData = detailedData.app_name.map((appName, index) => ({
+        app_name: appName,
+        bundle_domain: detailedData.bundle_domain[index],
+        time_interval: detailedData.time_interval[index],
+        spend: detailedData.spend[index],
+        impressions: detailedData.impressions[index],
+        size: detailedData.size[index],
+        traffic_type: detailedData.traffic_type[index],
+        key: index,
+      }));
 
-  const dispatch = useDispatch();
+      setRowData(newData);
+    }
+  }, [detailedData]);
 
-  if (!data) {
-    return <div>Please run the report to see the data</div>;
-  }
+  const columnDefs = [
+    {
+      headerName: 'Date',
+      field: 'time_interval',
+      resizable: true,
+      sortable: true,
+    },
+    {
+      headerName: 'App Name',
+      field: 'app_name',
+      resizable: true,
+      sortable: true,
+    },
+    { headerName: 'Spend', field: 'spend', resizable: true, sortable: true },
+    {
+      headerName: 'App Bundle',
+      field: 'bundle_domain',
+      resizable: true,
+      sortable: true,
+    },
+    {
+      headerName: 'Traffic Type',
+      field: 'traffic_type',
+      resizable: true,
+      sortable: true,
+    },
+    { headerName: 'Size', field: 'size', resizable: true, sortable: true },
+    {
+      headerName: 'Impressions',
+      field: 'impressions',
+      resizable: true,
+      sortable: true,
+    },
+  ];
 
-  const selectedLabels = data.labels;
+  const resizeTableToWidth = () => {
+    if (gridApi) {
+      gridApi.sizeColumnsToFit();
+      gridApi.setDomLayout('autoWidth');
+    }
+  };
 
-  const allValuesEmpty = arr => arr.every(value => value.trim() === '');
+  const onGridReady = params => {
+    setGridApi(params.api);
+  };
 
-  let appBundleDataKey = allValuesEmpty(data.bundle_domain)
-    ? 'site_domain'
-    : 'bundle_domain';
+  const handleColumnToggle = field => {
+    if (visibleColumns.includes(field)) {
+      setVisibleColumns(prevVisibleCols =>
+        prevVisibleCols.filter(col => col !== field)
+      );
+    } else {
+      setVisibleColumns(prevVisibleCols => [...prevVisibleCols, field]);
+    }
+  };
 
-  const itemsToRender = [
-    { label: 'App Bundle', dataKey: appBundleDataKey },
-    { label: 'Spend', dataKey: 'spend', unit: '$' },
-    { label: 'Impressions', dataKey: 'impressions' },
-    { label: 'App Name', dataKey: 'app_name' },
-    { label: 'Type', dataKey: 'traffic_type' },
-    { label: 'Size', dataKey: 'size' },
-    { label: 'Region', dataKey: 'region' },
-    { label: 'Platform', dataKey: 'platform' },
-  ].filter(
-    item =>
-      selectedLabels.includes(item.label) &&
-      data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
-  );
+  const handleSelectAllColumns = () => {
+    const allColumns = columnDefs.map(col => col.field);
+    setVisibleColumns(allColumns);
+  };
 
-  if (data.time_interval && data.time_interval.length > 0) {
-    itemsToRender.unshift({
-      label: 'Date',
-      dataKey: 'time_interval',
-      unit: '',
-    });
-  }
+  const handleDeleteAllColumns = () => {
+    setVisibleColumns([]);
+  };
 
-  const atLeastOneLabelChecked = itemsToRender.some(
-    item => data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
-  );
-
-  if (
-    !atLeastOneLabelChecked ||
-    itemsToRender.length === 0 ||
-    data.isChecked === false
-  ) {
-    return <div>Please select at least one column to display.</div>;
-  }
-
-  const handleDownloadCsv = () => {
-    const dataToSend = {
-      items: itemsToRender
-        .filter(
-          item =>
-            selectedLabels.includes(item.label) &&
-            data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
-        )
-        .map(item => ({
-          label: item.label,
-          data: data[item.dataKey].filter(
-            (_, index) =>
-              data.isChecked[selectedLabels.indexOf(item.label)] === 'true'
-          ),
-          unit: item.unit,
-        })),
-      time_interval: data.time_interval,
-    };
-
-    dispatch(downloadSummaryReportsCSV(dataToSend));
-    console.log('Data to send:', dataToSend);
+  const handlePageSizeChange = event => {
+    const newPageSize = parseInt(event.target.value);
+    setPageSize(newPageSize);
   };
 
   return (
     <div>
-      <button
-        className={s.ShowSummaryReportsDownloadBtn}
-        onClick={handleDownloadCsv}
-      >
-        Download CSV
-      </button>
-      <div className={s.ShowSummaryReportsWrapper}>
-        <table className={s.ShowSummaryReportsTable}>
-          <thead className={s.ShowSummaryReportsTableThead}>
-            <tr>
-              {itemsToRender.map(item => (
-                <th key={item.label} className={s.ShowSummaryReportsTh}>
-                  {item.label}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(data[itemsToRender[0].dataKey])
-              ? data[itemsToRender[0].dataKey].map((_, index) => (
-                  <tr key={index} className={s.ShowSummaryReportsTr}>
-                    {itemsToRender.map(item => (
-                      <td key={item.label} className={s.ShowSummaryReportsTd}>
-                        {item.unit === '$'
-                          ? data[item.dataKey][index]
-                            ? `${item.unit}${data[item.dataKey][index]}`
-                            : 'N/A'
-                          : data[item.dataKey][index]
-                          ? data[item.dataKey][index]
-                          : 'N/A'}
-                      </td>
-                    ))}
-                  </tr>
-                ))
-              : null}
-          </tbody>
-        </table>
+      <div className={s.ShowDetailedReportWrapper}>
+        <div>
+          <button
+            className={s.ShowDetailedReportBtn}
+            onClick={resizeTableToWidth}
+          >
+            Resize to Width
+          </button>
+          <select
+            className={s.ShowDetailedReportPageSize}
+            value={pageSize}
+            onChange={handlePageSizeChange}
+          >
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+            <option value={500}>500</option>
+            <option value={1000}>1000</option>
+          </select>
+        </div>
+        <div className={s.ShowDetailedReportInner}>
+          {/* <h4>Columns</h4> */}
+          <div className={s.ShowDetailedReportColumsWrapper}>
+            {columnDefs.map(col => (
+              <div className={s.ShowDetailedReportInput} key={col.field}>
+                <input
+                  className={s.ShowDetailedReportCheckBox}
+                  type="checkbox"
+                  checked={visibleColumns.includes(col.field)}
+                  onChange={() => handleColumnToggle(col.field)}
+                />
+                <label>{col.headerName}</label>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={s.ShowDetailedReportBtnBox}>
+          <button
+            className={s.ShowDetailedReportBtn}
+            onClick={handleSelectAllColumns}
+          >
+            Select All
+          </button>
+          <button
+            className={s.ShowDetailedReportBtn}
+            onClick={handleDeleteAllColumns}
+          >
+            Delete All
+          </button>
+        </div>
+      </div>
+      <div style={{ height: 600, width: '100%' }}>
+        <AgGridReact
+          className="ag-theme-balham"
+          columnDefs={columnDefs.filter(col =>
+            visibleColumns.includes(col.field)
+          )}
+          rowData={rowData}
+          suppressMenu={true}
+          suppressDragLeaveHidesColumns={true}
+          deltaRowDataMode={true}
+          pagination={true}
+          paginationPageSize={pageSize}
+          paginationNumberFormatter={params => `${params.value}`}
+          enableCellTextSelection={true}
+          modules={AllCommunityModules}
+          suppressRowTransform={true}
+          onGridReady={onGridReady}
+        />
       </div>
     </div>
   );

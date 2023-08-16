@@ -44,12 +44,19 @@ export const ShowSummaryReports = () => {
       resizable: true,
       sortable: true,
     },
-    { headerName: 'Spend', field: 'spend', resizable: true, sortable: true },
+    {
+      headerName: 'Spend',
+      field: 'spend',
+      resizable: true,
+      sortable: true,
+      valueFormatter: params => `$ ${params.value}`,
+    },
     {
       headerName: 'Win Rate %',
       field: 'win_rate',
       resizable: true,
       sortable: true,
+      valueFormatter: params => `${params.value} %`,
     },
     {
       headerName: 'Requests',
@@ -80,6 +87,7 @@ export const ShowSummaryReports = () => {
       field: 'time_outs',
       resizable: true,
       sortable: true,
+      valueFormatter: params => `${params.value} %`,
     },
   ];
 

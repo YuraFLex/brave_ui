@@ -49,7 +49,13 @@ export const ShowDetailedReport = () => {
       resizable: true,
       sortable: true,
     },
-    { headerName: 'Spend', field: 'spend', resizable: true, sortable: true },
+    {
+      headerName: 'Spend',
+      field: 'spend',
+      resizable: true,
+      sortable: true,
+      valueFormatter: params => `$ ${params.value}`,
+    },
     {
       headerName: 'App Bundle',
       field: 'bundle_domain',

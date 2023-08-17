@@ -80,7 +80,27 @@ export const ShowDetailedReport = () => {
       resizable: true,
       sortable: true,
     },
-    { headerName: 'Size', field: 'size', resizable: true, sortable: true },
+    {
+      headerName: 'Size',
+      field: 'size',
+      resizable: true,
+      sortable: true,
+      comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
+        const sizeA = valueA.split('x');
+        const sizeB = valueB.split('x');
+        if (sizeA.length === 2 && sizeB.length === 2) {
+          const widthA = parseInt(sizeA[0]);
+          const heightA = parseInt(sizeA[1]);
+          const widthB = parseInt(sizeB[0]);
+          const heightB = parseInt(sizeB[1]);
+          if (widthA === widthB) {
+            return heightA < heightB ? -1 : 1;
+          }
+          return widthA < widthB ? -1 : 1;
+        }
+        return 0;
+      },
+    },
     {
       headerName: 'Impressions',
       field: 'impressions',

@@ -154,6 +154,29 @@ export const ShowSummaryReports = () => {
     setGridApi(params.api);
   };
 
+  const handleExportCsv = () => {
+    if (gridApi) {
+      const now = new Date();
+      const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+      const formattedTime = `${now.getHours().toString().padStart(2, '0')}-${now
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')}-${now.getSeconds().toString().padStart(2, '0')}`;
+      const fileName = `Summary_reports_${formattedDate}_${formattedTime}.csv`;
+
+      const params = {
+        skipHeader: false,
+        skipFooters: true,
+        skipGroups: true,
+        fileName: fileName,
+      };
+
+      gridApi.exportDataAsCsv(params);
+    }
+  };
+
   const handleColumnToggle = field => {
     if (visibleColumns.includes(field)) {
       setVisibleColumns(prevVisibleCols =>
@@ -182,13 +205,16 @@ export const ShowSummaryReports = () => {
     <div>
       <div className={s.ShowSummaryReportsWrapper}>
         <div>
+          <button className={s.ShowSummaryReportsBtn} onClick={handleExportCsv}>
+            Dowload CSV
+          </button>
+
           <button
             className={s.ShowSummaryReportsBtn}
             onClick={resizeTableToWidth}
           >
             Resize to Width
           </button>
-
           <select
             className={s.ShowSummaryReportsPageSize}
             value={pageSize}

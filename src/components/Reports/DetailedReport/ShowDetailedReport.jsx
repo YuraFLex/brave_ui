@@ -36,6 +36,8 @@ export const ShowDetailedReport = () => {
     }
   }, [detailedData]);
 
+  console.log('detailedData:', detailedData);
+
   const columnDefs = [
     {
       headerName: 'Date',
@@ -152,16 +154,43 @@ export const ShowDetailedReport = () => {
     setPageSize(newPageSize);
   };
 
+  const handleExportCsv = () => {
+    if (gridApi) {
+      const now = new Date();
+      const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+      const formattedTime = `${now.getHours().toString().padStart(2, '0')}-${now
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')}-${now.getSeconds().toString().padStart(2, '0')}`;
+      const fileName = `Detailed_Report_${formattedDate}_${formattedTime}.csv`;
+
+      const params = {
+        skipHeader: false,
+        skipFooters: true,
+        skipGroups: true,
+        fileName: fileName,
+      };
+
+      gridApi.exportDataAsCsv(params);
+    }
+  };
+
   return (
     <div>
       <div className={s.ShowDetailedReportWrapper}>
         <div>
+          <button className={s.ShowDetailedReportBtn} onClick={handleExportCsv}>
+            Dowload CSV
+          </button>
           <button
             className={s.ShowDetailedReportBtn}
             onClick={resizeTableToWidth}
           >
             Resize to Width
           </button>
+
           <select
             className={s.ShowDetailedReportPageSize}
             value={pageSize}
@@ -223,6 +252,7 @@ export const ShowDetailedReport = () => {
           modules={AllCommunityModules}
           suppressRowTransform={true}
           onGridReady={onGridReady}
+          suppressCsvExport={false} // Включаем возможность экспорта в CSV
         />
       </div>
     </div>

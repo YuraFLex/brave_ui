@@ -54,7 +54,7 @@
 .ShowDetailedReportColumsWrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
 
 .ShowDetailedReportLabel {
@@ -63,7 +63,7 @@
   cursor: pointer;
   border: 1px solid #0099fa;
   border-radius: 10px;
-  width: 150px;
+  white-space: nowrap;
   padding: 5px 10px;
   transition: all 0.25s linear;
   background-color: #0099fa;

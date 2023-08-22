@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.915be7a6.css",
+    "main.css": "/static/css/main.8ca558ed.css",
     "main.js": "/static/js/main.610a974d.js",
     "static/media/WorkSans-SemiBold.ttf": "/static/media/WorkSans-SemiBold.7e77b58a707807fcd6e4.ttf",
     "static/media/WorkSans-Bold.ttf": "/static/media/WorkSans-Bold.1b7953cecdd0234f6de9.ttf",
@@ -8,11 +8,11 @@
     "static/media/WorkSans-Regular.ttf": "/static/media/WorkSans-Regular.4be086328ba304c25f49.ttf",
     "static/media/logo.png": "/static/media/logo.527189a0b549fe978050.png",
     "index.html": "/index.html",
-    "main.915be7a6.css.map": "/static/css/main.915be7a6.css.map",
+    "main.8ca558ed.css.map": "/static/css/main.8ca558ed.css.map",
     "main.610a974d.js.map": "/static/js/main.610a974d.js.map"
   },
   "entrypoints": [
-    "static/css/main.915be7a6.css",
+    "static/css/main.8ca558ed.css",
     "static/js/main.610a974d.js"
   ]
 }

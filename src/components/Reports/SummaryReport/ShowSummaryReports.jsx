@@ -49,6 +49,7 @@ export const ShowSummaryReports = () => {
       field: 'spend',
       resizable: true,
       sortable: true,
+      sort: 'desc',
       valueFormatter: params => `$ ${params.value}`,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const floatValueA = parseFloat(

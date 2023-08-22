@@ -180,47 +180,30 @@ export const ShowDetailedReport = () => {
   return (
     <div>
       <div className={s.ShowDetailedReportWrapper}>
-        <div>
-          <button className={s.ShowDetailedReportBtn} onClick={handleExportCsv}>
-            Dowload CSV
-          </button>
+        <div className={s.ShowDetailedReportBtnBox}>
+          <div className={s.ShowDetailedReportDescr}>
+            <h4>Page Size</h4>
+            <select
+              className={s.ShowDetailedReportPageSize}
+              value={pageSize}
+              onChange={handlePageSizeChange}
+            >
+              <option value={10}>10</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={500}>500</option>
+              <option value={1000}>1000</option>
+            </select>
+          </div>
+          <div className={s.ShowDetailedReportSlash}></div>
           <button
             className={s.ShowDetailedReportBtn}
             onClick={resizeTableToWidth}
           >
             Resize to Width
           </button>
-
-          <select
-            className={s.ShowDetailedReportPageSize}
-            value={pageSize}
-            onChange={handlePageSizeChange}
-          >
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-            <option value={500}>500</option>
-            <option value={1000}>1000</option>
-          </select>
-        </div>
-        <div className={s.ShowDetailedReportInner}>
-          {/* <h4>Columns</h4> */}
-          <div className={s.ShowDetailedReportColumsWrapper}>
-            {columnDefs.map(col => (
-              <div className={s.ShowDetailedReportInput} key={col.field}>
-                <input
-                  className={s.ShowDetailedReportCheckBox}
-                  type="checkbox"
-                  checked={visibleColumns.includes(col.field)}
-                  onChange={() => handleColumnToggle(col.field)}
-                />
-                <label>{col.headerName}</label>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={s.ShowDetailedReportBtnBox}>
+          <div className={s.ShowDetailedReportSlash}></div>
           <button
             className={s.ShowDetailedReportBtn}
             onClick={handleSelectAllColumns}
@@ -233,6 +216,29 @@ export const ShowDetailedReport = () => {
           >
             Delete All
           </button>
+          <div className={s.ShowDetailedReportSlash}></div>
+          <button className={s.ShowDetailedReportBtn} onClick={handleExportCsv}>
+            Dowload CSV
+          </button>
+        </div>
+
+        <div className={s.ShowDetailedReportInner}>
+          <h3>Columns</h3>
+          <div className={s.ShowDetailedReportColumsWrapper}>
+            {columnDefs.map(col => (
+              <div className={s.ShowDetailedReportInput} key={col.field}>
+                <label className={s.ShowDetailedReportLabel}>
+                  <input
+                    className={s.ShowDetailedReportCheckBox}
+                    type="checkbox"
+                    checked={visibleColumns.includes(col.field)}
+                    onChange={() => handleColumnToggle(col.field)}
+                  />
+                  {col.headerName}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div style={{ height: 600, width: '100%' }}>
@@ -252,7 +258,7 @@ export const ShowDetailedReport = () => {
           modules={AllCommunityModules}
           suppressRowTransform={true}
           onGridReady={onGridReady}
-          suppressCsvExport={false} // Включаем возможность экспорта в CSV
+          suppressCsvExport={false}
         />
       </div>
     </div>

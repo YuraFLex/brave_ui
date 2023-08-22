@@ -1,60 +1,84 @@
 .ShowSummaryReportsWrapper {
   display: flex;
-  border: 1px solid #ccc;
-  padding: 10px;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  align-items: center;
-}
-
-.ShowSummaryReportsInner {
-  display: flex;
-}
-
-.ShowSummaryReportsInput {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 10px;
-  transition: all 0.5s linear;
-
-  &:hover {
-    background-color: #009afa5a;
-  }
-}
-
-.ShowSummaryReportsCheckBox {
-  width: 20px;
-  height: 20px;
-}
-
-.ShowSummaryReportsWrapper,
-.ShowSummaryReportsColumsWrapper {
-  display: flex;
+  flex-direction: column;
   gap: 20px;
+  margin-bottom: 30px;
 }
 
 .ShowSummaryReportsBtnBox {
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ShowSummaryReportsDescr {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ShowSummaryReportsPageSize {
+  border: 1px solid #0099fa;
+  border-radius: 10px;
+  width: 150px;
+  padding: 5px 10px;
 }
 
 .ShowSummaryReportsBtn {
-  margin-right: auto;
   cursor: pointer;
   padding: 5px 10px;
   background-color: #0099fa;
   color: #fff;
   border: 1px solid #ccc;
   border-radius: 20px;
+  min-width: 150px;
+  transition: all 0.25s linear;
+
+  &:hover {
+    background-color: #057bc6;
+  }
 }
 
-.ShowSummaryReportsPageSize {
+.ShowSummaryReportsSlash {
+  border-left: 2px dashed #00000052;
+}
+
+.ShowSummaryReportsInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.ShowSummaryReportsColumsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ShowSummaryReportsInputBox {
+  display: flex;
+}
+
+.ShowSummaryReportsLabel {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
   border: 1px solid #0099fa;
   border-radius: 10px;
+  width: 150px;
   padding: 5px 10px;
-  margin-top: 10px;
+  transition: all 0.25s linear;
+  background-color: #0099fa;
+  color: #fff;
+
+  &:hover {
+    background-color: #015fba;
+  }
+}
+
+.ShowSummaryReportsCheckBox {
+  width: 20px;
+  height: 20px;
 }

@@ -1,5 +1,8 @@
+import logo from '../../images/logo.png';
+
 import s from '../Loader/Loader.module.scss';
 import './FadingText.css';
+
 export const Loader = () => {
   return (
     <div className={s.bacdrop}>
@@ -73,6 +76,16 @@ export const LoaderBrave = () => {
       <div className="loader">
         <span>BRAVE</span>
         <span>BRAVE</span>
+      </div>
+    </div>
+  );
+};
+
+export const BraveLogo = () => {
+  return (
+    <div className="loader-bacdrop">
+      <div className="loader-logo">
+        <img className="lader-img" src={logo} alt="logo" />
       </div>
     </div>
   );

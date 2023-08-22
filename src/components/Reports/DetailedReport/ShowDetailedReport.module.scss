@@ -1,60 +1,137 @@
 .ShowDetailedReportWrapper {
   display: flex;
-  border: 1px solid #ccc;
-  padding: 10px;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  align-items: center;
-}
-
-.ShowDetailedReportInner {
-  display: flex;
-}
-
-.ShowDetailedReportInput {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 10px;
-  transition: all 0.5s linear;
-
-  &:hover {
-    background-color: #009afa5a;
-  }
-}
-
-.ShowDetailedReportCheckBox {
-  width: 20px;
-  height: 20px;
-}
-
-.ShowDetailedReportWrapper,
-.ShowDetailedReportColumsWrapper {
-  display: flex;
+  flex-direction: column;
   gap: 20px;
+  margin-bottom: 30px;
 }
 
 .ShowDetailedReportBtnBox {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
+.ShowDetailedReportDescr {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.ShowDetailedReportPageSize {
+  border: 1px solid #0099fa;
+  border-radius: 10px;
+  width: 150px;
+  padding: 5px 10px;
+}
+
 .ShowDetailedReportBtn {
-  margin-right: auto;
   cursor: pointer;
-  padding: 5px 20px;
+  padding: 5px 10px;
   background-color: #0099fa;
   color: #fff;
   border: 1px solid #ccc;
   border-radius: 20px;
+  min-width: 150px;
+  transition: all 0.25s linear;
+
+  &:hover {
+    background-color: #057bc6;
+  }
 }
-.ShowDetailedReportPageSize {
+
+.ShowDetailedReportSlash {
+  border-left: 2px dashed rgba(0, 0, 0, 0.3215686275);
+}
+
+.ShowDetailedReportInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.ShowDetailedReportColumsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ShowDetailedReportLabel {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
   border: 1px solid #0099fa;
   border-radius: 10px;
+  width: 150px;
   padding: 5px 10px;
-  // margin-top: 10px;
-  margin-left: 10px;
+  transition: all 0.25s linear;
+  background-color: #0099fa;
+  color: #fff;
+
+  &:hover {
+    background-color: #015fba;
+  }
 }
+
+// .ShowDetailedReportWrapper {
+//   display: flex;
+//   border: 1px solid #ccc;
+//   padding: 10px;
+//   justify-content: space-between;
+//   margin-bottom: 30px;
+//   align-items: center;
+// }
+
+// .ShowDetailedReportInner {
+//   display: flex;
+// }
+
+// .ShowDetailedReportInput {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+//   border: 1px solid #ccc;
+//   padding: 10px;
+//   border-radius: 10px;
+//   transition: all 0.5s linear;
+
+//   &:hover {
+//     background-color: #009afa5a;
+//   }
+// }
+
+// .ShowDetailedReportCheckBox {
+//   width: 20px;
+//   height: 20px;
+// }
+
+// .ShowDetailedReportWrapper,
+// .ShowDetailedReportColumsWrapper {
+//   display: flex;
+//   gap: 20px;
+// }
+
+// .ShowDetailedReportBtnBox {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+// }
+
+// .ShowDetailedReportBtn {
+//   margin-right: auto;
+//   cursor: pointer;
+//   padding: 5px 20px;
+//   background-color: #0099fa;
+//   color: #fff;
+//   border: 1px solid #ccc;
+//   border-radius: 20px;
+// }
+
+// .ShowDetailedReportPageSize {
+//   border: 1px solid #0099fa;
+//   border-radius: 10px;
+//   padding: 5px 10px;
+//   // margin-top: 10px;
+//   margin-left: 10px;
+// }

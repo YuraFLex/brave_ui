@@ -204,10 +204,23 @@ export const ShowSummaryReports = () => {
   return (
     <div>
       <div className={s.ShowSummaryReportsWrapper}>
-        <div>
-          <button className={s.ShowSummaryReportsBtn} onClick={handleExportCsv}>
-            Dowload CSV
-          </button>
+        <div className={s.ShowSummaryReportsBtnBox}>
+          <div className={s.ShowSummaryReportsDescr}>
+            <h4>Page Size</h4>
+            <select
+              className={s.ShowSummaryReportsPageSize}
+              value={pageSize}
+              onChange={handlePageSizeChange}
+            >
+              <option value={10}>10</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+              <option value={500}>500</option>
+              <option value={1000}>1000</option>
+            </select>
+          </div>
+          <div className={s.ShowSummaryReportsSlash}></div>
 
           <button
             className={s.ShowSummaryReportsBtn}
@@ -215,36 +228,7 @@ export const ShowSummaryReports = () => {
           >
             Resize to Width
           </button>
-          <select
-            className={s.ShowSummaryReportsPageSize}
-            value={pageSize}
-            onChange={handlePageSizeChange}
-          >
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-            <option value={500}>500</option>
-            <option value={1000}>1000</option>
-          </select>
-        </div>
-        <div className={s.ShowSummaryReportsInner}>
-          {/* <h4>Columns</h4> */}
-          <div className={s.ShowSummaryReportsColumsWrapper}>
-            {columnDefs.map(col => (
-              <div className={s.ShowSummaryReportsInput} key={col.field}>
-                <input
-                  className={s.ShowSummaryReportsCheckBox}
-                  type="checkbox"
-                  checked={visibleColumns.includes(col.field)}
-                  onChange={() => handleColumnToggle(col.field)}
-                />
-                <label>{col.headerName}</label>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={s.ShowSummaryReportsBtnBox}>
+          <div className={s.ShowSummaryReportsSlash}></div>
           <button
             className={s.ShowSummaryReportsBtn}
             onClick={handleSelectAllColumns}
@@ -257,6 +241,30 @@ export const ShowSummaryReports = () => {
           >
             Delete All
           </button>
+          <div className={s.ShowSummaryReportsSlash}></div>
+          <button className={s.ShowSummaryReportsBtn} onClick={handleExportCsv}>
+            Dowload CSV
+          </button>
+        </div>
+
+        <div className={s.ShowSummaryReportsInner}>
+          <h3>Columns</h3>
+          <div className={s.ShowSummaryReportsColumsWrapper}>
+            {columnDefs.map(col => (
+              <div className={s.ShowSummaryReportsInputBox} key={col.field}>
+                <label className={s.ShowSummaryReportsLabel}>
+                  <input
+                    className={s.ShowSummaryReportsCheckBox}
+                    type="checkbox"
+                    checked={visibleColumns.includes(col.field)}
+                    onChange={() => handleColumnToggle(col.field)}
+                  />
+
+                  {col.headerName}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div style={{ height: 600, width: '100%' }}>
@@ -276,6 +284,7 @@ export const ShowSummaryReports = () => {
           modules={AllCommunityModules}
           suppressRowTransform={true}
           onGridReady={onGridReady}
+          suppressCsvExport={false}
         />
       </div>
     </div>

@@ -7,7 +7,7 @@ import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
 import s from './DetailedReport.module.scss';
 import { fetchDetailedReports } from 'redux/reports/detailedReport/detailedReportOperation';
 import { selectedDetaliedReportsIsLoading } from 'redux/reports/detailedReport/detailedReportSelectors';
-import { LoaderBrave } from 'components/Loader/Loader';
+import { BraveLogo } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 import '../../../index.css';
@@ -82,7 +82,7 @@ export const DetailedReport = () => {
   };
 
   if (isLoading) {
-    return <LoaderBrave />;
+    return <BraveLogo />;
   }
 
   return (

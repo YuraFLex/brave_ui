@@ -10,7 +10,7 @@ import {
   selectedSummaryReportsIsLoading,
 } from 'redux/reports/summaryReports/summaryReportsSelectors';
 import s from './SummaryReports.module.scss';
-import { LoaderBrave } from 'components/Loader/Loader';
+import { BraveLogo } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 import '../../../index.css';
@@ -69,7 +69,7 @@ export const SummaryReports = () => {
   };
 
   if (isLoading) {
-    return <LoaderBrave />;
+    return <BraveLogo />;
   }
 
   return (

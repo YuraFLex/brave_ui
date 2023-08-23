@@ -178,6 +178,14 @@ export const ShowDetailedReport = () => {
     }
   };
 
+  const tableFooter = [
+    {
+      time_interval: 'Total',
+      spend: detailedData.total.spend,
+      impressions: detailedData.total.impressions,
+    },
+  ];
+
   return (
     <div>
       <div className={s.ShowDetailedReportWrapper}>
@@ -260,6 +268,7 @@ export const ShowDetailedReport = () => {
           suppressRowTransform={true}
           onGridReady={onGridReady}
           suppressCsvExport={false}
+          pinnedBottomRowData={tableFooter}
         />
       </div>
     </div>

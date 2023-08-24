@@ -44,18 +44,21 @@ export const ShowDetailedReport = () => {
       field: 'time_interval',
       resizable: true,
       sortable: true,
+      filter: true,
     },
     {
       headerName: 'App Name',
       field: 'app_name',
       resizable: true,
       sortable: true,
+      filter: true,
     },
     {
       headerName: 'Spend',
       field: 'spend',
       resizable: true,
       sortable: true,
+      filter: true,
       sort: 'desc',
       valueFormatter: params => `$ ${params.value}`,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
@@ -76,18 +79,21 @@ export const ShowDetailedReport = () => {
       field: 'bundle_domain',
       resizable: true,
       sortable: true,
+      filter: true,
     },
     {
       headerName: 'Traffic Type',
       field: 'traffic_type',
       resizable: true,
       sortable: true,
+      filter: true,
     },
     {
       headerName: 'Size',
       field: 'size',
       resizable: true,
       sortable: true,
+      filter: true,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const sizeA = valueA.split('x');
         const sizeB = valueB.split('x');
@@ -109,6 +115,7 @@ export const ShowDetailedReport = () => {
       field: 'impressions',
       resizable: true,
       sortable: true,
+      filter: true,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const intValueA = parseInt(valueA.replace(/,/g, ''));
         const intValueB = parseInt(valueB.replace(/,/g, ''));
@@ -169,7 +176,7 @@ export const ShowDetailedReport = () => {
 
       const params = {
         skipHeader: false,
-        skipFooters: true,
+        skipFooters: false,
         skipGroups: true,
         fileName: fileName,
       };
@@ -180,7 +187,6 @@ export const ShowDetailedReport = () => {
 
   const tableFooter = [
     {
-      time_interval: 'Total',
       spend: detailedData.total.spend,
       impressions: detailedData.total.impressions,
     },

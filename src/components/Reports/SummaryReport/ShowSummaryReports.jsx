@@ -43,6 +43,7 @@ export const ShowSummaryReports = () => {
       field: 'time_interval',
       resizable: true,
       sortable: true,
+      filter: true,
     },
     {
       headerName: 'Spend',
@@ -50,6 +51,7 @@ export const ShowSummaryReports = () => {
       resizable: true,
       sortable: true,
       sort: 'desc',
+      filter: true,
       valueFormatter: params => `$ ${params.value}`,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const floatValueA = parseFloat(
@@ -69,6 +71,7 @@ export const ShowSummaryReports = () => {
       field: 'win_rate',
       resizable: true,
       sortable: true,
+      filter: true,
       valueFormatter: params => `${params.value} %`,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const floatValueA = parseFloat(valueA.replace('%', ''));
@@ -84,6 +87,7 @@ export const ShowSummaryReports = () => {
       field: 'requests',
       resizable: true,
       sortable: true,
+      filter: true,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const intValueA = parseInt(valueA.replace(/,/g, ''));
         const intValueB = parseInt(valueB.replace(/,/g, ''));
@@ -98,6 +102,7 @@ export const ShowSummaryReports = () => {
       field: 'responses',
       resizable: true,
       sortable: true,
+      filter: true,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const intValueA = parseInt(valueA.replace(/,/g, ''));
         const intValueB = parseInt(valueB.replace(/,/g, ''));
@@ -112,6 +117,7 @@ export const ShowSummaryReports = () => {
       field: 'impressions',
       resizable: true,
       sortable: true,
+      filter: true,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const intValueA = parseInt(valueA.replace(/,/g, ''));
         const intValueB = parseInt(valueB.replace(/,/g, ''));
@@ -126,12 +132,14 @@ export const ShowSummaryReports = () => {
       field: 'timeouts',
       resizable: true,
       sortable: true,
+      filter: true,
     },
     {
       headerName: 'Timeouts %',
       field: 'time_outs',
       resizable: true,
       sortable: true,
+      filter: true,
       valueFormatter: params => `${params.value} %`,
       comparator: (valueA, valueB, nodeA, nodeB, isInverted) => {
         const floatValueA = parseFloat(valueA.replace('%', ''));
@@ -141,6 +149,18 @@ export const ShowSummaryReports = () => {
         }
         return floatValueA < floatValueB ? -1 : 1;
       },
+    },
+  ];
+
+  const tableFooter = [
+    {
+      spend: summaryData.total.spend,
+      win_rate: summaryData.total.win_rate,
+      requests: summaryData.total.requests,
+      responses: summaryData.total.responses,
+      impressions: summaryData.total.impressions,
+      timeouts: summaryData.total.timeouts,
+      time_outs: summaryData.total.time_outs,
     },
   ];
 
@@ -169,7 +189,7 @@ export const ShowSummaryReports = () => {
 
       const params = {
         skipHeader: false,
-        skipFooters: true,
+        skipFooters: false,
         skipGroups: true,
         fileName: fileName,
       };
@@ -286,6 +306,7 @@ export const ShowSummaryReports = () => {
           suppressRowTransform={true}
           onGridReady={onGridReady}
           suppressCsvExport={false}
+          pinnedBottomRowData={tableFooter}
         />
       </div>
     </div>

@@ -15,7 +15,7 @@ import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 
 import '../../../index.css';
 
-export const SummaryReports = () => {
+export const SummaryReports = ({ onExpand }) => {
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
@@ -66,6 +66,7 @@ export const SummaryReports = () => {
 
     dispatch(fetchSummaryReports(data));
     console.log('Data to server:', data);
+    onExpand();
   };
 
   if (isLoading) {

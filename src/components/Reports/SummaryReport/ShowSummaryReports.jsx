@@ -5,7 +5,10 @@ import 'ag-grid-community/styles/ag-theme-balham.css';
 import { AllCommunityModules } from 'ag-grid-react';
 import { useSelector } from 'react-redux';
 import s from './SummaryReportsTable.module.scss';
-import { selectedSummaryReportsData } from 'redux/reports/summaryReports/summaryReportsSelectors';
+import {
+  selectedSummaryReportsData,
+  selectedSummaryReportsIsLoading,
+} from 'redux/reports/summaryReports/summaryReportsSelectors';
 
 export const ShowSummaryReports = () => {
   const [rowData, setRowData] = useState([]);
@@ -18,6 +21,7 @@ export const ShowSummaryReports = () => {
   ]);
 
   const summaryData = useSelector(selectedSummaryReportsData);
+  const loadData = useSelector(selectedSummaryReportsIsLoading);
 
   useEffect(() => {
     if (summaryData && summaryData.spend) {
@@ -152,17 +156,20 @@ export const ShowSummaryReports = () => {
     },
   ];
 
-  const tableFooter = [
-    {
-      spend: summaryData.total.spend,
-      win_rate: summaryData.total.win_rate,
-      requests: summaryData.total.requests,
-      responses: summaryData.total.responses,
-      impressions: summaryData.total.impressions,
-      timeouts: summaryData.total.timeouts,
-      time_outs: summaryData.total.time_outs,
-    },
-  ];
+  const tableFooter =
+    summaryData && summaryData.total
+      ? [
+          {
+            spend: summaryData.total.spend,
+            win_rate: summaryData.total.win_rate,
+            requests: summaryData.total.requests,
+            responses: summaryData.total.responses,
+            impressions: summaryData.total.impressions,
+            timeouts: summaryData.total.timeouts,
+            time_outs: summaryData.total.time_outs,
+          },
+        ]
+      : [];
 
   const resizeTableToWidth = () => {
     if (gridApi) {
@@ -221,6 +228,16 @@ export const ShowSummaryReports = () => {
     const newPageSize = parseInt(event.target.value);
     setPageSize(newPageSize);
   };
+
+  if (summaryData === null) {
+    return (
+      <div className={s.NoDataMessage}>Please run the report to view data.</div>
+    );
+  }
+
+  if (loadData) {
+    return <h4 style={{ textAlign: 'center' }}>Loading...</h4>;
+  }
 
   return (
     <div>

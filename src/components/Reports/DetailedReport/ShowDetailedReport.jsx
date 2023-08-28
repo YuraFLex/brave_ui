@@ -4,7 +4,10 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-balham.css';
 import { AllCommunityModules } from 'ag-grid-react';
 import { useSelector } from 'react-redux';
-import { selectedDetaliedReportsData } from 'redux/reports/detailedReport/detailedReportSelectors';
+import {
+  selectedDetaliedReportsData,
+  selectedDetaliedReportsIsLoading,
+} from 'redux/reports/detailedReport/detailedReportSelectors';
 import s from './ShowDetailedReport.module.scss';
 
 export const ShowDetailedReport = () => {
@@ -17,7 +20,10 @@ export const ShowDetailedReport = () => {
     'app_name',
     'spend',
     'impressions',
+    'bundle_domain',
   ]);
+
+  const loadData = useSelector(selectedDetaliedReportsIsLoading);
 
   useEffect(() => {
     if (detailedData && detailedData.app_name) {
@@ -185,12 +191,25 @@ export const ShowDetailedReport = () => {
     }
   };
 
-  const tableFooter = [
-    {
-      spend: detailedData.total.spend,
-      impressions: detailedData.total.impressions,
-    },
-  ];
+  const tableFooter =
+    detailedData && detailedData.total
+      ? [
+          {
+            spend: detailedData.total.spend,
+            impressions: detailedData.total.impressions,
+          },
+        ]
+      : [];
+
+  if (detailedData === null) {
+    return (
+      <div className={s.NoDataMessage}>Please run the report to view data.</div>
+    );
+  }
+
+  if (loadData) {
+    return <h4 style={{ textAlign: 'center' }}>Loading...</h4>;
+  }
 
   return (
     <div>

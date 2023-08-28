@@ -14,7 +14,7 @@ import '../../../index.css';
 import { fetchSizes } from 'redux/reports/sizes/sizesOperation';
 import { sizesData } from 'redux/reports/sizes/sizesSelectors';
 
-export const DetailedReport = () => {
+export const DetailedReport = ({ onExpand }) => {
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
@@ -79,6 +79,8 @@ export const DetailedReport = () => {
 
     dispatch(fetchDetailedReports(data));
     console.log('Detailed Report Данные отправленные на сервер:', data);
+
+    onExpand();
   };
 
   if (isLoading) {

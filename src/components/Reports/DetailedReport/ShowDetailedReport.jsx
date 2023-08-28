@@ -20,7 +20,7 @@ export const ShowDetailedReport = () => {
     'app_name',
     'spend',
     'impressions',
-    'bundle_domain',
+    'size',
   ]);
 
   const loadData = useSelector(selectedDetaliedReportsIsLoading);

@@ -34,14 +34,19 @@
 }
 
 .StatisticsFilterDatePicker {
-  border: 1px solid #0099fa;
-  padding: 5px;
-  border-radius: 10px;
-  width: 150px;
+  // width: 100%;
+  width: 300px;
+  padding: 14px 16px;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
 
   &:focus {
     border: 1px solid #0670b1;
   }
+}
+
+.StatisticsFilterDatePickerLabel {
+  white-space: nowrap;
 }
 
 .StatisticsFilterBtnSubmit {

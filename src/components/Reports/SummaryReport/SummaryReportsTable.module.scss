@@ -8,6 +8,7 @@
 .ShowSummaryReportsBtnBox {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
   flex-wrap: wrap;
 }
@@ -33,6 +34,7 @@
   border: 1px solid #ccc;
   border-radius: 20px;
   min-width: 150px;
+  height: 32px;
 
   transition: all 0.25s linear;
 
@@ -43,6 +45,7 @@
 
 .ShowSummaryReportsSlash {
   border-left: 2px dashed #00000052;
+  height: 50px;
 }
 
 .ShowSummaryReportsInner {

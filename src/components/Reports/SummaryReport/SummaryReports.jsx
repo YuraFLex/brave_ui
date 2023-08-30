@@ -12,6 +12,9 @@ import {
 import s from './SummaryReports.module.scss';
 import { BraveLogo } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 import '../../../index.css';
 
@@ -80,18 +83,17 @@ export const SummaryReports = ({ onExpand }) => {
           <div className={s.ReportSettingInner}>
             <div className={s.ReportSettingFilterBox}>
               <h4>Select Period:</h4>
-              <select
-                className={s.ReportSettingSelect}
-                value={isPeriod}
-                onChange={handleChangePeriod}
-              >
-                <option value="today">Today</option>
-                <option value="yesterday">Yesterday</option>
-                <option value="lastweek">Last 7 Days</option>
-                <option value="thismonth">This Month</option>
-                <option value="lastmonth">Last Month</option>
-                <option value="custom">Custom</option>
-              </select>
+
+              <FormControl fullWidth>
+                <Select value={isPeriod} onChange={handleChangePeriod}>
+                  <MenuItem value="today">Today</MenuItem>
+                  <MenuItem value="yesterday">Yesterday</MenuItem>
+                  <MenuItem value="lastweek">Last 7 Days</MenuItem>
+                  <MenuItem value="thismonth">This Month</MenuItem>
+                  <MenuItem value="lastmonth">Last Month</MenuItem>
+                  <MenuItem value="custom">Custom</MenuItem>
+                </Select>
+              </FormControl>
 
               {isPeriod === 'custom' && (
                 <div className={s.DatePicker}>
@@ -124,16 +126,13 @@ export const SummaryReports = ({ onExpand }) => {
 
             <div className={s.ReportSettingFilterBox}>
               <h4>Display by:</h4>
-              <select
-                className={s.ReportSettingSelect}
-                value={isDisplay}
-                onChange={handleChangeDisplay}
-              >
-                <option value="hour">Hour</option>
-                <option value="day">Day</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
-              </select>
+              <FormControl fullWidth>
+                <Select value={isDisplay} onChange={handleChangeDisplay}>
+                  <MenuItem value="day">Day</MenuItem>
+                  <MenuItem value="month">Month</MenuItem>
+                  <MenuItem value="year">Year</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
 
@@ -142,36 +141,32 @@ export const SummaryReports = ({ onExpand }) => {
               {type === 'DSP' ? (
                 <>
                   <h4>EP URL:</h4>
-                  <select
-                    className={s.ReportSettingSelect}
-                    value={endPointUrl}
-                    onChange={handleChangeEndPoint}
-                  >
-                    <option value="all">Company</option>
-                    {EPUList &&
-                      EPUList.map(({ id, point }) => (
-                        <option key={id} value={id}>
-                          {point}
-                        </option>
-                      ))}
-                  </select>
+                  <FormControl fullWidth>
+                    <Select value={endPointUrl} onChange={handleChangeEndPoint}>
+                      <MenuItem value="all">Company</MenuItem>
+                      {EPUList &&
+                        EPUList.map(({ id, point }) => (
+                          <MenuItem key={id} value={id}>
+                            {point}
+                          </MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
                 </>
               ) : (
                 <>
                   <h4>EP URL:</h4>
-                  <select
-                    className={s.ReportSettingSelect}
-                    value={endPointUrl}
-                    onChange={handleChangeEndPoint}
-                  >
-                    <option value="all">Company</option>
-                    {EPUList &&
-                      EPUList.map(({ id, pass }) => (
-                        <option key={id} value={id}>
-                          {pass}
-                        </option>
-                      ))}
-                  </select>
+                  <FormControl fullWidth>
+                    <Select value={endPointUrl} onChange={handleChangeEndPoint}>
+                      <MenuItem value="all">Company</MenuItem>
+                      {EPUList &&
+                        EPUList.map(({ id, pass }) => (
+                          <MenuItem key={id} value={id}>
+                            {pass}
+                          </MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
                 </>
               )}
             </div>

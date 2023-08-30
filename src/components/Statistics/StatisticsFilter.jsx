@@ -10,6 +10,9 @@ import { BraveLogo } from 'components/Loader/Loader';
 import { fetchEndPoint } from 'redux/endPoints/endPointOperations';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 import { FaSync } from 'react-icons/fa';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export const StatisticsFilter = () => {
   const [isPeriod, setIsPeriod] = useState('today');
@@ -76,29 +79,16 @@ export const StatisticsFilter = () => {
     <div className={s.StatisticsFilterBox}>
       <form className={s.StatisticsFilterForm} onSubmit={handleSubmit}>
         <p>Period:</p>
-        <select
-          className={s.StatisticsFilterSelect}
-          value={isPeriod}
-          onChange={handleChangePeriod}
-        >
-          <option value="today">Today</option>
-          <option value="yesterday">Yesterday</option>
-          <option value="lastweek">Last 7 Days</option>
-          <option value="thismonth">This Month</option>
-          <option value="lastmonth">Last Month</option>
-          <option value="custom">Custom</option>
-        </select>
-
-        {/* <p>Time Zone:</p>
-        <select
-          className={s.StatisticsFilterSelect}
-          value={timeZone}
-          onChange={handleChangeTimeZone}
-        >
-          <option value="utc">UTC</option>
-          <option value="pst">PST</option>
-          <option value="est">EST</option>
-        </select> */}
+        <FormControl fullWidth>
+          <Select value={isPeriod} onChange={handleChangePeriod}>
+            <MenuItem value="today">Today</MenuItem>
+            <MenuItem value="yesterday">Yesterday</MenuItem>
+            <MenuItem value="lastweek">Last 7 Days</MenuItem>
+            <MenuItem value="thismonth">This Month</MenuItem>
+            <MenuItem value="lastmonth">Last Month</MenuItem>
+            <MenuItem value="custom">Custom</MenuItem>
+          </Select>
+        </FormControl>
 
         {isPeriod === 'custom' && (
           <div className={s.StatisticsFilterDatePickerContainer}>
@@ -130,37 +120,33 @@ export const StatisticsFilter = () => {
 
         {type === 'DSP' ? (
           <>
-            <p>EP URL:</p>
-            <select
-              className={s.StatisticsFilterSelect}
-              value={isEndpoint}
-              onChange={handleChangeEndpoint}
-            >
-              <option value="all">Company</option>
-              {list &&
-                list.map(({ id, point }) => (
-                  <option key={id} value={id}>
-                    {point}
-                  </option>
-                ))}
-            </select>
+            <p className={s.StatisticsFilterDatePickerLabel}>EP URL:</p>
+            <FormControl fullWidth>
+              <Select value={isEndpoint} onChange={handleChangeEndpoint}>
+                <MenuItem value="all">Company</MenuItem>
+                {list &&
+                  list.map(({ id, point }) => (
+                    <MenuItem key={id} value={id}>
+                      {point}
+                    </MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
           </>
         ) : (
           <>
-            <p>EP URL:</p>
-            <select
-              className={s.StatisticsFilterSelect}
-              value={isEndpoint}
-              onChange={handleChangeEndpoint}
-            >
-              <option value="all">Company</option>
-              {list &&
-                list.map(({ id, pass }) => (
-                  <option key={id} value={id}>
-                    {pass}
-                  </option>
-                ))}
-            </select>
+            <p className={s.StatisticsFilterDatePickerLabel}>EP URL:</p>
+            <FormControl fullWidth>
+              <Select value={isEndpoint} onChange={handleChangeEndpoint}>
+                <MenuItem value="all">Company</MenuItem>
+                {list &&
+                  list.map(({ id, pass }) => (
+                    <MenuItem key={id} value={id}>
+                      {pass}
+                    </MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
           </>
         )}
 

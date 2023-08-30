@@ -13,8 +13,39 @@ import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
 import '../../../index.css';
 import { fetchSizes } from 'redux/reports/sizes/sizesOperation';
 import { sizesData } from 'redux/reports/sizes/sizesSelectors';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = ['App Bundle', 'App Name', 'Size', 'Traffic Type'];
+const values = ['appBundle', 'appName', 'size', 'trafficType'];
+
+function getStyles(name, groupBy, theme) {
+  return {
+    fontWeight:
+      groupBy.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
 
 export const DetailedReport = ({ onExpand }) => {
+  const theme = useTheme();
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
@@ -22,6 +53,7 @@ export const DetailedReport = ({ onExpand }) => {
   const [selectedSize, setSelectedSize] = useState('allSize');
   const [selectedTrafficType, setSelectedTrafficType] = useState('allTypes');
   const [endPointUrl, setEndPointUrl] = useState('all');
+  const [groupBy, setGroupBy] = useState([]);
 
   const dispatch = useDispatch();
   const id = useSelector(selectUserPartnerId);
@@ -33,6 +65,13 @@ export const DetailedReport = ({ onExpand }) => {
   useEffect(() => {
     dispatch(fetchSizes({ partnerId: id, type }));
   }, [dispatch, id, type]);
+
+  const handleChangeGropuBy = event => {
+    const {
+      target: { value },
+    } = event;
+    setGroupBy(typeof value === 'string' ? value.split(',') : value);
+  };
 
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
@@ -65,11 +104,14 @@ export const DetailedReport = ({ onExpand }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    const defaultGroupBy = ['timeInterval'];
+
     const data = {
       partner_id: id,
       type: type,
       period: isPeriod,
       displayBy: isDisplay,
+      groupBy: [...defaultGroupBy, ...groupBy],
       startDate: selectedStartDate,
       endDate: selectedEndDate,
       size: selectedSize,
@@ -93,19 +135,16 @@ export const DetailedReport = ({ onExpand }) => {
         <div className={s.DetailedReportBox}>
           <div className={s.DetailedReportInner}>
             <h4>Select Period:</h4>
-            <select
-              className={s.DetailedReportSelect}
-              value={isPeriod}
-              onChange={handleChangePeriod}
-            >
-              <option value="today">Today</option>
-              <option value="yesterday">Yesterday</option>
-              <option value="lastweek">Last 7 Days</option>
-              <option value="thismonth">This Month</option>
-              <option value="lastmonth">Last Month</option>
-              <option value="custom">Custom</option>
-            </select>
-
+            <FormControl fullWidth>
+              <Select value={isPeriod} onChange={handleChangePeriod}>
+                <MenuItem value="today">Today</MenuItem>
+                <MenuItem value="yesterday">Yesterday</MenuItem>
+                <MenuItem value="lastweek">Last 7 Days</MenuItem>
+                <MenuItem value="thismonth">This Month</MenuItem>
+                <MenuItem value="lastmonth">Last Month</MenuItem>
+                <MenuItem value="custom">Custom</MenuItem>
+              </Select>
+            </FormControl>
             {isPeriod === 'custom' && (
               <div className={s.DetailedReportInner}>
                 <h4>Start Date:</h4>
@@ -134,18 +173,46 @@ export const DetailedReport = ({ onExpand }) => {
               </div>
             )}
           </div>
+
           <div className={s.DetailedReportInner}>
             <h4>Display by:</h4>
+            <FormControl fullWidth>
+              <Select value={isDisplay} onChange={handleChangeDisplay}>
+                <MenuItem value="day">Day</MenuItem>
+                <MenuItem value="month">Month</MenuItem>
+                <MenuItem value="year">Year</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
 
-            <select
-              className={s.DetailedReportSelect}
-              value={isDisplay}
-              onChange={handleChangeDisplay}
-            >
-              <option value="day">Day</option>
-              <option value="month">Month</option>
-              <option value="year">Year</option>
-            </select>
+          <div className={s.DetailedReportInner}>
+            <h4>Group By:</h4>
+            <FormControl fullWidth>
+              <Select
+                multiple
+                value={groupBy}
+                onChange={handleChangeGropuBy}
+                input={<OutlinedInput id="groupBy" />}
+                renderValue={selected => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map(value => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+                MenuProps={MenuProps}
+              >
+                {names.map((name, index) => (
+                  <MenuItem
+                    key={name}
+                    value={values[index]}
+                    style={getStyles(name, groupBy, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
         </div>
 
@@ -154,39 +221,36 @@ export const DetailedReport = ({ onExpand }) => {
             {type === 'DSP' ? (
               <>
                 <h4>EP URL:</h4>
-                <select
-                  className={s.DetailedReportSelect}
-                  value={endPointUrl}
-                  onChange={handleChangeEndPoint}
-                >
-                  <option value="all">Company</option>
-                  {EPUList &&
-                    EPUList.map(({ id, point }) => (
-                      <option key={id} value={id}>
-                        {point}
-                      </option>
-                    ))}
-                </select>
+                <FormControl fullWidth>
+                  <Select value={endPointUrl} onChange={handleChangeEndPoint}>
+                    <MenuItem value="all">Company</MenuItem>
+                    {EPUList &&
+                      EPUList.map(({ id, point }) => (
+                        <MenuItem key={id} value={id}>
+                          {point}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </FormControl>
               </>
             ) : (
               <>
                 <h4>EP URL:</h4>
-                <select
-                  className={s.DetailedReportSelect}
-                  value={endPointUrl}
-                  onChange={handleChangeEndPoint}
-                >
-                  <option value="all">Company</option>
-                  {EPUList &&
-                    EPUList.map(({ id, pass }) => (
-                      <option key={id} value={id}>
-                        {pass}
-                      </option>
-                    ))}
-                </select>
+                <FormControl fullWidth>
+                  <Select value={endPointUrl} onChange={handleChangeEndPoint}>
+                    <MenuItem value="all">Company</MenuItem>
+                    {EPUList &&
+                      EPUList.map(({ id, pass }) => (
+                        <MenuItem key={id} value={id}>
+                          {pass}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </FormControl>
               </>
             )}
           </div>
+
           {sizesList ? (
             <div className={s.DetailedReportInner}>
               <h4>Ad Size:</h4>
@@ -211,18 +275,19 @@ export const DetailedReport = ({ onExpand }) => {
 
           <div className={s.DetailedReportInner}>
             <h4>Traffic Type:</h4>
-            <select
-              className={s.DetailedReportSelect}
-              value={selectedTrafficType}
-              onChange={handleChangeTefficType}
-            >
-              <option value="allTypes">All Types</option>
-              <option value="banner">Banner</option>
-              <option value="native">Native</option>
-              <option value="video">Video</option>
-              <option value="ctv">CTV</option>
-              <option value="audio">Audio</option>
-            </select>
+            <FormControl fullWidth>
+              <Select
+                value={selectedTrafficType}
+                onChange={handleChangeTefficType}
+              >
+                <MenuItem value="allTypes">All Types</MenuItem>
+                <MenuItem value="banner">Banner</MenuItem>
+                <MenuItem value="native">Native</MenuItem>
+                <MenuItem value="video">Video</MenuItem>
+                <MenuItem value="ctv">CTV</MenuItem>
+                <MenuItem value="audio">Audio</MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </div>
       </div>

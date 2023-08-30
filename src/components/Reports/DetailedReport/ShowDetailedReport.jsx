@@ -8,6 +8,9 @@ import {
   selectedDetaliedReportsData,
   selectedDetaliedReportsIsLoading,
 } from 'redux/reports/detailedReport/detailedReportSelectors';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import s from './ShowDetailedReport.module.scss';
 
 export const ShowDetailedReport = () => {
@@ -17,10 +20,8 @@ export const ShowDetailedReport = () => {
   const [pageSize, setPageSize] = useState(25);
   const [visibleColumns, setVisibleColumns] = useState([
     'time_interval',
-    'app_name',
+    'bundle_domain',
     'spend',
-    'impressions',
-    'size',
   ]);
 
   const loadData = useSelector(selectedDetaliedReportsIsLoading);
@@ -216,19 +217,17 @@ export const ShowDetailedReport = () => {
       <div className={s.ShowDetailedReportWrapper}>
         <div className={s.ShowDetailedReportBtnBox}>
           <div className={s.ShowDetailedReportDescr}>
-            <h4>Page Size</h4>
-            <select
-              className={s.ShowDetailedReportPageSize}
-              value={pageSize}
-              onChange={handlePageSizeChange}
-            >
-              <option value={10}>10</option>
-              <option value={25}>25</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-              <option value={500}>500</option>
-              <option value={1000}>1000</option>
-            </select>
+            <h4 style={{ whiteSpace: 'nowrap' }}>Page Size</h4>
+            <FormControl fullWidth>
+              <Select value={pageSize} onChange={handlePageSizeChange}>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={25}>25</MenuItem>
+                <MenuItem value={50}>50</MenuItem>
+                <MenuItem value={100}>100</MenuItem>
+                <MenuItem value={500}>500</MenuItem>
+                <MenuItem value={1000}>1000</MenuItem>
+              </Select>
+            </FormControl>
           </div>
           <div className={s.ShowDetailedReportSlash}></div>
           <button

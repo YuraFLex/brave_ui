@@ -9,6 +9,9 @@ import {
   selectedSummaryReportsData,
   selectedSummaryReportsIsLoading,
 } from 'redux/reports/summaryReports/summaryReportsSelectors';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export const ShowSummaryReports = () => {
   const [rowData, setRowData] = useState([]);
@@ -173,8 +176,8 @@ export const ShowSummaryReports = () => {
 
   const resizeTableToWidth = () => {
     if (gridApi) {
+      gridApi.hideOverlay();
       gridApi.sizeColumnsToFit();
-      gridApi.setDomLayout('autoWidth');
     }
   };
 
@@ -244,19 +247,17 @@ export const ShowSummaryReports = () => {
       <div className={s.ShowSummaryReportsWrapper}>
         <div className={s.ShowSummaryReportsBtnBox}>
           <div className={s.ShowSummaryReportsDescr}>
-            <h4>Page Size</h4>
-            <select
-              className={s.ShowSummaryReportsPageSize}
-              value={pageSize}
-              onChange={handlePageSizeChange}
-            >
-              <option value={10}>10</option>
-              <option value={25}>25</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-              <option value={500}>500</option>
-              <option value={1000}>1000</option>
-            </select>
+            <h4 style={{ whiteSpace: 'nowrap' }}>Page Size</h4>
+            <FormControl style={{ padding: '5px' }}>
+              <Select value={pageSize} onChange={handlePageSizeChange}>
+                <MenuItem value={10}>10</MenuItem>
+                <MenuItem value={25}>25</MenuItem>
+                <MenuItem value={50}>50</MenuItem>
+                <MenuItem value={100}>100</MenuItem>
+                <MenuItem value={500}>500</MenuItem>
+                <MenuItem value={1000}>1000</MenuItem>
+              </Select>
+            </FormControl>
           </div>
           <div className={s.ShowSummaryReportsSlash}></div>
 
@@ -305,7 +306,15 @@ export const ShowSummaryReports = () => {
           </div>
         </div>
       </div>
-      <div style={{ height: 600, width: '100%' }}>
+      <div
+        style={{
+          height:
+            summaryData.period === 'today' || summaryData.period === 'yesterday'
+              ? 250
+              : 550,
+          width: '100%',
+        }}
+      >
         <AgGridReact
           className="ag-theme-balham"
           columnDefs={columnDefs.filter(col =>

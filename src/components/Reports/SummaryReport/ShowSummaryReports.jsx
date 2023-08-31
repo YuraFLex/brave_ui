@@ -12,6 +12,9 @@ import {
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 export const ShowSummaryReports = () => {
   const [rowData, setRowData] = useState([]);
@@ -289,20 +292,24 @@ export const ShowSummaryReports = () => {
         <div className={s.ShowSummaryReportsInner}>
           <h3>Columns</h3>
           <div className={s.ShowSummaryReportsColumsWrapper}>
-            {columnDefs.map(col => (
-              <div className={s.ShowSummaryReportsInputBox} key={col.field}>
-                <label className={s.ShowSummaryReportsLabel}>
-                  <input
-                    className={s.ShowSummaryReportsCheckBox}
-                    type="checkbox"
-                    checked={visibleColumns.includes(col.field)}
-                    onChange={() => handleColumnToggle(col.field)}
-                  />
-
-                  {col.headerName}
-                </label>
+            <FormGroup>
+              <div className={s.ShowSummaryReportsInputBox}>
+                {columnDefs.map(col => {
+                  return (
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={visibleColumns.includes(col.field)}
+                        />
+                      }
+                      key={col.field}
+                      label={col.headerName}
+                      onChange={() => handleColumnToggle(col.field)}
+                    />
+                  );
+                })}
               </div>
-            ))}
+            </FormGroup>
           </div>
         </div>
       </div>

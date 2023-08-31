@@ -19,7 +19,6 @@ export const StatisticsFilter = () => {
   const [isEndpoint, setIsEndpoint] = useState('all');
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
-  // const [timeZone, setTimeZone] = useState('utc');
 
   const dispatch = useDispatch();
   const id = useSelector(selectUserPartnerId);
@@ -51,10 +50,6 @@ export const StatisticsFilter = () => {
     setSelectedEndDate(date);
   };
 
-  // const handleChangeTimeZone = e => {
-  //   setTimeZone(e.target.value);
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -68,7 +63,7 @@ export const StatisticsFilter = () => {
     };
 
     dispatch(fetchStatistics(data));
-    console.log('данные отправленные на сервер:', data);
+    // console.log('данные отправленные на сервер:', data);
   };
 
   if (isLoading) {

@@ -8,10 +8,10 @@ axios.defaults.baseURL = `${API_BASE_URL}`;
 export const login = createAsyncThunk(
   'auth/login',
   async (userData, { rejectWithValue }) => {
-    console.log('userData:', userData);
+    // console.log('userData:', userData);
     try {
       const { data } = await axios.post('/login', userData);
-      console.log('Данные c сервера:', data);
+      // console.log('Данные c сервера:', data);
 
       if (data.success) {
         toast.success(data.message);

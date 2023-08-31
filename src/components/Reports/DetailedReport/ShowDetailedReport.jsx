@@ -15,27 +15,27 @@ import s from './ShowDetailedReport.module.scss';
 
 export const ShowDetailedReport = () => {
   const [rowData, setRowData] = useState([]);
-  const detailedData = useSelector(selectedDetaliedReportsData);
   const [gridApi, setGridApi] = useState(null);
   const [pageSize, setPageSize] = useState(25);
   const [visibleColumns, setVisibleColumns] = useState([
-    'time_interval',
-    'bundle_domain',
-    'spend',
+    't_interval',
+    'b_domain',
+    'spending',
   ]);
 
+  const detailedData = useSelector(selectedDetaliedReportsData);
   const loadData = useSelector(selectedDetaliedReportsIsLoading);
 
   useEffect(() => {
-    if (detailedData && detailedData.app_name) {
-      const newData = detailedData.app_name.map((appName, index) => ({
-        app_name: appName,
-        bundle_domain: detailedData.bundle_domain[index],
-        time_interval: detailedData.time_interval[index],
-        spend: detailedData.spend[index],
-        impressions: detailedData.impressions[index],
-        size: detailedData.size[index],
-        traffic_type: detailedData.traffic_type[index],
+    if (detailedData && detailedData.appName) {
+      const newData = detailedData.appName.map((appName, index) => ({
+        appName: appName,
+        b_domain: detailedData.b_domain[index],
+        t_interval: detailedData.t_interval[index],
+        spending: detailedData.spending[index],
+        impress: detailedData.impress[index],
+        sizes: detailedData.sizes[index],
+        type: detailedData.type[index],
         key: index,
       }));
 
@@ -43,26 +43,24 @@ export const ShowDetailedReport = () => {
     }
   }, [detailedData]);
 
-  console.log('detailedData:', detailedData);
-
   const columnDefs = [
     {
       headerName: 'Date',
-      field: 'time_interval',
+      field: 't_interval',
       resizable: true,
       sortable: true,
       filter: true,
     },
     {
       headerName: 'App Name',
-      field: 'app_name',
+      field: 'appName',
       resizable: true,
       sortable: true,
       filter: true,
     },
     {
       headerName: 'Spend',
-      field: 'spend',
+      field: 'spending',
       resizable: true,
       sortable: true,
       filter: true,
@@ -83,21 +81,21 @@ export const ShowDetailedReport = () => {
     },
     {
       headerName: 'App Bundle',
-      field: 'bundle_domain',
+      field: 'b_domain',
       resizable: true,
       sortable: true,
       filter: true,
     },
     {
       headerName: 'Traffic Type',
-      field: 'traffic_type',
+      field: 'type',
       resizable: true,
       sortable: true,
       filter: true,
     },
     {
       headerName: 'Size',
-      field: 'size',
+      field: 'sizes',
       resizable: true,
       sortable: true,
       filter: true,
@@ -119,7 +117,7 @@ export const ShowDetailedReport = () => {
     },
     {
       headerName: 'Impressions',
-      field: 'impressions',
+      field: 'impress',
       resizable: true,
       sortable: true,
       filter: true,
@@ -133,6 +131,16 @@ export const ShowDetailedReport = () => {
       },
     },
   ];
+
+  const tableFooter =
+    detailedData && detailedData.total
+      ? [
+          {
+            spending: detailedData.total.spending,
+            impress: detailedData.total.impress,
+          },
+        ]
+      : [];
 
   const resizeTableToWidth = () => {
     if (gridApi) {
@@ -191,16 +199,6 @@ export const ShowDetailedReport = () => {
       gridApi.exportDataAsCsv(params);
     }
   };
-
-  const tableFooter =
-    detailedData && detailedData.total
-      ? [
-          {
-            spend: detailedData.total.spend,
-            impressions: detailedData.total.impressions,
-          },
-        ]
-      : [];
 
   if (detailedData === null) {
     return (

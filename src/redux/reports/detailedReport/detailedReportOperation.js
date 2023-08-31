@@ -8,12 +8,10 @@ export const fetchDetailedReports = createAsyncThunk(
     'detailedReport/fetchDetailedReports',
 
     async (data, { rejectWithValue }) => {
-        console.log('fetchDetailedReports data:', data);
+        // console.log('fetchDetailedReports data:', data);
 
         try {
             const response = await axios.get('/reports/detalied', { params: data })
-
-            console.log('response.data:', response.data);
             return response.data
 
         } catch (error) {

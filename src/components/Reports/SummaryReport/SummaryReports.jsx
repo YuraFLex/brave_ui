@@ -5,10 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Button } from 'components/Button/Button';
 import { fetchSummaryReports } from 'redux/reports/summaryReports/summaryReportsOperations';
 import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
-import {
-  selectedSummaryReportsData,
-  selectedSummaryReportsIsLoading,
-} from 'redux/reports/summaryReports/summaryReportsSelectors';
+import { selectedSummaryReportsIsLoading } from 'redux/reports/summaryReports/summaryReportsSelectors';
 import s from './SummaryReports.module.scss';
 import { BraveLogo } from 'components/Loader/Loader';
 import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
@@ -29,10 +26,7 @@ export const SummaryReports = ({ onExpand }) => {
   const id = useSelector(selectUserPartnerId);
   const type = useSelector(selectUserType);
   const isLoading = useSelector(selectedSummaryReportsIsLoading);
-  const summaryReportsData = useSelector(selectedSummaryReportsData);
   const EPUList = useSelector(selectIsEndPointList);
-
-  console.log('summaryReportsData:', summaryReportsData);
 
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
@@ -68,7 +62,7 @@ export const SummaryReports = ({ onExpand }) => {
     };
 
     dispatch(fetchSummaryReports(data));
-    console.log('Data to server:', data);
+    // console.log('Data to server:', data);
     onExpand();
   };
 

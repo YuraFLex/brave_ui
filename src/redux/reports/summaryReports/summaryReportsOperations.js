@@ -8,7 +8,7 @@ axios.defaults.baseURL = `${API_BASE_URL}`;
 export const fetchSummaryReports = createAsyncThunk(
     'summaryReports/fetchSummaryReports',
     async (data, { rejectWithValue }) => {
-        console.log('fetchSummaryReports data:', data);
+        // console.log('fetchSummaryReports data:', data);
 
         try {
             const response = await axios.get('/reports/summary', { params: data })
@@ -23,11 +23,10 @@ export const fetchSummaryReports = createAsyncThunk(
 export const downloadSummaryReportsCSV = createAsyncThunk(
     "summaryReports/downloadSummaryReportsCSV",
     async (data, { rejectWithValue }) => {
-        console.log('Данные в запросе:', data);
         try {
             const response = await axios.post("/reports/download", data, { responseType: "blob" });
 
-            console.log('response в запросе:', response);
+            // console.log('response в запросе:', response);
 
             let fileName = "reports.csv";
 
@@ -49,27 +48,3 @@ export const downloadSummaryReportsCSV = createAsyncThunk(
         }
     }
 );
-
-
-
-
-// export const downloadSummaryReportsCSV = createAsyncThunk(
-//     "summaryReports/downloadSummaryReportsCSV",
-//     async (data, { rejectWithValue }) => {
-//         console.log('Данные в запросе:', data);
-//         try {
-//             const response = await axios.post("/reports/download", data, { responseType: "arraybuffer" });
-
-//             // Извлекаем имя файла из заголовков ответа
-//             const contentDispositionHeader = response.headers["content-disposition"];
-//             const fileNameMatch = contentDispositionHeader.match(
-//                 /filename[^;=\n]*=(UTF-8(['"]*))?(.*$)/i
-//             );
-//             const fileName = fileNameMatch ? fileNameMatch[3] : "summary-report.csv";
-
-//             return { fileData: response.data, fileName };
-//         } catch (error) {
-//             return rejectWithValue(error.message);
-//         }
-//     }
-// );

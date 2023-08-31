@@ -8,7 +8,6 @@ import { selectIsLoadingchangePassword } from 'redux/changePassword/changePasswo
 import { BraveLogo } from 'components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { GoEye, GoEyeClosed } from 'react-icons/go';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Button } from 'components/Button/Button';
 
@@ -28,8 +27,6 @@ export const ChangeUserPassword = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const isLoadnig = useSelector(selectIsLoadingchangePassword);
-
-  console.log('Данные для отправки на сервер:', passwordData);
 
   const onSubmit = e => {
     e.preventDefault();

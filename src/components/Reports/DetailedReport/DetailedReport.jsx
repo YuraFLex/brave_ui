@@ -120,7 +120,7 @@ export const DetailedReport = ({ onExpand }) => {
     };
 
     dispatch(fetchDetailedReports(data));
-    console.log('Detailed Report Данные отправленные на сервер:', data);
+    // console.log('Detailed Report Данные отправленные на сервер:', data);
 
     onExpand();
   };
@@ -250,11 +250,9 @@ export const DetailedReport = ({ onExpand }) => {
               </>
             )}
           </div>
-
-          {sizesList ? (
-            <div className={s.DetailedReportInner}>
-              <h4>Ad Size:</h4>
-
+          <div className={s.DetailedReportInner}>
+            <h4>Ad Size:</h4>
+            {sizesList ? (
               <select
                 className={s.DetailedReportSelect}
                 value={selectedSize}
@@ -268,10 +266,10 @@ export const DetailedReport = ({ onExpand }) => {
                     </option>
                   ))}
               </select>
-            </div>
-          ) : (
-            'Loading...'
-          )}
+            ) : (
+              'Loading...'
+            )}
+          </div>
 
           <div className={s.DetailedReportInner}>
             <h4>Traffic Type:</h4>

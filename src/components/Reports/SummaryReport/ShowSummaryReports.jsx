@@ -18,25 +18,25 @@ export const ShowSummaryReports = () => {
   const [gridApi, setGridApi] = useState(null);
   const [pageSize, setPageSize] = useState(25);
   const [visibleColumns, setVisibleColumns] = useState([
-    'time_interval',
-    'spend',
-    'impressions',
+    't_interval',
+    'spending',
+    'impress',
   ]);
 
   const summaryData = useSelector(selectedSummaryReportsData);
   const loadData = useSelector(selectedSummaryReportsIsLoading);
 
   useEffect(() => {
-    if (summaryData && summaryData.spend) {
-      const newData = summaryData.spend.map((spend, index) => ({
-        spend: spend,
-        win_rate: summaryData.win_rate[index],
-        time_interval: summaryData.time_interval[index],
-        requests: summaryData.requests[index],
-        impressions: summaryData.impressions[index],
-        responses: summaryData.responses[index],
-        timeouts: summaryData.timeouts[index],
-        time_outs: summaryData.time_outs[index],
+    if (summaryData && summaryData.spending) {
+      const newData = summaryData.spending.map((spending, index) => ({
+        spending: spending,
+        w_rate: summaryData.w_rate[index],
+        t_interval: summaryData.t_interval[index],
+        req: summaryData.req[index],
+        impress: summaryData.impress[index],
+        resp: summaryData.resp[index],
+        timeOut: summaryData.timeOut[index],
+        t_outs: summaryData.t_outs[index],
         key: index,
       }));
 
@@ -47,14 +47,14 @@ export const ShowSummaryReports = () => {
   const columnDefs = [
     {
       headerName: 'Date',
-      field: 'time_interval',
+      field: 't_interval',
       resizable: true,
       sortable: true,
       filter: true,
     },
     {
       headerName: 'Spend',
-      field: 'spend',
+      field: 'spending',
       resizable: true,
       sortable: true,
       sort: 'desc',
@@ -75,7 +75,7 @@ export const ShowSummaryReports = () => {
     },
     {
       headerName: 'Win Rate %',
-      field: 'win_rate',
+      field: 'w_rate',
       resizable: true,
       sortable: true,
       filter: true,
@@ -91,7 +91,7 @@ export const ShowSummaryReports = () => {
     },
     {
       headerName: 'Requests',
-      field: 'requests',
+      field: 'req',
       resizable: true,
       sortable: true,
       filter: true,
@@ -106,7 +106,7 @@ export const ShowSummaryReports = () => {
     },
     {
       headerName: 'Responses',
-      field: 'responses',
+      field: 'resp',
       resizable: true,
       sortable: true,
       filter: true,
@@ -121,7 +121,7 @@ export const ShowSummaryReports = () => {
     },
     {
       headerName: 'Impressions',
-      field: 'impressions',
+      field: 'impress',
       resizable: true,
       sortable: true,
       filter: true,
@@ -136,14 +136,14 @@ export const ShowSummaryReports = () => {
     },
     {
       headerName: 'Timeouts',
-      field: 'timeouts',
+      field: 'timeOut',
       resizable: true,
       sortable: true,
       filter: true,
     },
     {
       headerName: 'Timeouts %',
-      field: 'time_outs',
+      field: 't_outs',
       resizable: true,
       sortable: true,
       filter: true,
@@ -163,13 +163,13 @@ export const ShowSummaryReports = () => {
     summaryData && summaryData.total
       ? [
           {
-            spend: summaryData.total.spend,
-            win_rate: summaryData.total.win_rate,
-            requests: summaryData.total.requests,
-            responses: summaryData.total.responses,
-            impressions: summaryData.total.impressions,
-            timeouts: summaryData.total.timeouts,
-            time_outs: summaryData.total.time_outs,
+            spending: summaryData.total.spending,
+            w_rate: summaryData.total.w_rate,
+            req: summaryData.total.req,
+            resp: summaryData.total.resp,
+            impress: summaryData.total.impress,
+            timeOut: summaryData.total.timeOut,
+            t_outs: summaryData.total.t_outs,
           },
         ]
       : [];

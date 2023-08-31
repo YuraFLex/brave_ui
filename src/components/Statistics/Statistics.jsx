@@ -5,8 +5,6 @@ import { selectStatisticsData } from '../../redux/statistics/statisticsSelectors
 export const Statistics = () => {
   const statisticsData = useSelector(selectStatisticsData);
 
-  console.log('statistics', statisticsData);
-
   const renderValue = value => {
     return value !== null ? value : 'N/A';
   };
@@ -18,7 +16,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Spend:</span>
             <span className={s.descr}>
-              $ {renderValue(statisticsData && statisticsData.spend)}
+              $ {renderValue(statisticsData && statisticsData.spends)}
             </span>
           </div>
         </div>
@@ -28,7 +26,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Impressions:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.impressions_cnt)}
+              {renderValue(statisticsData && statisticsData.imp_cnt)}
             </span>
           </div>
         </div>
@@ -38,7 +36,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Responses:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.responses)}
+              {renderValue(statisticsData && statisticsData.resp)}
             </span>
           </div>
         </div>
@@ -48,7 +46,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Timeout %:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.time_outs)} %
+              {renderValue(statisticsData && statisticsData.t_outs)} %
             </span>
           </div>
         </div>
@@ -58,7 +56,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Win rate %:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.win_rate)} %
+              {renderValue(statisticsData && statisticsData.w_rate)} %
             </span>
           </div>
         </div>

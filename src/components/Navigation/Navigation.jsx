@@ -1,8 +1,8 @@
 import { Link } from './Navigation.styled';
 
-import { TbReportSearch } from 'react-icons/tb';
-import { MdSpaceDashboard } from 'react-icons/md';
-import { FaUserCog } from 'react-icons/fa';
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 import s from './Navigation.module.scss';
 import { useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ export const Navigation = () => {
           <li className={s.navItem}>
             <Link to="/" end>
               <span>
-                <MdSpaceDashboard className={s.icon} />
+                <SpaceDashboardOutlinedIcon className={s.icon} />
               </span>
               Dashboard
             </Link>
@@ -27,7 +27,7 @@ export const Navigation = () => {
           <li className={s.navItem}>
             <Link to="reports">
               <span>
-                <TbReportSearch className={s.icon} />
+                <AssessmentOutlinedIcon className={s.icon} />
               </span>
               Reports
             </Link>
@@ -35,7 +35,7 @@ export const Navigation = () => {
           <li className={s.navItem}>
             <Link to="usersetting">
               <span>
-                <FaUserCog className={s.icon} />
+                <ManageAccountsOutlinedIcon className={s.icon} />
               </span>
               User Settings
             </Link>

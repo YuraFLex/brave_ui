@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './Navigation.module.scss';
 
-// import { RxHamburgerMenu } from 'react-icons/rx';
-import { TbReportSearch } from 'react-icons/tb';
-import { MdSpaceDashboard } from 'react-icons/md';
-import { FaUserCog } from 'react-icons/fa';
 import logo from '../../images/logo.png';
+
+import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsActive } from 'redux/auth/authSelectors';
@@ -31,19 +31,19 @@ export const NavigationMobile = () => {
           <ul className={s.navlistMob}>
             <li className={s.navItemMobile}>
               <Link to="/" end>
-                <MdSpaceDashboard className={s.iconMenuMobile} />
+                <SpaceDashboardOutlinedIcon className={s.iconMenuMobile} />
                 <p>Board</p>
               </Link>
             </li>
             <li className={s.navItemMobile}>
               <Link to="reports">
-                <TbReportSearch className={s.iconMenuMobile} />
+                <AssessmentOutlinedIcon className={s.iconMenuMobile} />
                 <p>Reports</p>
               </Link>
             </li>
             <li className={s.navItemMobile}>
               <Link to="usersetting">
-                <FaUserCog className={s.iconMenuMobile} />
+                <ManageAccountsOutlinedIcon className={s.iconMenuMobile} />
                 <p>User</p>
               </Link>
             </li>

@@ -53,7 +53,7 @@ export const DetailedReport = ({ onExpand }) => {
   const [selectedSize, setSelectedSize] = useState('allSize');
   const [selectedTrafficType, setSelectedTrafficType] = useState('allTypes');
   const [endPointUrl, setEndPointUrl] = useState('all');
-  const [groupBy, setGroupBy] = useState([]);
+  const [groupBy, setGroupBy] = useState(['appBundle']);
 
   const dispatch = useDispatch();
   const id = useSelector(selectUserPartnerId);

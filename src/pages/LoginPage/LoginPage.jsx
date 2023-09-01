@@ -6,6 +6,9 @@ import s from './LoginPage.module.scss';
 import logo from '../../images/logo.png';
 
 export const LoginPage = () => {
+  const currentDate = new Date();
+  const showYear = currentDate.getFullYear();
+
   return (
     <div className={s.logContainer}>
       <div>
@@ -13,7 +16,7 @@ export const LoginPage = () => {
       </div>
       <LoginForm />
       <ToastContainer />
-      <p className={s.copy}>DashBoard Partners &#169; 2023</p>
+      <p className={s.copy}>DashBoard Partners &#169; {showYear}</p>
     </div>
   );
 };

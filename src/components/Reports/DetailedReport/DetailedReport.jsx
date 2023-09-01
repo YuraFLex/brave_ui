@@ -252,7 +252,23 @@ export const DetailedReport = ({ onExpand }) => {
           </div>
           <div className={s.DetailedReportInner}>
             <h4>Ad Size:</h4>
+
             {sizesList ? (
+              <FormControl fullWidth>
+                <Select value={selectedSize} onChange={handleChangeSize}>
+                  <MenuItem value="allSize">All Size</MenuItem>
+                  {sizesList &&
+                    sizesList.map((size, index) => (
+                      <MenuItem key={index} value={size.size}>
+                        {size.size}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
+            ) : (
+              'Loading...'
+            )}
+            {/* {sizesList ? (
               <select
                 className={s.DetailedReportSelect}
                 value={selectedSize}
@@ -268,7 +284,7 @@ export const DetailedReport = ({ onExpand }) => {
               </select>
             ) : (
               'Loading...'
-            )}
+            )} */}
           </div>
 
           <div className={s.DetailedReportInner}>

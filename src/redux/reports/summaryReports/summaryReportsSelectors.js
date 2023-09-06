@@ -1,11 +1,11 @@
-export const selectedSummaryReportsData = state => {
+export const summaryReportsData = state => {
     return state?.summaryReports?.summaryReportsData;
 }
 
-export const selectedSummaryReportsIsLoading = state => {
+export const summaryReportsIsLoading = state => {
     return state?.summaryReports?.isLoading;
 }
 
-export const selectedSummaryReportsError = state => {
+export const summaryReportsError = state => {
     return state?.summaryReports?.Error;
 }

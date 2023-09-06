@@ -1,11 +1,11 @@
-export const selectIsEndPointList = state => {
+export const endPointList = state => {
     return state?.endPoint?.endPointList;
 }
 
-export const selectIsLoadingEndPoint = state => {
+export const endPointIsLoading = state => {
     return state?.endPoint?.isLoading;
 }
 
-export const selectIsEndPointError = state => {
+export const endPointError = state => {
     return state?.endPoint?.error
 }

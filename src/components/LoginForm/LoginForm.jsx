@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/authOperations';
 import { LoaderBtn } from '../Loader/Loader';
-import { selectIsLoading } from '../../redux/auth/authSelectors';
+import { authIsLoading } from '../../redux/auth/authSelectors';
 
 import { Button } from 'components/Button/Button';
 
@@ -13,7 +13,7 @@ export const LoginForm = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(authIsLoading);
 
   const handleSubmit = e => {
     e.preventDefault();

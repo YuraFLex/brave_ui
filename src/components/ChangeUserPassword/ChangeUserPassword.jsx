@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { selectUserId } from 'redux/auth/authSelectors';
+import { userId } from 'redux/auth/authSelectors';
 
 import s from './ChangeUserPassword.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePassword } from 'redux/changePassword/changePasswordOperations';
-import { selectIsLoadingchangePassword } from 'redux/changePassword/changePasswordSelectors';
+import { changePasswordIsLoading } from 'redux/changePassword/changePasswordSelectors';
 import { BraveLogo } from 'components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,10 +13,10 @@ import { Button } from 'components/Button/Button';
 
 export const ChangeUserPassword = () => {
   const dispatch = useDispatch();
-  const userId = useSelector(selectUserId);
+  const usersId = useSelector(userId);
 
   const [passwordData, setPasswordData] = useState({
-    userId: userId,
+    userId: usersId,
     oldPassword: '',
     newPassword: '',
     confirmPassword: '',
@@ -26,7 +26,7 @@ export const ChangeUserPassword = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const isLoadnig = useSelector(selectIsLoadingchangePassword);
+  const isLoadnig = useSelector(changePasswordIsLoading);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -59,7 +59,7 @@ export const ChangeUserPassword = () => {
             value={passwordData.oldPassword}
           />
           <span className={s.ChangeUserPasswordLabelText}>Old Password</span>
-          <button
+          <i
             className={s.ChangeUserPasswordBtnIcon}
             type="button"
             onClick={() => setShowPassword(!showPassword)}
@@ -69,7 +69,7 @@ export const ChangeUserPassword = () => {
             ) : (
               <AiOutlineEye className={s.ChangeUserPasswordIconOpenEye} />
             )}
-          </button>
+          </i>
         </label>
         <label className={s.ChangeUserPasswordLabel}>
           <input
@@ -82,7 +82,7 @@ export const ChangeUserPassword = () => {
             value={passwordData.newPassword}
           />
           <span className={s.ChangeUserPasswordLabelText}>New Password</span>
-          <button
+          <i
             className={s.ChangeUserPasswordBtnIcon}
             type="button"
             onClick={() => setShowNewPassword(!showNewPassword)}
@@ -92,7 +92,7 @@ export const ChangeUserPassword = () => {
             ) : (
               <AiOutlineEye className={s.ChangeUserPasswordIconOpenEye} />
             )}
-          </button>
+          </i>
         </label>
         <label className={s.ChangeUserPasswordLabel}>
           <input
@@ -110,7 +110,7 @@ export const ChangeUserPassword = () => {
           <span className={s.ChangeUserPasswordLabelText}>
             Confirm New Password
           </span>
-          <button
+          <i
             className={s.ChangeUserPasswordBtnIcon}
             type="button"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -120,12 +120,9 @@ export const ChangeUserPassword = () => {
             ) : (
               <AiOutlineEye className={s.ChangeUserPasswordIconOpenEye} />
             )}
-          </button>
+          </i>
         </label>
         <Button type="submit" text="Change Password" />
-        {/* <button className={s.ChangeUserPasswordSubmitBtn} type="submit">
-          Change Password
-        </button> */}
       </form>
     </div>
   );

@@ -4,11 +4,11 @@ import { fetchStatistics } from 'redux/statistics/statisticsOperations';
 import DatePicker from 'react-datepicker';
 // import { RxUpdate } from 'react-icons/rx';
 import s from './StatisticsFilter.module.scss';
-import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
-import { selectIsLoadingStatistics } from 'redux/statistics/statisticsSelectors';
+import { userPartnerId, userType } from 'redux/auth/authSelectors';
+import { statisticsIsLoading } from 'redux/statistics/statisticsSelectors';
 import { BraveLogo } from 'components/Loader/Loader';
 import { fetchEndPoint } from 'redux/endPoints/endPointOperations';
-import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
+import { endPointList } from 'redux/endPoints/endPointSelectors';
 import { FaSync } from 'react-icons/fa';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -21,10 +21,10 @@ export const StatisticsFilter = () => {
   const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const dispatch = useDispatch();
-  const id = useSelector(selectUserPartnerId);
-  const type = useSelector(selectUserType);
-  const isLoading = useSelector(selectIsLoadingStatistics);
-  const list = useSelector(selectIsEndPointList);
+  const id = useSelector(userPartnerId);
+  const type = useSelector(userType);
+  const isLoading = useSelector(statisticsIsLoading);
+  const list = useSelector(endPointList);
 
   useEffect(() => {
     dispatch(fetchStatistics({ partnerId: id, type }));
@@ -66,12 +66,9 @@ export const StatisticsFilter = () => {
     // console.log('данные отправленные на сервер:', data);
   };
 
-  if (isLoading) {
-    return <BraveLogo />;
-  }
-
   return (
     <div className={s.StatisticsFilterBox}>
+      {isLoading && <BraveLogo />}
       <form className={s.StatisticsFilterForm} onSubmit={handleSubmit}>
         <p>Period:</p>
         <FormControl fullWidth>
@@ -118,7 +115,7 @@ export const StatisticsFilter = () => {
             <p className={s.StatisticsFilterDatePickerLabel}>EP URL:</p>
             <FormControl fullWidth>
               <Select value={isEndpoint} onChange={handleChangeEndpoint}>
-                <MenuItem value="all">Company</MenuItem>
+                <MenuItem value="all">All</MenuItem>
                 {list &&
                   list.map(({ id, point }) => (
                     <MenuItem key={id} value={id}>
@@ -133,7 +130,7 @@ export const StatisticsFilter = () => {
             <p className={s.StatisticsFilterDatePickerLabel}>EP URL:</p>
             <FormControl fullWidth>
               <Select value={isEndpoint} onChange={handleChangeEndpoint}>
-                <MenuItem value="all">Company</MenuItem>
+                <MenuItem value="all">All</MenuItem>
                 {list &&
                   list.map(({ id, pass }) => (
                     <MenuItem key={id} value={id}>

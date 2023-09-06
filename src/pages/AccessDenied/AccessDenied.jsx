@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { selectIsLoginIn } from 'redux/auth/authSelectors';
+import { isLoginIn } from 'redux/auth/authSelectors';
 import { logout } from 'redux/auth/authSlice';
 import { CiFaceFrown } from 'react-icons/ci';
 
@@ -8,7 +8,7 @@ import s from './AccessDenied.module.scss';
 
 export const AccessDenied = () => {
   const dispatch = useDispatch();
-  const isLogedIn = useSelector(selectIsLoginIn);
+  const isLogedIn = useSelector(isLoginIn);
 
   const handleLogout = () => {
     dispatch(logout());

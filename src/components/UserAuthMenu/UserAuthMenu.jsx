@@ -1,9 +1,9 @@
 import { LogOutButton } from 'components/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  selectIsActive,
-  selectIsUserName,
-  selectIsUserLegalName,
+  authIsActive,
+  userName,
+  userLegalName,
 } from 'redux/auth/authSelectors';
 import { logout } from '../../redux/auth/authSlice';
 
@@ -11,9 +11,9 @@ import s from './UserAuthMenu.module.scss';
 
 export const UserAuthMenu = () => {
   const dispatch = useDispatch();
-  const firstName = useSelector(selectIsUserName);
-  const companyName = useSelector(selectIsUserLegalName);
-  const isActive = useSelector(selectIsActive);
+  const firstName = useSelector(userName);
+  const companyName = useSelector(userLegalName);
+  const isActive = useSelector(authIsActive);
 
   const isAccessAllowed = Boolean(isActive);
 

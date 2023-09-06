@@ -1,36 +1,36 @@
-export const selectIsUserName = state => {
+export const userName = state => {
   return state?.auth?.user?.first_name;
 }
-export const selectIsUserLastName = state => {
+export const userLastName = state => {
   return state?.auth?.user?.last_name;
 }
-export const selectIsUserLegalName = state => {
+export const userLegalName = state => {
   return state?.auth?.user?.legal_name;
 }
-export const selectUserEmail = state => {
+export const userEmail = state => {
   return state?.auth?.user?.email;
 };
-export const selectUserId = state => {
+export const userId = state => {
   return state?.auth?.user?.id;
 }
-export const selectUserType = state => {
+export const userType = state => {
   return state?.auth?.user?.type
 }
-export const selectUserPartner = state => {
+export const userPartner = state => {
   return state?.auth?.user?.partner
 }
-export const selectUserPartnerId = state => {
+export const userPartnerId = state => {
   return state?.auth?.user?.partner_id
 }
-export const selectIsLoginIn = state => {
+export const isLoginIn = state => {
   return state.auth.isLoggedIn;
 };
-export const selectIsLoading = state => {
+export const authIsLoading = state => {
   return state.auth.isLoading;
 };
 export const selectError = state => {
   return state.auth.error;
 };
-export const selectIsActive = state => {
+export const authIsActive = state => {
   return state?.auth?.user?.isActive;
 }

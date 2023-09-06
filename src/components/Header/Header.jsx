@@ -1,12 +1,12 @@
 import { UserAuthMenu } from 'components/UserAuthMenu/UserAuthMenu';
 // import logo from '../../images/logo.png';
 import { useSelector } from 'react-redux';
-import { selectIsActive } from 'redux/auth/authSelectors';
+import { authIsActive } from 'redux/auth/authSelectors';
 import s from './Header.module.scss';
 import { NavigationMobile } from 'components/Navigation/NavigationMobile';
 
 export const Header = () => {
-  const isActive = useSelector(selectIsActive);
+  const isActive = useSelector(authIsActive);
   const isAccessAllowed = Boolean(isActive);
   return (
     <>

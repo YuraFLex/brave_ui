@@ -5,8 +5,8 @@ import 'ag-grid-community/styles/ag-theme-balham.css';
 import { AllCommunityModules } from 'ag-grid-react';
 import { useSelector } from 'react-redux';
 import {
-  selectedDetaliedReportsData,
-  selectedDetaliedReportsIsLoading,
+  detaliedReportsData,
+  detaliedReportsIsLoading,
 } from 'redux/reports/detailedReport/detailedReportSelectors';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -26,8 +26,8 @@ export const ShowDetailedReport = () => {
     'spending',
   ]);
 
-  const detailedData = useSelector(selectedDetaliedReportsData);
-  const loadData = useSelector(selectedDetaliedReportsIsLoading);
+  const detailedData = useSelector(detaliedReportsData);
+  const loadData = useSelector(detaliedReportsIsLoading);
 
   useEffect(() => {
     if (detailedData && detailedData.appName) {

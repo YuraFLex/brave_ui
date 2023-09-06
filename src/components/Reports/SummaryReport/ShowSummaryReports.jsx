@@ -6,8 +6,8 @@ import { AllCommunityModules } from 'ag-grid-react';
 import { useSelector } from 'react-redux';
 import s from './SummaryReportsTable.module.scss';
 import {
-  selectedSummaryReportsData,
-  selectedSummaryReportsIsLoading,
+  summaryReportsData,
+  summaryReportsIsLoading,
 } from 'redux/reports/summaryReports/summaryReportsSelectors';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -26,8 +26,8 @@ export const ShowSummaryReports = () => {
     'impress',
   ]);
 
-  const summaryData = useSelector(selectedSummaryReportsData);
-  const loadData = useSelector(selectedSummaryReportsIsLoading);
+  const summaryData = useSelector(summaryReportsData);
+  const loadData = useSelector(summaryReportsIsLoading);
 
   useEffect(() => {
     if (summaryData && summaryData.spending) {

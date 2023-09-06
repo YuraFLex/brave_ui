@@ -1,11 +1,11 @@
-export const selectStatisticsData = state => {
+export const statisticsData = state => {
     return state?.statistics?.statisticsData;
 };
 
-export const selectIsLoadingStatistics = state => {
+export const statisticsIsLoading = state => {
     return state?.statistics?.isLoading;
 };
 
-export const selectStatisticsError = state => {
+export const statisticsError = state => {
     return state?.statistics?.error;
 };

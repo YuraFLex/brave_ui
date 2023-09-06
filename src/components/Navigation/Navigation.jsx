@@ -6,10 +6,10 @@ import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlin
 
 import s from './Navigation.module.scss';
 import { useSelector } from 'react-redux';
-import { selectIsActive } from 'redux/auth/authSelectors';
+import { authIsActive } from 'redux/auth/authSelectors';
 
 export const Navigation = () => {
-  const isActive = useSelector(selectIsActive);
+  const isActive = useSelector(authIsActive);
 
   const isAccessAllowed = Boolean(isActive);
   return (

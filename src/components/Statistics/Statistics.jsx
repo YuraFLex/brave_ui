@@ -1,9 +1,9 @@
 import s from './Statistics.module.scss';
 import { useSelector } from 'react-redux';
-import { selectStatisticsData } from '../../redux/statistics/statisticsSelectors';
+import { statisticsData } from '../../redux/statistics/statisticsSelectors';
 
 export const Statistics = () => {
-  const statisticsData = useSelector(selectStatisticsData);
+  const statisticData = useSelector(statisticsData);
 
   const renderValue = value => {
     return value !== null ? value : 'N/A';
@@ -16,7 +16,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Spend:</span>
             <span className={s.descr}>
-              $ {renderValue(statisticsData && statisticsData.spends)}
+              $ {renderValue(statisticData && statisticData.spends)}
             </span>
           </div>
         </div>
@@ -26,7 +26,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Impressions:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.imp_cnt)}
+              {renderValue(statisticData && statisticData.imp_cnt)}
             </span>
           </div>
         </div>
@@ -36,7 +36,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Responses:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.resp)}
+              {renderValue(statisticData && statisticData.resp)}
             </span>
           </div>
         </div>
@@ -46,7 +46,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Timeout %:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.t_outs)} %
+              {renderValue(statisticData && statisticData.t_outs)} %
             </span>
           </div>
         </div>
@@ -56,7 +56,7 @@ export const Statistics = () => {
           <div className={s.platfromHeader}>
             <span>Win rate %:</span>
             <span className={s.descr}>
-              {renderValue(statisticsData && statisticsData.w_rate)} %
+              {renderValue(statisticData && statisticData.w_rate)} %
             </span>
           </div>
         </div>

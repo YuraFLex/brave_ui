@@ -8,7 +8,7 @@ import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsActive } from 'redux/auth/authSelectors';
+import { authIsActive } from 'redux/auth/authSelectors';
 import { Link } from './Navigation.styled';
 // import cn from 'classnames';
 import { LogOutButtonMobile } from 'components/Button/Button';
@@ -16,7 +16,7 @@ import { logout } from 'redux/auth/authSlice';
 
 export const NavigationMobile = () => {
   const dispatch = useDispatch();
-  const isActive = useSelector(selectIsActive);
+  const isActive = useSelector(authIsActive);
   const isAccessAllowed = Boolean(isActive);
   // const [isOpen, setIsOpen] = useState(false);
 

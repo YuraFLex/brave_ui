@@ -1,20 +1,20 @@
 import { useSelector } from 'react-redux';
 import {
-  selectUserEmail,
-  selectUserType,
-  selectIsUserName,
-  selectIsUserLastName,
-  selectIsUserLegalName,
+  userEmail,
+  userType,
+  userName,
+  userLastName,
+  userLegalName,
 } from 'redux/auth/authSelectors';
 
 import s from './UserInfo.module.scss';
 
 export const UserInfo = () => {
-  const firstName = useSelector(selectIsUserName);
-  const lastName = useSelector(selectIsUserLastName);
-  const legalName = useSelector(selectIsUserLegalName);
-  const userEmail = useSelector(selectUserEmail);
-  const userType = useSelector(selectUserType);
+  const firstName = useSelector(userName);
+  const lastName = useSelector(userLastName);
+  const legalName = useSelector(userLegalName);
+  const usersEmail = useSelector(userEmail);
+  const usersType = useSelector(userType);
 
   return (
     <>
@@ -27,10 +27,10 @@ export const UserInfo = () => {
             <h4>Last Name:</h4> <p>{lastName}</p>
           </li>
           <li className={s.UserInfoItem}>
-            <h4>Email:</h4> <p>{userEmail}</p>
+            <h4>Email:</h4> <p>{usersEmail}</p>
           </li>
           <li className={s.UserInfoItem}>
-            <h4>Type:</h4> <p>{userType}</p>
+            <h4>Type:</h4> <p>{usersType}</p>
           </li>
           <li className={s.UserInfoItem}>
             <h4>Legal Name:</h4> <p>{legalName}</p>

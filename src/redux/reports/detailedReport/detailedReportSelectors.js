@@ -1,15 +1,11 @@
-export const selectedDetaliedReportsData = state => {
+export const detaliedReportsData = state => {
     return state?.detailedReport?.detailedReportsData;
 }
 
-export const selectedDetaliedReportsIsLoading = state => {
+export const detaliedReportsIsLoading = state => {
     return state?.detailedReport?.isLoading;
 }
 
-export const selectedDetaliedReportsError = state => {
+export const detaliedReportsError = state => {
     return state?.detailedReport?.error;
 }
-
-// export const selectIsSizes = state => {
-//     return state?.detailedReport?.sizesList;
-// }

@@ -1,3 +1,3 @@
-export const selectIsLoadingchangePassword = state => {
+export const changePasswordIsLoading = state => {
     return state?.changePassword?.isLoading;
 }

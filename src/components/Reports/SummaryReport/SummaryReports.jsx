@@ -4,11 +4,11 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Button } from 'components/Button/Button';
 import { fetchSummaryReports } from 'redux/reports/summaryReports/summaryReportsOperations';
-import { selectUserPartnerId, selectUserType } from 'redux/auth/authSelectors';
-import { selectedSummaryReportsIsLoading } from 'redux/reports/summaryReports/summaryReportsSelectors';
+import { userPartnerId, userType } from 'redux/auth/authSelectors';
+import { summaryReportsIsLoading } from 'redux/reports/summaryReports/summaryReportsSelectors';
 import s from './SummaryReports.module.scss';
 import { BraveLogo } from 'components/Loader/Loader';
-import { selectIsEndPointList } from 'redux/endPoints/endPointSelectors';
+import { endPointList } from 'redux/endPoints/endPointSelectors';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -23,10 +23,10 @@ export const SummaryReports = ({ onExpand }) => {
   const [endPointUrl, setEndPointUrl] = useState('all');
 
   const dispatch = useDispatch();
-  const id = useSelector(selectUserPartnerId);
-  const type = useSelector(selectUserType);
-  const isLoading = useSelector(selectedSummaryReportsIsLoading);
-  const EPUList = useSelector(selectIsEndPointList);
+  const id = useSelector(userPartnerId);
+  const type = useSelector(userType);
+  const isLoading = useSelector(summaryReportsIsLoading);
+  const EPUList = useSelector(endPointList);
 
   function handleChangePeriod(e) {
     setIsPeriod(e.target.value);
@@ -66,12 +66,9 @@ export const SummaryReports = ({ onExpand }) => {
     onExpand();
   };
 
-  if (isLoading) {
-    return <BraveLogo />;
-  }
-
   return (
-    <>
+    <div>
+      {isLoading && <BraveLogo />}
       <form className={s.ReportSettingForm} onSubmit={handleSubmit}>
         <div className={s.ReportSettingContainer}>
           <div className={s.ReportSettingInner}>
@@ -137,7 +134,7 @@ export const SummaryReports = ({ onExpand }) => {
                   <h4>EP URL:</h4>
                   <FormControl fullWidth>
                     <Select value={endPointUrl} onChange={handleChangeEndPoint}>
-                      <MenuItem value="all">Company</MenuItem>
+                      <MenuItem value="all">All</MenuItem>
                       {EPUList &&
                         EPUList.map(({ id, point }) => (
                           <MenuItem key={id} value={id}>
@@ -152,7 +149,7 @@ export const SummaryReports = ({ onExpand }) => {
                   <h4>EP URL:</h4>
                   <FormControl fullWidth>
                     <Select value={endPointUrl} onChange={handleChangeEndPoint}>
-                      <MenuItem value="all">Company</MenuItem>
+                      <MenuItem value="all">All</MenuItem>
                       {EPUList &&
                         EPUList.map(({ id, pass }) => (
                           <MenuItem key={id} value={id}>
@@ -169,6 +166,6 @@ export const SummaryReports = ({ onExpand }) => {
 
         <Button type="submit" text="Run Report" />
       </form>
-    </>
+    </div>
   );
 };

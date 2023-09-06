@@ -267,6 +267,7 @@ export const DetailedReport = ({ onExpand }) => {
                 </FormControl>
               ) : (
                 <Box sx={{ width: '100%' }}>
+                  <p>Loading...</p>
                   <LinearProgress />
                 </Box>
               )}

@@ -21,6 +21,7 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Button } from 'components/Button/Button';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -265,7 +266,9 @@ export const DetailedReport = ({ onExpand }) => {
                   </Select>
                 </FormControl>
               ) : (
-                'Loading...'
+                <Box sx={{ width: '100%' }}>
+                  <LinearProgress />
+                </Box>
               )}
             </div>
 

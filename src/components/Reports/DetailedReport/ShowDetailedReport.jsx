@@ -29,8 +29,6 @@ export const ShowDetailedReport = () => {
   const detailedData = useSelector(detaliedReportsData);
   const loadData = useSelector(detaliedReportsIsLoading);
 
-  console.log('detailedData:', detailedData);
-
   useEffect(() => {
     if (detailedData && detailedData.appName) {
       const newData = detailedData.appName.map((appName, index) => ({

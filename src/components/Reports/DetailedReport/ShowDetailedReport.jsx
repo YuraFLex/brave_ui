@@ -29,6 +29,8 @@ export const ShowDetailedReport = () => {
   const detailedData = useSelector(detaliedReportsData);
   const loadData = useSelector(detaliedReportsIsLoading);
 
+  console.log('detailedData:', detailedData);
+
   useEffect(() => {
     if (detailedData && detailedData.appName) {
       const newData = detailedData.appName.map((appName, index) => ({
@@ -280,7 +282,12 @@ export const ShowDetailedReport = () => {
           </div>
         </div>
       </div>
-      <div style={{ height: 600, width: '100%' }}>
+      <div
+        style={{
+          height: detailedData.groupBy.length === 1 ? 250 : 550,
+          width: '100%',
+        }}
+      >
         <AgGridReact
           className="ag-theme-balham"
           columnDefs={columnDefs.filter(col =>

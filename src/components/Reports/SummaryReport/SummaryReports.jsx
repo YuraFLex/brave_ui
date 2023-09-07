@@ -119,6 +119,7 @@ export const SummaryReports = ({ onExpand }) => {
               <h4>Display by:</h4>
               <FormControl fullWidth>
                 <Select value={isDisplay} onChange={handleChangeDisplay}>
+                  <MenuItem value="hour">Hour</MenuItem>
                   <MenuItem value="day">Day</MenuItem>
                   <MenuItem value="month">Month</MenuItem>
                   <MenuItem value="year">Year</MenuItem>

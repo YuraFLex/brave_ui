@@ -29,6 +29,8 @@ export const ShowSummaryReports = () => {
   const summaryData = useSelector(summaryReportsData);
   const loadData = useSelector(summaryReportsIsLoading);
 
+  console.log('summaryData:', summaryData);
+
   useEffect(() => {
     if (summaryData && summaryData.spending) {
       const newData = summaryData.spending.map((spending, index) => ({
@@ -316,7 +318,10 @@ export const ShowSummaryReports = () => {
       <div
         style={{
           height:
-            summaryData.period === 'today' || summaryData.period === 'yesterday'
+            (summaryData.period === 'today' &&
+              summaryData.displayBy !== 'hour') ||
+            (summaryData.period === 'yesterday' &&
+              summaryData.displayBy !== 'hour')
               ? 250
               : 550,
           width: '100%',

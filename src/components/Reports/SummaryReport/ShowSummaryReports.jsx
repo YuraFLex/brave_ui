@@ -29,8 +29,6 @@ export const ShowSummaryReports = () => {
   const summaryData = useSelector(summaryReportsData);
   const loadData = useSelector(summaryReportsIsLoading);
 
-  console.log('summaryData:', summaryData);
-
   useEffect(() => {
     if (summaryData && summaryData.spending) {
       const newData = summaryData.spending.map((spending, index) => ({

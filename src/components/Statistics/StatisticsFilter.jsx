@@ -27,7 +27,7 @@ export const StatisticsFilter = () => {
   const list = useSelector(endPointList);
 
   useEffect(() => {
-    dispatch(fetchStatistics({ partnerId: id, type }));
+    dispatch(fetchStatistics({ partnerId: id, type, period: 'today' }));
   }, [dispatch, id, type]);
 
   useEffect(() => {

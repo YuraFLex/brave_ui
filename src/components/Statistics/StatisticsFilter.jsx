@@ -107,6 +107,7 @@ export const StatisticsFilter = () => {
               startDate={selectedStartDate}
               endDate={selectedEndDate}
               dateFormat="dd/MM/yyyy"
+              isClearable
             />
             <p className={s.StatisticsFilterDatePickerLabel}>End Date:</p>
             <DatePicker
@@ -119,6 +120,7 @@ export const StatisticsFilter = () => {
               endDate={selectedEndDate}
               minDate={selectedStartDate}
               dateFormat="dd/MM/yyyy"
+              isClearable
             />
           </div>
         )}

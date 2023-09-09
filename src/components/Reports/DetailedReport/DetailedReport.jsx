@@ -119,7 +119,7 @@ export const DetailedReport = ({ onExpand }) => {
       );
     }
 
-    const defaultGroupBy = ['timeInterval'];
+    const defaultGroupBy = ['default'];
 
     const data = {
       partner_id: id,

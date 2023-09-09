@@ -53,13 +53,26 @@ export const StatisticsFilter = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    let startDateUTC = selectedStartDate;
+    let endDateUTC = selectedEndDate;
+
+    if (selectedStartDate && selectedEndDate) {
+      startDateUTC = new Date(
+        selectedStartDate.getTime() -
+          selectedStartDate.getTimezoneOffset() * 60000
+      );
+      endDateUTC = new Date(
+        selectedEndDate.getTime() - selectedEndDate.getTimezoneOffset() * 60000
+      );
+    }
+
     const data = {
       partnerId: id,
       type,
       endPoint: isEndpoint,
       period: isPeriod,
-      startDate: selectedStartDate,
-      endDate: selectedEndDate,
+      startDate: startDateUTC ? startDateUTC.toISOString() : null,
+      endDate: endDateUTC ? endDateUTC.toISOString() : null,
     };
 
     dispatch(fetchStatistics(data));

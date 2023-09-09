@@ -106,6 +106,19 @@ export const DetailedReport = ({ onExpand }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    let startDateUTC = selectedStartDate;
+    let endDateUTC = selectedEndDate;
+
+    if (selectedStartDate && selectedEndDate) {
+      startDateUTC = new Date(
+        selectedStartDate.getTime() -
+          selectedStartDate.getTimezoneOffset() * 60000
+      );
+      endDateUTC = new Date(
+        selectedEndDate.getTime() - selectedEndDate.getTimezoneOffset() * 60000
+      );
+    }
+
     const defaultGroupBy = ['timeInterval'];
 
     const data = {
@@ -114,8 +127,8 @@ export const DetailedReport = ({ onExpand }) => {
       period: isPeriod,
       displayBy: isDisplay,
       groupBy: [...defaultGroupBy, ...groupBy],
-      startDate: selectedStartDate,
-      endDate: selectedEndDate,
+      startDate: startDateUTC ? startDateUTC.toISOString() : null,
+      endDate: endDateUTC ? endDateUTC.toISOString() : null,
       size: selectedSize,
       trafficType: selectedTrafficType,
       endPointUrl: endPointUrl,
@@ -157,6 +170,7 @@ export const DetailedReport = ({ onExpand }) => {
                     startDate={selectedStartDate}
                     endDate={selectedEndDate}
                     dateFormat="dd/MM/yyyy"
+                    isClearable
                   />
                   <h4>End Date:</h4>
                   <DatePicker
@@ -169,6 +183,7 @@ export const DetailedReport = ({ onExpand }) => {
                     endDate={selectedEndDate}
                     minDate={selectedStartDate}
                     dateFormat="dd/MM/yyyy"
+                    isClearable
                   />
                 </div>
               )}

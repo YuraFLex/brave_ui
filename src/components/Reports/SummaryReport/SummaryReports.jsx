@@ -51,13 +51,26 @@ export const SummaryReports = ({ onExpand }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    let startDateUTC = selectedStartDate;
+    let endDateUTC = selectedEndDate;
+
+    if (selectedStartDate && selectedEndDate) {
+      startDateUTC = new Date(
+        selectedStartDate.getTime() -
+          selectedStartDate.getTimezoneOffset() * 60000
+      );
+      endDateUTC = new Date(
+        selectedEndDate.getTime() - selectedEndDate.getTimezoneOffset() * 60000
+      );
+    }
+
     const data = {
       partner_id: id,
       type: type,
       displayBy: isDisplay,
       period: isPeriod,
-      startDate: selectedStartDate,
-      endDate: selectedEndDate,
+      startDate: startDateUTC ? startDateUTC.toISOString() : null,
+      endDate: endDateUTC ? endDateUTC.toISOString() : null,
       endPointUrl: endPointUrl,
     };
 
@@ -98,6 +111,7 @@ export const SummaryReports = ({ onExpand }) => {
                     startDate={selectedStartDate}
                     endDate={selectedEndDate}
                     dateFormat="dd/MM/yyyy"
+                    isClearable
                   />
                   <h4>End Date:</h4>
                   <DatePicker
@@ -110,6 +124,7 @@ export const SummaryReports = ({ onExpand }) => {
                     endDate={selectedEndDate}
                     minDate={selectedStartDate}
                     dateFormat="dd/MM/yyyy"
+                    isClearable
                   />
                 </div>
               )}

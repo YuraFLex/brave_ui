@@ -282,7 +282,13 @@ export const ShowDetailedReport = () => {
       </div>
       <div
         style={{
-          height: detailedData.groupBy.length === 1 ? 250 : 550,
+          height:
+            (detailedData.groupBy.length === 1 &&
+              detailedData.period === 'today') ||
+            (detailedData.groupBy.length === 1 &&
+              detailedData.period === 'yesterday')
+              ? 250
+              : 550,
           width: '100%',
         }}
       >

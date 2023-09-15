@@ -6,6 +6,7 @@ import { endPointReducer } from './endPoints/endPointSlice';
 import { summaryReportsReducer } from './reports/summaryReports/summaryReportsSlice';
 import { detailedReportReducer } from './reports/detailedReport/detailedReportSlice';
 import { fetchSizesReducer } from './reports/sizes/sizesSlice';
+import { chartReducer } from './chart/chartSlice';
 
 import {
   persistStore,
@@ -70,6 +71,13 @@ const fetchSizesPersistConfig = {
 const fetchSizesPersistedReducer = persistReducer(fetchSizesPersistConfig, fetchSizesReducer)
 
 
+const cahrtDataPersistConfig = {
+  key: 'chartData',
+  storage,
+}
+
+const cahrtDataPersistedReducer = persistReducer(cahrtDataPersistConfig, chartReducer)
+
 export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
@@ -79,6 +87,7 @@ export const store = configureStore({
     summaryReports: summaryReportsPersistedReducer,
     detailedReport: detailedReportPersistedReducer,
     sizes: fetchSizesPersistedReducer,
+    chartData: cahrtDataPersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

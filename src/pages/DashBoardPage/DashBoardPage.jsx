@@ -8,7 +8,6 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { StatisticsFilter } from 'components/Statistics/StatisticsFilter';
 import { useState } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
-// import { ReportsChart } from 'components/Reports/ReportsChart';
 
 const Accordion = styled(props => (
   <MuiAccordion disableGutters elevation={0} square {...props} />

@@ -1,7 +1,21 @@
+.StatisticsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.StatisticsInner {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+}
+
 .platfromList {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   gap: 10px;
 
@@ -17,6 +31,33 @@
   max-width: 250px;
   width: 100%;
   background-color: #0099fa17;
+  transition: scale 0.25s linear, box-shadow 0.25s linear,
+    transform 0.25s linear;
+  cursor: pointer;
+
+  &:hover {
+    scale: 1.03;
+    box-shadow: 0px 1px 7px 1px rgba(0, 0, 0, 0.4);
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 160px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    max-width: 170px;
+  }
+  @media screen and (min-width: 1400px) {
+    max-width: 200px;
+  }
+
+  @media screen and (min-width: 1500px) {
+    max-width: 250px;
+  }
+}
+
+.active {
+  scale: 1.03;
+  box-shadow: 0px 1px 7px 1px rgba(0, 0, 0, 0.4);
 }
 
 .platfromHeader {
@@ -27,86 +68,4 @@
 
 .descr {
   font-weight: 700;
-}
-
-////////////////////////////////////////////////////////////
-
-.container {
-  position: relative;
-  font-family: sans-serif;
-}
-
-.container::before,
-.container::after {
-  content: '';
-  background-color: #fab5704c;
-  position: absolute;
-}
-
-.container::before {
-  border-radius: 50%;
-  width: 6rem;
-  height: 6rem;
-  top: 30%;
-  right: 7%;
-}
-
-.container::after {
-  content: '';
-  position: absolute;
-  height: 3rem;
-  top: 8%;
-  right: 5%;
-  border: 1px solid;
-}
-
-.container .box {
-  width: 11.875em;
-  height: 15.875em;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.074);
-  border: 1px solid rgba(255, 255, 255, 0.222);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border-radius: 0.7rem;
-  transition: all ease 0.3s;
-}
-
-.container .box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.container .box .title {
-  font-size: 4rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-}
-
-.container .box div strong {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.container .box div p {
-  margin: 0;
-  font-size: 0.9em;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-}
-
-.container .box div span {
-  font-size: 0.7rem;
-  font-weight: 300;
-}
-
-.container .box div span:nth-child(3) {
-  font-weight: 500;
-  margin-right: 0.2rem;
-}
-
-.container .box:hover {
-  box-shadow: 0px 0px 20px 1px #ffbb763f;
-  border: 1px solid rgba(255, 255, 255, 0.454);
 }

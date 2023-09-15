@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchStatistics } from 'redux/statistics/statisticsOperations';
 import DatePicker from 'react-datepicker';
-// import { RxUpdate } from 'react-icons/rx';
 import s from './StatisticsFilter.module.scss';
 import { userPartnerId, userType } from 'redux/auth/authSelectors';
 import { statisticsIsLoading } from 'redux/statistics/statisticsSelectors';
@@ -13,6 +12,7 @@ import { FaSync } from 'react-icons/fa';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { fetchCahrtData } from 'redux/chart/chartOperation';
 
 export const StatisticsFilter = () => {
   const [isPeriod, setIsPeriod] = useState('today');
@@ -25,6 +25,17 @@ export const StatisticsFilter = () => {
   const type = useSelector(userType);
   const isLoading = useSelector(statisticsIsLoading);
   const list = useSelector(endPointList);
+
+  useEffect(() => {
+    const Chartdata = {
+      partnerId: id,
+      type,
+      period: ['today', 'yesterday', 'lastweek'],
+      endPoint: 'all',
+    };
+
+    dispatch(fetchCahrtData(Chartdata));
+  }, [dispatch, id, type]);
 
   useEffect(() => {
     dispatch(fetchStatistics({ partnerId: id, type, period: 'today' }));
@@ -75,7 +86,15 @@ export const StatisticsFilter = () => {
       endDate: endDateUTC ? endDateUTC.toISOString() : null,
     };
 
+    const Chartdata = {
+      partnerId: id,
+      type,
+      period: ['today', 'yesterday', 'lastweek'],
+      endPoint: isEndpoint,
+    };
+
     dispatch(fetchStatistics(data));
+    dispatch(fetchCahrtData(Chartdata));
     // console.log('данные отправленные на сервер:', data);
   };
 

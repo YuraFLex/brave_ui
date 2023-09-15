@@ -281,9 +281,9 @@ export const DetailedReport = ({ onExpand }) => {
                   </Select>
                 </FormControl>
               ) : (
-                <Box sx={{ width: '100%' }}>
-                  <p>Loading...</p>
-                  <LinearProgress />
+                <Box sx={{ width: '100%', color: '#0099fa' }}>
+                  <p style={{ color: '#000' }}>Loading...</p>
+                  <LinearProgress color="inherit" />
                 </Box>
               )}
             </div>

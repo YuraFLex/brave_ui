@@ -120,7 +120,7 @@ export const StatisticsChart = ({ item }) => {
         },
         {
           fill: false,
-          label: 'Last 7 day',
+          label: 'Last 7 days',
           data:
             item === 'spending'
               ? data.lastweek.spending

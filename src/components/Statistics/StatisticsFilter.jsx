@@ -30,7 +30,7 @@ export const StatisticsFilter = () => {
     const Chartdata = {
       partnerId: id,
       type,
-      period: ['today', 'yesterday', 'lastweek'],
+      period: ['today', 'yesterday'],
       endPoint: 'all',
     };
 

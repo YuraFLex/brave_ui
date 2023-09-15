@@ -45,7 +45,7 @@ export const StatisticsChart = ({ item }) => {
 
   const isLoading = useSelector(chartIsLoading);
   const data = useSelector(chartsData);
-  // console.log('data:', data);
+  console.log('data:', data);
 
   const getRandomHexColor = alpha => {
     const letters = '0123456789ABCDEF';
@@ -113,25 +113,6 @@ export const StatisticsChart = ({ item }) => {
               ? data.yesterday.t_outs
               : item === 'w_rate'
               ? data.yesterday.w_rate
-              : [],
-          backgroundColor,
-          borderColor,
-          borderWidth: 1,
-        },
-        {
-          fill: false,
-          label: 'Last 7 days',
-          data:
-            item === 'spending'
-              ? data.lastweek.spending
-              : item === 'imress'
-              ? data.lastweek.impress
-              : item === 'resp'
-              ? data.lastweek.resp
-              : item === 't_outs'
-              ? data.lastweek.t_outs
-              : item === 'w_rate'
-              ? data.lastweek.w_rate
               : [],
           backgroundColor,
           borderColor,

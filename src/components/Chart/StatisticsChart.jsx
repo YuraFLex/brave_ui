@@ -45,7 +45,7 @@ export const StatisticsChart = ({ item }) => {
 
   const isLoading = useSelector(chartIsLoading);
   const data = useSelector(chartsData);
-  console.log('data:', data);
+  // console.log('data:', data);
 
   const getRandomHexColor = alpha => {
     const letters = '0123456789ABCDEF';

@@ -33,7 +33,6 @@ export const StatisticsFilter = () => {
       period: ['today', 'yesterday'],
       endPoint: 'all',
     };
-
     dispatch(fetchCahrtData(Chartdata));
   }, [dispatch, id, type]);
 

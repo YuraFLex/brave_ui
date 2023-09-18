@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Button } from 'components/Button/Button';
 import { fetchSummaryReports } from 'redux/reports/summaryReports/summaryReportsOperations';
 import { userPartnerId, userType } from 'redux/auth/authSelectors';
 import { summaryReportsIsLoading } from 'redux/reports/summaryReports/summaryReportsSelectors';
@@ -12,6 +11,7 @@ import { endPointList } from 'redux/endPoints/endPointSelectors';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
 
 import '../../../index.css';
 
@@ -180,7 +180,15 @@ export const SummaryReports = ({ onExpand }) => {
           </div>
         </div>
 
-        <Button type="submit" text="Run Report" />
+        {/* <Button type="submit" text="Run Report" /> */}
+        <Button
+          style={{ maxWidth: '250px', width: '100%', margin: '0 auto' }}
+          variant="contained"
+          type="submit"
+        >
+          {' '}
+          Run Report
+        </Button>
       </form>
     </div>
   );

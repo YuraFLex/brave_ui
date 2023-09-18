@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-balham.css';
@@ -15,6 +15,10 @@ import Select from '@mui/material/Select';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+import CropFreeOutlinedIcon from '@mui/icons-material/CropFreeOutlined';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
 
 export const ShowSummaryReports = () => {
   const [rowData, setRowData] = useState([]);
@@ -28,6 +32,21 @@ export const ShowSummaryReports = () => {
 
   const summaryData = useSelector(summaryReportsData);
   const loadData = useSelector(summaryReportsIsLoading);
+
+  const positionRef = useRef({
+    x: 0,
+    y: 0,
+  });
+  const popperRef = useRef(null);
+  const areaRef = useRef(null);
+
+  const handleMouseMove = event => {
+    positionRef.current = { x: event.clientX, y: event.clientY };
+
+    if (popperRef.current != null) {
+      popperRef.current.update();
+    }
+  };
 
   useEffect(() => {
     if (summaryData && summaryData.spending) {
@@ -262,31 +281,69 @@ export const ShowSummaryReports = () => {
               </Select>
             </FormControl>
           </div>
-          <div className={s.ShowSummaryReportsSlash}></div>
-
-          <button
-            className={s.ShowSummaryReportsBtn}
-            onClick={resizeTableToWidth}
+          {/* <div className={s.ShowSummaryReportsSlash}></div> */}
+          <Tooltip
+            title="Resize to Width"
+            placement="top"
+            arrow
+            PopperProps={{
+              popperRef,
+              anchorEl: {
+                getBoundingClientRect: () => {
+                  return new DOMRect(
+                    positionRef.current.x,
+                    areaRef.current.getBoundingClientRect().y,
+                    0,
+                    0
+                  );
+                },
+              },
+            }}
           >
-            Resize to Width
-          </button>
+            <Button
+              variant="contained"
+              ref={areaRef}
+              onMouseMove={handleMouseMove}
+              onClick={resizeTableToWidth}
+            >
+              <CropFreeOutlinedIcon />
+            </Button>
+          </Tooltip>
           <div className={s.ShowSummaryReportsSlash}></div>
-          <button
-            className={s.ShowSummaryReportsBtn}
-            onClick={handleSelectAllColumns}
-          >
+          <Button variant="contained" onClick={handleSelectAllColumns}>
             Select All
-          </button>
-          <button
-            className={s.ShowSummaryReportsBtn}
-            onClick={handleDeleteAllColumns}
-          >
+          </Button>
+          <Button variant="contained" onClick={handleDeleteAllColumns}>
             Delete All
-          </button>
+          </Button>
           <div className={s.ShowSummaryReportsSlash}></div>
-          <button className={s.ShowSummaryReportsBtn} onClick={handleExportCsv}>
-            Dowload CSV
-          </button>
+          <Tooltip
+            title="Download CSV"
+            placement="top"
+            arrow
+            PopperProps={{
+              popperRef,
+              anchorEl: {
+                getBoundingClientRect: () => {
+                  return new DOMRect(
+                    positionRef.current.x,
+                    areaRef.current.getBoundingClientRect().y,
+                    0,
+                    0
+                  );
+                },
+              },
+            }}
+          >
+            <Button
+              variant="contained"
+              ref={areaRef}
+              onMouseMove={handleMouseMove}
+              onClick={handleExportCsv}
+            >
+              <FileDownloadOutlinedIcon />
+            </Button>
+          </Tooltip>
         </div>
 
         <div className={s.ShowSummaryReportsInner}>

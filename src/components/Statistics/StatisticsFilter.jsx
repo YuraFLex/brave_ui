@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fetchStatistics } from 'redux/statistics/statisticsOperations';
 import DatePicker from 'react-datepicker';
 import s from './StatisticsFilter.module.scss';
@@ -12,6 +12,8 @@ import { FaSync } from 'react-icons/fa';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 import { fetchCahrtData } from 'redux/chart/chartOperation';
 
 export const StatisticsFilter = () => {
@@ -25,6 +27,21 @@ export const StatisticsFilter = () => {
   const type = useSelector(userType);
   const isLoading = useSelector(statisticsIsLoading);
   const list = useSelector(endPointList);
+
+  const positionRef = useRef({
+    x: 0,
+    y: 0,
+  });
+  const popperRef = useRef(null);
+  const areaRef = useRef(null);
+
+  const handleMouseMove = event => {
+    positionRef.current = { x: event.clientX, y: event.clientY };
+
+    if (popperRef.current != null) {
+      popperRef.current.update();
+    }
+  };
 
   useEffect(() => {
     const Chartdata = {
@@ -174,10 +191,33 @@ export const StatisticsFilter = () => {
             </FormControl>
           </>
         )}
-
-        <button className={s.StatisticsFilterBtnSubmit} type="submit">
-          <FaSync />
-        </button>
+        <Tooltip
+          title="Update data"
+          placement="top"
+          arrow
+          PopperProps={{
+            popperRef,
+            anchorEl: {
+              getBoundingClientRect: () => {
+                return new DOMRect(
+                  positionRef.current.x,
+                  areaRef.current.getBoundingClientRect().y,
+                  0,
+                  0
+                );
+              },
+            },
+          }}
+        >
+          <Button
+            variant="contained"
+            type="submit"
+            ref={areaRef}
+            onMouseMove={handleMouseMove}
+          >
+            <FaSync />
+          </Button>
+        </Tooltip>
       </form>
     </div>
   );

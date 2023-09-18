@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Chart as ChartJS,
@@ -12,7 +13,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { useEffect, useState } from 'react';
 import { chartIsLoading, chartsData } from 'redux/chart/chartSelectors';
 import LinearProgress from '@mui/material/LinearProgress';
 import s from './StatisticsChart.module.scss';

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+
 import { userPartnerId, userType } from 'redux/auth/authSelectors';
-import s from './DetailedReport.module.scss';
-import { fetchDetailedReports } from 'redux/reports/detailedReport/detailedReportOperation';
 import { fetchSizes } from 'redux/reports/sizes/sizesOperation';
 import { sizesData } from 'redux/reports/sizes/sizesSelectors';
-import { detaliedReportsIsLoading } from 'redux/reports/detailedReport/detailedReportSelectors';
-import { BraveLogo } from 'components/Loader/Loader';
 import { endPointList } from 'redux/endPoints/endPointSelectors';
-import '../../../index.css';
+import { detaliedReportsIsLoading } from 'redux/reports/detailedReport/detailedReportSelectors';
+
+import { BraveLogo } from 'components/Loader/Loader';
+import { fetchDetailedReports } from 'redux/reports/detailedReport/detailedReportOperation';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+
 import {
   Box,
   FormControl,
@@ -20,8 +22,13 @@ import {
   Chip,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Button } from 'components/Button/Button';
+import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+import '../../../index.css';
+import s from './DetailedReport.module.scss';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -56,6 +63,7 @@ export const DetailedReport = ({ onExpand }) => {
   const [selectedTrafficType, setSelectedTrafficType] = useState('allTypes');
   const [endPointUrl, setEndPointUrl] = useState('all');
   const [groupBy, setGroupBy] = useState(['appBundle']);
+  const [inputValue, setInputValue] = useState('');
 
   const dispatch = useDispatch();
   const id = useSelector(userPartnerId);
@@ -63,6 +71,7 @@ export const DetailedReport = ({ onExpand }) => {
   const isLoading = useSelector(detaliedReportsIsLoading);
   const EPUList = useSelector(endPointList);
   const sizesList = useSelector(sizesData);
+  const options = sizesList && sizesList.map(size => size.size);
 
   useEffect(() => {
     dispatch(fetchSizes({ partnerId: id, type }));
@@ -89,10 +98,6 @@ export const DetailedReport = ({ onExpand }) => {
 
   const handleEndDateChange = date => {
     setSelectedEndDate(date);
-  };
-
-  const handleChangeSize = e => {
-    setSelectedSize(e.target.value);
   };
 
   const handleChangeTefficType = e => {
@@ -270,15 +275,20 @@ export const DetailedReport = ({ onExpand }) => {
 
               {sizesList ? (
                 <FormControl fullWidth>
-                  <Select value={selectedSize} onChange={handleChangeSize}>
-                    <MenuItem value="allSize">All Size</MenuItem>
-                    {sizesList &&
-                      sizesList.map((size, index) => (
-                        <MenuItem key={index} value={size.size}>
-                          {size.size}
-                        </MenuItem>
-                      ))}
-                  </Select>
+                  <Autocomplete
+                    value={selectedSize}
+                    onChange={(event, newValue) => {
+                      setSelectedSize(newValue);
+                    }}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                      setInputValue(newInputValue);
+                    }}
+                    options={['allSize', ...options]}
+                    renderInput={params => (
+                      <TextField {...params} variant="outlined" />
+                    )}
+                  />
                 </FormControl>
               ) : (
                 <Box sx={{ width: '100%', color: '#0099fa' }}>
@@ -307,7 +317,14 @@ export const DetailedReport = ({ onExpand }) => {
           </div>
         </div>
 
-        <Button type="submit" text="Run Report" />
+        <Button
+          style={{ maxWidth: '250px', width: '100%', margin: '0 auto' }}
+          variant="contained"
+          type="submit"
+        >
+          {' '}
+          Run Report
+        </Button>
       </form>
     </div>
   );

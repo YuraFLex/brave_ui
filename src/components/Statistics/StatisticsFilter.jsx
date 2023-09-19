@@ -119,7 +119,7 @@ export const StatisticsFilter = () => {
       {isLoading && <BraveLogo />}
       <form className={s.StatisticsFilterForm} onSubmit={handleSubmit}>
         <p>Period:</p>
-        <FormControl fullWidth>
+        <FormControl style={{ width: '300px' }}>
           <Select value={isPeriod} onChange={handleChangePeriod}>
             <MenuItem value="today">Today</MenuItem>
             <MenuItem value="yesterday">Yesterday</MenuItem>
@@ -163,7 +163,7 @@ export const StatisticsFilter = () => {
         {type === 'DSP' ? (
           <>
             <p className={s.StatisticsFilterDatePickerLabel}>EP URL:</p>
-            <FormControl fullWidth>
+            <FormControl style={{ width: '300px' }}>
               <Select value={isEndpoint} onChange={handleChangeEndpoint}>
                 <MenuItem value="all">All</MenuItem>
                 {list &&
@@ -178,7 +178,7 @@ export const StatisticsFilter = () => {
         ) : (
           <>
             <p className={s.StatisticsFilterDatePickerLabel}>EP URL:</p>
-            <FormControl fullWidth>
+            <FormControl style={{ width: '300px' }}>
               <Select value={isEndpoint} onChange={handleChangeEndpoint}>
                 <MenuItem value="all">All</MenuItem>
                 {list &&

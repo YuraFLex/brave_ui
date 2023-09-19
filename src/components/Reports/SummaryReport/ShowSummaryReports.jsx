@@ -302,6 +302,10 @@ export const ShowSummaryReports = () => {
           >
             <Button
               variant="contained"
+              style={{
+                backgroundColor: '#0099fa',
+                textTransform: 'capitalize',
+              }}
               ref={areaRef}
               onMouseMove={handleMouseMove}
               onClick={resizeTableToWidth}
@@ -310,10 +314,18 @@ export const ShowSummaryReports = () => {
             </Button>
           </Tooltip>
           <div className={s.ShowSummaryReportsSlash}></div>
-          <Button variant="contained" onClick={handleSelectAllColumns}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#0099fa', textTransform: 'capitalize' }}
+            onClick={handleSelectAllColumns}
+          >
             Select All
           </Button>
-          <Button variant="contained" onClick={handleDeleteAllColumns}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#0099fa', textTransform: 'capitalize' }}
+            onClick={handleDeleteAllColumns}
+          >
             Delete All
           </Button>
           <div className={s.ShowSummaryReportsSlash}></div>
@@ -337,6 +349,10 @@ export const ShowSummaryReports = () => {
           >
             <Button
               variant="contained"
+              style={{
+                backgroundColor: '#0099fa',
+                textTransform: 'capitalize',
+              }}
               ref={areaRef}
               onMouseMove={handleMouseMove}
               onClick={handleExportCsv}
@@ -356,6 +372,7 @@ export const ShowSummaryReports = () => {
                     <FormControlLabel
                       control={
                         <Checkbox
+                          style={{ color: '#0099fa' }}
                           checked={visibleColumns.includes(col.field)}
                         />
                       }

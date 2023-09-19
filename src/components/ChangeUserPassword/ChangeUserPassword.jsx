@@ -9,7 +9,7 @@ import { BraveLogo } from 'components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { Button } from 'components/Button/Button';
+import Button from '@mui/material/Button';
 
 export const ChangeUserPassword = () => {
   const dispatch = useDispatch();
@@ -122,7 +122,13 @@ export const ChangeUserPassword = () => {
             )}
           </i>
         </label>
-        <Button type="submit" text="Change Password" />
+        <Button
+          variant="contained"
+          style={{ backgroundColor: '#0099fa', textTransform: 'capitalize' }}
+          type="submit"
+        >
+          Change Password
+        </Button>
       </form>
     </div>
   );

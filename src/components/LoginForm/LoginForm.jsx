@@ -4,7 +4,7 @@ import { login } from '../../redux/auth/authOperations';
 import { LoaderBtn } from '../Loader/Loader';
 import { authIsLoading } from '../../redux/auth/authSelectors';
 
-import { Button } from 'components/Button/Button';
+import Button from '@mui/material/Button';
 
 import s from './LoginForm.module.scss';
 
@@ -53,7 +53,13 @@ export const LoginForm = () => {
         />
         <span className={s.logLabelText}>Password:</span>
       </label>
-      <Button type="submit" text="Login" />
+      <Button
+        variant="contained"
+        style={{ backgroundColor: '#0099fa' }}
+        type="submit"
+      >
+        Login
+      </Button>
     </form>
   );
 };

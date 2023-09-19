@@ -182,7 +182,12 @@ export const SummaryReports = ({ onExpand }) => {
 
         {/* <Button type="submit" text="Run Report" /> */}
         <Button
-          style={{ maxWidth: '250px', width: '100%', margin: '0 auto' }}
+          style={{
+            maxWidth: '250px',
+            width: '100%',
+            margin: '0 auto',
+            backgroundColor: '#0099fa',
+          }}
           variant="contained"
           type="submit"
         >

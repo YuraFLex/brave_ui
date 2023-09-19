@@ -211,6 +211,7 @@ export const StatisticsFilter = () => {
         >
           <Button
             variant="contained"
+            style={{ backgroundColor: '#0099fa' }}
             type="submit"
             ref={areaRef}
             onMouseMove={handleMouseMove}

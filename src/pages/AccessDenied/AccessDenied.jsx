@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { isLoginIn } from 'redux/auth/authSelectors';
 import { logout } from 'redux/auth/authSlice';
 import { CiFaceFrown } from 'react-icons/ci';
+import Button from '@mui/material/Button';
 
 import s from './AccessDenied.module.scss';
 
@@ -25,11 +26,17 @@ export const AccessDenied = () => {
             your administrator for details.
           </h2>
           {isLogedIn && (
-            <button className={s.warningBtn} onClick={handleLogout}>
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: '#0099fa',
+              }}
+              onClick={handleLogout}
+            >
               <Link className={s.warningLink} to="/login">
                 Close
               </Link>
-            </button>
+            </Button>
           )}
         </div>
       </div>

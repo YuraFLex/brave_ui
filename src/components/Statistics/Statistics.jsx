@@ -1,18 +1,18 @@
 import s from './Statistics.module.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { statisticsData } from '../../redux/statistics/statisticsSelectors';
 import { StatisticsChart } from 'components/Chart/StatisticsChart';
-import { useState } from 'react';
+import { changeItem } from 'redux/statistics/itemSlice';
 
 export const Statistics = () => {
-  const [item, setItem] = useState('spending');
-
   const statisticData = useSelector(statisticsData);
+  const item = useSelector(state => state.item);
+  const dispatch = useDispatch();
 
   // console.log('statisticData:', statisticData);
 
-  const handleChabgeItem = newValue => {
-    setItem(newValue);
+  const handleItemClick = newValue => {
+    dispatch(changeItem(newValue));
   };
 
   const renderValue = value => {
@@ -27,7 +27,7 @@ export const Statistics = () => {
             className={`${s.platfromItem} ${
               item === 'spending' ? s.active : ''
             }`}
-            onClick={() => handleChabgeItem('spending')}
+            onClick={() => handleItemClick('spending')}
           >
             <div className={s.platformCard}>
               <div className={s.platfromHeader}>
@@ -40,7 +40,7 @@ export const Statistics = () => {
           </li>
           <li
             className={`${s.platfromItem} ${item === 'imress' ? s.active : ''}`}
-            onClick={() => handleChabgeItem('imress')}
+            onClick={() => handleItemClick('imress')}
           >
             <div className={s.platformCard}>
               <div className={s.platfromHeader}>
@@ -53,7 +53,7 @@ export const Statistics = () => {
           </li>
           <li
             className={`${s.platfromItem} ${item === 'resp' ? s.active : ''}`}
-            onClick={() => handleChabgeItem('resp')}
+            onClick={() => handleItemClick('resp')}
           >
             <div className={s.platformCard}>
               <div className={s.platfromHeader}>
@@ -66,7 +66,7 @@ export const Statistics = () => {
           </li>
           <li
             className={`${s.platfromItem} ${item === 't_outs' ? s.active : ''}`}
-            onClick={() => handleChabgeItem('t_outs')}
+            onClick={() => handleItemClick('t_outs')}
           >
             <div className={s.platformCard}>
               <div className={s.platfromHeader}>
@@ -79,7 +79,7 @@ export const Statistics = () => {
           </li>
           <li
             className={`${s.platfromItem} ${item === 'w_rate' ? s.active : ''}`}
-            onClick={() => handleChabgeItem('w_rate')}
+            onClick={() => handleItemClick('w_rate')}
           >
             <div className={s.platformCard}>
               <div className={s.platfromHeader}>
@@ -92,7 +92,7 @@ export const Statistics = () => {
           </li>
         </ul>
       </div>
-      <StatisticsChart item={item} />
+      <StatisticsChart />
     </div>
   );
 };

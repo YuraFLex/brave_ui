@@ -96,16 +96,4 @@
 
 .link {
   text-decoration: none;
-  margin-top: 30px;
-  border: 1px solid #0099fa;
-  border-radius: 10px;
-  text-align: center;
-  padding: 10px;
-
-  transition: color 250ms linear, background-color 250ms linear;
-
-  &:hover {
-    background-color: #0099fa;
-    color: #fff;
-  }
 }

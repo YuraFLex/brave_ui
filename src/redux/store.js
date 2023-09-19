@@ -7,6 +7,7 @@ import { summaryReportsReducer } from './reports/summaryReports/summaryReportsSl
 import { detailedReportReducer } from './reports/detailedReport/detailedReportSlice';
 import { fetchSizesReducer } from './reports/sizes/sizesSlice';
 import { chartReducer } from './chart/chartSlice';
+import itemReducer from './statistics/itemSlice';
 
 import {
   persistStore,
@@ -19,6 +20,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+
 
 const authPersistConfig = {
   key: 'auth',
@@ -88,6 +90,7 @@ export const store = configureStore({
     detailedReport: detailedReportPersistedReducer,
     sizes: fetchSizesPersistedReducer,
     chartData: cahrtDataPersistedReducer,
+    item: itemReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

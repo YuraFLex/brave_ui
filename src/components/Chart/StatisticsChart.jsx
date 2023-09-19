@@ -29,7 +29,7 @@ ChartJS.register(
   Legend
 );
 
-export const StatisticsChart = ({ item }) => {
+export const StatisticsChart = () => {
   const [chartData, setChartData] = useState({
     labels: [],
     datasets: [
@@ -45,6 +45,7 @@ export const StatisticsChart = ({ item }) => {
 
   const isLoading = useSelector(chartIsLoading);
   const data = useSelector(chartsData);
+  const item = useSelector(state => state.item);
   // console.log('data:', data);
 
   const getRandomHexColor = alpha => {

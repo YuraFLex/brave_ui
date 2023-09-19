@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { statisticsData } from '../../redux/statistics/statisticsSelectors';
 import { StatisticsChart } from 'components/Chart/StatisticsChart';
 import { changeItem } from 'redux/statistics/itemSlice';
+import { useEffect } from 'react';
 
 export const Statistics = () => {
   const statisticData = useSelector(statisticsData);
@@ -10,6 +11,10 @@ export const Statistics = () => {
   const dispatch = useDispatch();
 
   // console.log('statisticData:', statisticData);
+
+  useEffect(() => {
+    dispatch(changeItem('spending'));
+  }, [dispatch]);
 
   const handleItemClick = newValue => {
     dispatch(changeItem(newValue));

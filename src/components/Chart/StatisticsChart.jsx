@@ -122,17 +122,32 @@ export const StatisticsChart = () => {
       ],
     });
   }, [item, data]);
-
   const options = {
     responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
     plugins: {
-      legend: {
-        position: 'top',
-        // display: false,
-      },
       title: {
         display: true,
         text: `${label}`,
+      },
+    },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
       },
     },
   };

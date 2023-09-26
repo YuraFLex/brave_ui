@@ -46,6 +46,8 @@ export const StatisticsChart = () => {
   const isLoading = useSelector(chartIsLoading);
   const data = useSelector(chartsData);
   const item = useSelector(state => state.item);
+  const period = useSelector(state => state.period);
+  // console.log('period:', period);
   // console.log('data:', data);
 
   const getRandomHexColor = alpha => {
@@ -57,63 +59,86 @@ export const StatisticsChart = () => {
     return `${color}${alpha}`;
   };
 
-  const label =
-    item === 'spending'
-      ? 'Spend'
-      : item === 'imress'
-      ? 'Impressions'
-      : item === 'resp'
-      ? 'Responses'
-      : item === 't_outs'
-      ? 'Timeout %'
-      : item === 'w_rate'
-      ? 'Win rate %'
+  const labelPeriod =
+    period === 'today'
+      ? 'Today'
+      : period === 'yesterday'
+      ? 'Yesterday'
+      : period === 'lastweek'
+      ? 'Last 7 Days'
+      : period === 'thismonth'
+      ? 'This Month'
+      : period === 'lastmonth'
+      ? 'Last Month'
+      : period === 'custom'
+      ? 'Custom'
       : '';
 
   useEffect(() => {
     if (!data) return;
 
-    const backgroundColor = Array.from({ length: 24 }, () =>
+    const label =
+      item === 'spending'
+        ? 'Spend'
+        : item === 'imress'
+        ? 'Impressions'
+        : item === 'resp'
+        ? 'Responses'
+        : item === 't_outs'
+        ? 'Timeout %'
+        : item === 'w_rate'
+        ? 'Win rate %'
+        : '';
+
+    const interval = [
+      '00:00',
+      '01:00',
+      '02:00',
+      '03:00',
+      '04:00',
+      '05:00',
+      '06:00',
+      '07:00',
+      '08:00',
+      '09:00',
+      '10:00',
+      '11:00',
+      '12:00',
+      '13:00',
+      '14:00',
+      '15:00',
+      '16:00',
+      '17:00',
+      '18:00',
+      '19:00',
+      '20:00',
+      '21:00',
+      '22:00',
+      '23:00',
+    ];
+
+    const backgroundColor = Array.from({ length: 1 }, () =>
       getRandomHexColor('33')
     );
     const borderColor = backgroundColor.map(color => color.replace('33', 'FF'));
 
     setChartData({
-      labels: data.yesterday.t_interval,
+      labels: period === 'today' ? interval : data.t_interval,
       datasets: [
         {
           fill: true,
-          label: 'Today',
+          label,
           data:
             item === 'spending'
-              ? data.today.spending
+              ? data.spending
               : item === 'imress'
-              ? data.today.impress
+              ? data.impress
               : item === 'resp'
-              ? data.today.resp
+              ? data.resp
               : item === 't_outs'
-              ? data.today.t_outs
+              ? data.t_outs
               : item === 'w_rate'
-              ? data.today.w_rate
-              : [],
-          backgroundColor,
-          borderColor,
-          borderWidth: 1,
-        },
-        {
-          fill: false,
-          label: 'Yesterday',
-          data:
-            item === 'spending'
-              ? data.yesterday.spending
-              : item === 'imress'
-              ? data.yesterday.impress
-              : item === 'resp'
-              ? data.yesterday.resp
-              : item === 't_outs'
-              ? data.yesterday.t_outs
-              : item === 'w_rate'
-              ? data.yesterday.w_rate
+              ? data.w_rate
               : [],
           backgroundColor,
           borderColor,
@@ -121,7 +146,8 @@ export const StatisticsChart = () => {
         },
       ],
     });
-  }, [item, data]);
+  }, [item, data, period]);
+
   const options = {
     responsive: true,
     interaction: {
@@ -132,7 +158,7 @@ export const StatisticsChart = () => {
     plugins: {
       title: {
         display: true,
-        text: `${label}`,
+        text: `Period: ${labelPeriod}`,
       },
     },
     scales: {

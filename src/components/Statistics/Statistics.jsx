@@ -4,6 +4,7 @@ import { statisticsData } from '../../redux/statistics/statisticsSelectors';
 import { StatisticsChart } from 'components/Chart/StatisticsChart';
 import { changeItem } from 'redux/statistics/itemSlice';
 import { useEffect } from 'react';
+import { ListItems } from './ListItems';
 
 export const Statistics = () => {
   const statisticData = useSelector(statisticsData);
@@ -20,81 +21,40 @@ export const Statistics = () => {
     dispatch(changeItem(newValue));
   };
 
-  const renderValue = value => {
-    return value !== null ? value : 'N/A';
-  };
-
   return (
     <div className={s.StatisticsWrapper}>
       <div className={s.StatisticsInner}>
         <ul className={s.platfromList}>
-          <li
-            className={`${s.platfromItem} ${
-              item === 'spending' ? s.active : ''
-            }`}
+          <ListItems
+            label="Spend"
+            value={statisticData && statisticData.spending}
+            active={item === 'spending'}
             onClick={() => handleItemClick('spending')}
-          >
-            <div className={s.platformCard}>
-              <div className={s.platfromHeader}>
-                <span>Spend:</span>
-                <span className={s.descr}>
-                  $ {renderValue(statisticData && statisticData.spending)}
-                </span>
-              </div>
-            </div>
-          </li>
-          <li
-            className={`${s.platfromItem} ${item === 'imress' ? s.active : ''}`}
+          />
+          <ListItems
+            label="Impressions"
+            value={statisticData && statisticData.impress}
+            active={item === 'imress'}
             onClick={() => handleItemClick('imress')}
-          >
-            <div className={s.platformCard}>
-              <div className={s.platfromHeader}>
-                <span>Impressions:</span>
-                <span className={s.descr}>
-                  {renderValue(statisticData && statisticData.impress)}
-                </span>
-              </div>
-            </div>
-          </li>
-          <li
-            className={`${s.platfromItem} ${item === 'resp' ? s.active : ''}`}
+          />
+          <ListItems
+            label="Responses"
+            value={statisticData && statisticData.resp}
+            active={item === 'resp'}
             onClick={() => handleItemClick('resp')}
-          >
-            <div className={s.platformCard}>
-              <div className={s.platfromHeader}>
-                <span>Responses:</span>
-                <span className={s.descr}>
-                  {renderValue(statisticData && statisticData.resp)}
-                </span>
-              </div>
-            </div>
-          </li>
-          <li
-            className={`${s.platfromItem} ${item === 't_outs' ? s.active : ''}`}
+          />
+          <ListItems
+            label="Timeout %"
+            value={statisticData && statisticData.t_outs}
+            active={item === 't_outs'}
             onClick={() => handleItemClick('t_outs')}
-          >
-            <div className={s.platformCard}>
-              <div className={s.platfromHeader}>
-                <span>Timeout %:</span>
-                <span className={s.descr}>
-                  {renderValue(statisticData && statisticData.t_outs)} %
-                </span>
-              </div>
-            </div>
-          </li>
-          <li
-            className={`${s.platfromItem} ${item === 'w_rate' ? s.active : ''}`}
+          />
+          <ListItems
+            label="Win rate %"
+            value={statisticData && statisticData.w_rate}
+            active={item === 'w_rate'}
             onClick={() => handleItemClick('w_rate')}
-          >
-            <div className={s.platformCard}>
-              <div className={s.platfromHeader}>
-                <span>Win rate %:</span>
-                <span className={s.descr}>
-                  {renderValue(statisticData && statisticData.w_rate)} %
-                </span>
-              </div>
-            </div>
-          </li>
+          />
         </ul>
       </div>
       <StatisticsChart />

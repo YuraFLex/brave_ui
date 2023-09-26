@@ -15,6 +15,8 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import { fetchCahrtData } from 'redux/chart/chartOperation';
+import { statPeriod } from 'redux/statistics/statPeriodSlice';
+import { changeItem } from 'redux/statistics/itemSlice';
 
 export const StatisticsFilter = () => {
   const [isPeriod, setIsPeriod] = useState('today');
@@ -44,10 +46,14 @@ export const StatisticsFilter = () => {
   };
 
   useEffect(() => {
+    dispatch(statPeriod('today'));
+  }, [dispatch]);
+
+  useEffect(() => {
     const Chartdata = {
       partnerId: id,
       type,
-      period: ['today', 'yesterday'],
+      period: 'today',
       endPoint: 'all',
     };
     dispatch(fetchCahrtData(Chartdata));
@@ -105,12 +111,16 @@ export const StatisticsFilter = () => {
     const Chartdata = {
       partnerId: id,
       type,
-      period: ['today', 'yesterday', 'lastweek'],
+      period: isPeriod,
       endPoint: isEndpoint,
+      startDate: startDateUTC ? startDateUTC.toISOString() : null,
+      endDate: endDateUTC ? endDateUTC.toISOString() : null,
     };
 
     dispatch(fetchStatistics(data));
     dispatch(fetchCahrtData(Chartdata));
+    dispatch(statPeriod(isPeriod));
+    dispatch(changeItem('spending'));
     // console.log('данные отправленные на сервер:', data);
   };
 

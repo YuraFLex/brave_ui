@@ -11,7 +11,6 @@ export const fetchCahrtData = createAsyncThunk(
 
         try {
             const response = await axios.get('/statistics/chart_data', { params: data })
-
             return response.data
 
         } catch (error) {

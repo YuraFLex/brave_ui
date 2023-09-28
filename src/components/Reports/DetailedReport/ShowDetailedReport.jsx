@@ -49,17 +49,19 @@ export const ShowDetailedReport = () => {
   };
 
   useEffect(() => {
-    if (detailedData && detailedData.appName) {
-      const newData = detailedData.appName.map((appName, index) => ({
-        appName: appName,
-        b_domain: detailedData.b_domain[index],
-        t_interval: detailedData.t_interval[index],
-        spending: detailedData.spending[index],
-        impress: detailedData.impress[index],
-        sizes: detailedData.sizes[index],
-        type: detailedData.type[index],
-        key: index,
-      }));
+    if (detailedData && detailedData.detaliedData.appName) {
+      const newData = detailedData.detaliedData.appName.map(
+        (appName, index) => ({
+          appName: appName,
+          b_domain: detailedData.detaliedData.b_domain[index],
+          t_interval: detailedData.detaliedData.t_interval[index],
+          spending: detailedData.detaliedData.spending[index],
+          impress: detailedData.detaliedData.impress[index],
+          sizes: detailedData.detaliedData.sizes[index],
+          type: detailedData.detaliedData.type[index],
+          key: index,
+        })
+      );
 
       setRowData(newData);
     }
@@ -155,11 +157,11 @@ export const ShowDetailedReport = () => {
   ];
 
   const tableFooter =
-    detailedData && detailedData.total
+    detailedData && detailedData.detaliedData.total
       ? [
           {
-            spending: detailedData.total.spending,
-            impress: detailedData.total.impress,
+            spending: detailedData.detaliedData.total.spending,
+            impress: detailedData.detaliedData.total.impress,
           },
         ]
       : [];
@@ -359,10 +361,10 @@ export const ShowDetailedReport = () => {
       <div
         style={{
           height:
-            (detailedData.groupBy.length === 1 &&
-              detailedData.period === 'today') ||
-            (detailedData.groupBy.length === 1 &&
-              detailedData.period === 'yesterday')
+            (detailedData.detaliedData.groupBy.length === 1 &&
+              detailedData.detaliedData.period === 'today') ||
+            (detailedData.detaliedData.groupBy.length === 1 &&
+              detailedData.detaliedData.period === 'yesterday')
               ? 250
               : 550,
           width: '100%',

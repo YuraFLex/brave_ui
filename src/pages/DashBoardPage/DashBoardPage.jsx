@@ -8,6 +8,7 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { StatisticsFilter } from 'components/Statistics/StatisticsFilter';
 import { useState } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
+import { ToastContainer } from 'react-toastify';
 
 const Accordion = styled(props => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -53,6 +54,7 @@ export const DashBoardPage = () => {
   return (
     <>
       <Wraper>
+        <ToastContainer />
         <StatisticsFilter />
         <Accordion
           expanded={expanded.includes('panel1')}

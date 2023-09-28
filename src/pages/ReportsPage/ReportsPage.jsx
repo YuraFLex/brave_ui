@@ -10,6 +10,7 @@ import { ShowSummaryReports } from 'components/Reports/SummaryReport/ShowSummary
 import { DetailedReport } from 'components/Reports/DetailedReport/DetailedReport';
 import { ShowDetailedReport } from 'components/Reports/DetailedReport/ShowDetailedReport';
 import { BiRightArrow } from 'react-icons/bi';
+import { ToastContainer } from 'react-toastify';
 
 const Accordion = styled(props => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -63,6 +64,7 @@ export const ReportsPage = () => {
 
   return (
     <Wraper>
+      <ToastContainer />
       <Accordion
         expanded={expanded.includes('panel1')}
         onChange={handleChange('panel1')}

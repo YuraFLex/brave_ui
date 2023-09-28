@@ -123,22 +123,22 @@ export const StatisticsChart = () => {
     const borderColor = backgroundColor.map(color => color.replace('33', 'FF'));
 
     setChartData({
-      labels: period === 'today' ? interval : data.t_interval,
+      labels: period === 'today' ? interval : data.chartData.t_interval,
       datasets: [
         {
           fill: true,
           label,
           data:
             item === 'spending'
-              ? data.spending
+              ? data.chartData.spending
               : item === 'imress'
-              ? data.impress
+              ? data.chartData.impress
               : item === 'resp'
-              ? data.resp
+              ? data.chartData.resp
               : item === 't_outs'
-              ? data.t_outs
+              ? data.chartData.t_outs
               : item === 'w_rate'
-              ? data.w_rate
+              ? data.chartData.w_rate
               : [],
           backgroundColor,
           borderColor,
@@ -187,6 +187,7 @@ export const StatisticsChart = () => {
             style={{ marginTop: '-20px', marginBottom: '20px' }}
           />
         )}
+
         <Line data={chartData} options={options} />
       </div>
     </div>

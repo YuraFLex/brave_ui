@@ -64,7 +64,7 @@ export const SummaryReports = ({ onExpand }) => {
       );
     }
 
-    const data = {
+    const summaryData = {
       partner_id: id,
       type: type,
       displayBy: isDisplay,
@@ -74,7 +74,7 @@ export const SummaryReports = ({ onExpand }) => {
       endPointUrl: endPointUrl,
     };
 
-    dispatch(fetchSummaryReports(data));
+    dispatch(fetchSummaryReports(summaryData));
     // console.log('Data to server:', data);
     onExpand();
   };

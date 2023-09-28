@@ -11,7 +11,7 @@ export const login = createAsyncThunk(
     // console.log('userData:', userData);
     try {
       const { data } = await axios.post('/login', userData);
-      // console.log('Данные c сервера:', data);
+      console.log('Данные с сервера:', data);
 
       if (data.success) {
         toast.success(data.message);
@@ -21,9 +21,18 @@ export const login = createAsyncThunk(
 
       return data;
     } catch (error) {
-      toast.error(error.message);
-      return rejectWithValue(error.message);
+      if (error.response) {
+        // Ошибка с сервера
+        const { data } = error.response;
+        toast.error(data.message);
+        return rejectWithValue(data.message);
+      } else {
+        // Сетевая ошибка
+        toast.error(error.message);
+        return rejectWithValue(error.message);
+      }
     }
   }
 );
+
 

@@ -126,7 +126,7 @@ export const DetailedReport = ({ onExpand }) => {
 
     const defaultGroupBy = ['default'];
 
-    const data = {
+    const detaliedData = {
       partner_id: id,
       type: type,
       period: isPeriod,
@@ -139,7 +139,7 @@ export const DetailedReport = ({ onExpand }) => {
       endPointUrl: endPointUrl,
     };
 
-    dispatch(fetchDetailedReports(data));
+    dispatch(fetchDetailedReports(detaliedData));
     // console.log('Detailed Report Данные отправленные на сервер:', data);
 
     onExpand();

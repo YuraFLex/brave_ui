@@ -50,13 +50,13 @@ export const StatisticsFilter = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const Chartdata = {
+    const ChartData = {
       partnerId: id,
       type,
       period: 'today',
       endPoint: 'all',
     };
-    dispatch(fetchCahrtData(Chartdata));
+    dispatch(fetchCahrtData(ChartData));
   }, [dispatch, id, type]);
 
   useEffect(() => {
@@ -108,7 +108,7 @@ export const StatisticsFilter = () => {
       endDate: endDateUTC ? endDateUTC.toISOString() : null,
     };
 
-    const Chartdata = {
+    const ChartData = {
       partnerId: id,
       type,
       period: isPeriod,
@@ -118,7 +118,7 @@ export const StatisticsFilter = () => {
     };
 
     dispatch(fetchStatistics(data));
-    dispatch(fetchCahrtData(Chartdata));
+    dispatch(fetchCahrtData(ChartData));
     dispatch(statPeriod(isPeriod));
     dispatch(changeItem('spending'));
     // console.log('данные отправленные на сервер:', data);

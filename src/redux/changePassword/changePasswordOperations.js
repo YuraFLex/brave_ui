@@ -9,23 +9,26 @@ export const changePassword = createAsyncThunk(
     'changePassword/changePassword',
     async (passwordData, { rejectWithValue }) => {
         try {
-            const response = await axios.put(`/changepassword`, passwordData);
+            console.log('passwordData:', passwordData);
+            const { data } = await axios.put(`/changepassword`, passwordData);
             // console.log('Данные отправленные на сервер', response.data);
 
-            if (response.status === 200) {
-                toast.success(response.data.message);
-                return response.data;
-            } else if (response.status === 400 && response.data.error) {
-                const { message } = response.data.error;
-                toast.error(message);
-                return rejectWithValue(message);
+            if (data.success) {
+                toast.success(data.message)
             } else {
-                toast.error('An error occurred while changing the password');
-                return rejectWithValue('An error occurred while changing the password');
+                toast.error(data.message)
             }
+
+            return data;
         } catch (error) {
-            toast.error(error.message);
-            return rejectWithValue(error.message);
+            if (error.response) {
+                const { data } = error.response;
+                toast.error(data.message);
+                return rejectWithValue(data.message);
+            } else {
+                toast.error(error.message);
+                return rejectWithValue(error.message);
+            }
         }
     }
 );

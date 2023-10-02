@@ -11,11 +11,11 @@ export const LoginPage = () => {
 
   return (
     <div className={s.logContainer}>
+      <ToastContainer />
       <div>
         <img className={s.logo} src={logo} alt="" />
       </div>
       <LoginForm />
-      <ToastContainer />
       <p className={s.copy}>DashBoard Partners &#169; {showYear}</p>
     </div>
   );

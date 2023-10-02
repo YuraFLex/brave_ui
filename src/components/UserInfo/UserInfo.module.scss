@@ -12,9 +12,11 @@
 
 .UserInfoItem {
   display: flex;
-  padding: 10px 20px;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  padding: 15px 10px 0 0;
+  align-items: flex-start;
+  gap: 5px;
+  border-bottom: 1px dashed #e0e0e0;
 
   &:not(:last-child) {
     // border-bottom: 1px solid #0099fa;

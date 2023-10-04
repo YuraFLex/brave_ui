@@ -8,8 +8,6 @@ import { ChangeUserPassword } from 'components/ChangeUserPassword/ChangeUserPass
 import { UserInfo } from 'components/UserInfo/UserInfo';
 import { Wraper } from 'components/Wraper/Wraper';
 import { BiRightArrow } from 'react-icons/bi';
-// import { ThemeChanger } from 'components/ThemeChanger/ThemeChanger';
-// import { useSelector } from 'react-redux';
 
 const Accordion = styled(props => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -78,23 +76,6 @@ export const UserPage = () => {
           <ChangeUserPassword />
         </AccordionDetails>
       </Accordion>
-
-      {/* <Accordion
-        style={{
-          backgroundColor: theme === 'dark' ? '#3d266eb1' : '#fff',
-          color: theme === 'dark' ? '#e1b0f3' : '#000',
-          transition: 'background-color 0.5s linear, color 0.5s linear',
-        }}
-        expanded={expanded.includes('panel3')}
-        onChange={handleChange('panel3')}
-      >
-        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <h4>Custom Setting</h4>
-        </AccordionSummary>
-        <AccordionDetails>
-          <ThemeChanger />
-        </AccordionDetails>
-      </Accordion> */}
     </Wraper>
   );
 };

@@ -47,7 +47,6 @@ export const StatisticsChart = () => {
   const data = useSelector(chartsData);
   const item = useSelector(state => state.item);
   const period = useSelector(state => state.period);
-  // console.log('period:', period);
   // console.log('data:', data);
 
   const getRandomHexColor = alpha => {

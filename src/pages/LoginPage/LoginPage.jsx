@@ -14,7 +14,7 @@ export const LoginPage = () => {
     <div className={s.logContainer}>
       <ToastContainer transition={Flip} />
       <div>
-        <img className={s.logo} src={logo} alt="" />
+        <img className={s.logo} src={logo} alt="brave logo" />
       </div>
       <LoginForm />
       <p className={s.copy}>DashBoard Partners &#169; {showYear}</p>

@@ -9,6 +9,7 @@ import { StatisticsFilter } from 'components/Statistics/StatisticsFilter';
 import { useState } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
 import { ToastContainer } from 'react-toastify';
+import { Flip } from 'react-toastify';
 
 const Accordion = styled(props => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -51,10 +52,11 @@ export const DashBoardPage = () => {
       newExpanded ? [...expanded, panel] : expanded.filter(p => p !== panel)
     );
   };
+
   return (
     <>
       <Wraper>
-        <ToastContainer />
+        <ToastContainer transition={Flip} />
         <StatisticsFilter />
         <Accordion
           expanded={expanded.includes('panel1')}

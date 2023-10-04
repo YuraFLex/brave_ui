@@ -27,7 +27,7 @@ export const Statistics = () => {
         <ul className={s.platfromList}>
           <ListItems
             label="Spend"
-            value={statisticData && statisticData.spending}
+            value={`$ ${statisticData && statisticData.spending}`}
             active={item === 'spending'}
             onClick={() => handleItemClick('spending')}
           />
@@ -45,13 +45,13 @@ export const Statistics = () => {
           />
           <ListItems
             label="Timeout %"
-            value={statisticData && statisticData.t_outs}
+            value={`${statisticData && statisticData.t_outs} %`}
             active={item === 't_outs'}
             onClick={() => handleItemClick('t_outs')}
           />
           <ListItems
             label="Win rate %"
-            value={statisticData && statisticData.w_rate}
+            value={`${statisticData && statisticData.w_rate} %`}
             active={item === 'w_rate'}
             onClick={() => handleItemClick('w_rate')}
           />

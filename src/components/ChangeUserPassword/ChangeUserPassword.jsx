@@ -12,6 +12,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { Flip } from 'react-toastify';
 
 const DemoPaper = styled(Paper)(({ theme }) => ({
   maxWidth: 500,
@@ -76,7 +77,7 @@ export const ChangeUserPassword = () => {
   return (
     <DemoPaper square={false}>
       {isLoadnig && <BraveLogo />}
-      <ToastContainer />
+      <ToastContainer transition={Flip} />
       <form className={s.ChangeUserPasswordForm} onSubmit={onSubmit}>
         <h3 className={s.ChangeUserPasswordTitile}>
           To change your password, fill out the fields below:

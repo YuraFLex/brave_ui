@@ -59,8 +59,7 @@ export const ChangeUserPassword = () => {
         confirmPassword: confirmPassword,
       };
       dispatch(changePassword(passwordData));
-      console.log('passwordData:', passwordData);
-
+      // console.log('passwordData:', passwordData);
       setOldPassword('');
       setNewPassword('');
       setConfirmPassword('');

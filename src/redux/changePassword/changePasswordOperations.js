@@ -9,7 +9,8 @@ export const changePassword = createAsyncThunk(
     'changePassword/changePassword',
     async (passwordData, { rejectWithValue }) => {
         try {
-            console.log('passwordData:', passwordData);
+
+            // console.log('passwordData:', passwordData);
             const { data } = await axios.put(`/changepassword`, passwordData);
             // console.log('Данные отправленные на сервер', response.data);
 
@@ -32,8 +33,4 @@ export const changePassword = createAsyncThunk(
         }
     }
 );
-
-
-
-
 

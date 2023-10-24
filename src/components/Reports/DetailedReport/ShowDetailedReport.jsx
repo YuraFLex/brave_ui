@@ -19,6 +19,7 @@ import CropFreeOutlinedIcon from '@mui/icons-material/CropFreeOutlined';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import s from './ShowDetailedReport.module.scss';
+import { TableLoadSkeleton } from '../TableLoadSkeleton';
 
 export const ShowDetailedReport = () => {
   const [rowData, setRowData] = useState([]);
@@ -231,7 +232,7 @@ export const ShowDetailedReport = () => {
   }
 
   if (loadData) {
-    return <h4 style={{ textAlign: 'center' }}>Loading...</h4>;
+    return <TableLoadSkeleton />;
   }
 
   return (

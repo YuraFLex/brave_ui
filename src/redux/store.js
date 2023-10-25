@@ -9,6 +9,7 @@ import { fetchSizesReducer } from './reports/sizes/sizesSlice';
 import { chartReducer } from './chart/chartSlice';
 import itemReducer from './statistics/itemSlice';
 import statPeriodReducer from './statistics/statPeriodSlice'
+import menuOpenReducer from './action/menuOpen'
 
 import {
   persistStore,
@@ -93,6 +94,7 @@ export const store = configureStore({
     chartData: cahrtDataPersistedReducer,
     item: itemReducer,
     period: statPeriodReducer,
+    menuOpen: menuOpenReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

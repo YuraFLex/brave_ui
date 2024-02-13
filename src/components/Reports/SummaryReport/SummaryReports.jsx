@@ -18,8 +18,8 @@ import '../../../index.css';
 export const SummaryReports = ({ onExpand }) => {
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
   const [endPointUrl, setEndPointUrl] = useState('all');
 
   const dispatch = useDispatch();
@@ -36,14 +36,6 @@ export const SummaryReports = ({ onExpand }) => {
     setIsDisplay(e.target.value);
   };
 
-  const handleStartDateChange = date => {
-    setSelectedStartDate(date);
-  };
-
-  const handleEndDateChange = date => {
-    setSelectedEndDate(date);
-  };
-
   const handleChangeEndPoint = e => {
     setEndPointUrl(e.target.value);
   };
@@ -51,16 +43,15 @@ export const SummaryReports = ({ onExpand }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    let startDateUTC = selectedStartDate;
-    let endDateUTC = selectedEndDate;
+    let startDateUTC = startDate;
+    let endDateUTC = endDate;
 
-    if (selectedStartDate && selectedEndDate) {
+    if (startDate && endDate) {
       startDateUTC = new Date(
-        selectedStartDate.getTime() -
-          selectedStartDate.getTimezoneOffset() * 60000
+        startDate.getTime() - startDate.getTimezoneOffset() * 60000
       );
       endDateUTC = new Date(
-        selectedEndDate.getTime() - selectedEndDate.getTimezoneOffset() * 60000
+        endDate.getTime() - endDate.getTimezoneOffset() * 60000
       );
     }
 
@@ -81,13 +72,12 @@ export const SummaryReports = ({ onExpand }) => {
 
   return (
     <div>
-      {isLoading && <BraveLogo />}
+      {isLoading && <BraveLogo message={'Your report is loading...'} />}
       <form className={s.ReportSettingForm} onSubmit={handleSubmit}>
         <div className={s.ReportSettingContainer}>
           <div className={s.ReportSettingInner}>
             <div className={s.ReportSettingFilterBox}>
               <h4>Select Period:</h4>
-
               <FormControl fullWidth>
                 <Select value={isPeriod} onChange={handleChangePeriod}>
                   <MenuItem value="today">Today</MenuItem>
@@ -98,36 +88,27 @@ export const SummaryReports = ({ onExpand }) => {
                   <MenuItem value="custom">Custom</MenuItem>
                 </Select>
               </FormControl>
-
-              {isPeriod === 'custom' && (
-                <div className={s.DatePicker}>
-                  <h4>Start Date:</h4>
-                  <DatePicker
-                    selected={selectedStartDate}
-                    onChange={handleStartDateChange}
-                    className={s.ReportSettingDatePicker}
-                    placeholderText="Select Start Date"
-                    selectsStart
-                    startDate={selectedStartDate}
-                    endDate={selectedEndDate}
-                    dateFormat="dd/MM/yyyy"
-                    isClearable
-                  />
-                  <h4>End Date:</h4>
-                  <DatePicker
-                    selected={selectedEndDate}
-                    onChange={handleEndDateChange}
-                    className={s.ReportSettingDatePicker}
-                    placeholderText="Select End Date"
-                    selectsEnd
-                    startDate={selectedStartDate}
-                    endDate={selectedEndDate}
-                    minDate={selectedStartDate}
-                    dateFormat="dd/MM/yyyy"
-                    isClearable
-                  />
-                </div>
-              )}
+              <div className={s.DatePicker}>
+                <h4>From/To:</h4>
+                <DatePicker
+                  className={s.ReportSettingDatePicker}
+                  selectsRange={true}
+                  startDate={isPeriod === 'custom' ? startDate : null}
+                  endDate={isPeriod === 'custom' ? endDate : null}
+                  onChange={update => {
+                    setDateRange(update);
+                  }}
+                  isClearable={true}
+                  monthsShown={2}
+                  dateFormat="dd/MM/yyyy"
+                  placeholderText={
+                    isPeriod === 'custom'
+                      ? 'DD/MM/YYYY'
+                      : 'Select period custom'
+                  }
+                  disabled={isPeriod === 'custom' ? false : true}
+                />
+              </div>
             </div>
 
             <div className={s.ReportSettingFilterBox}>

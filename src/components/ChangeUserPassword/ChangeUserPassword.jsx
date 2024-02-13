@@ -75,7 +75,7 @@ export const ChangeUserPassword = () => {
 
   return (
     <DemoPaper square={false}>
-      {isLoadnig && <BraveLogo />}
+      {isLoadnig && <BraveLogo message={'Updating the password data'} />}
       <ToastContainer transition={Flip} />
       <form className={s.ChangeUserPasswordForm} onSubmit={onSubmit}>
         <h3 className={s.ChangeUserPasswordTitile}>

@@ -57,8 +57,8 @@ export const DetailedReport = ({ onExpand }) => {
   const theme = useTheme();
   const [isDisplay, setIsDisplay] = useState('day');
   const [isPeriod, setIsPeriod] = useState('today');
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
   const [selectedSize, setSelectedSize] = useState('allSize');
   const [selectedTrafficType, setSelectedTrafficType] = useState('allTypes');
   const [endPointUrl, setEndPointUrl] = useState('all');
@@ -92,14 +92,6 @@ export const DetailedReport = ({ onExpand }) => {
     setIsDisplay(e.target.value);
   };
 
-  const handleStartDateChange = date => {
-    setSelectedStartDate(date);
-  };
-
-  const handleEndDateChange = date => {
-    setSelectedEndDate(date);
-  };
-
   const handleChangeTefficType = e => {
     setSelectedTrafficType(e.target.value);
   };
@@ -111,16 +103,15 @@ export const DetailedReport = ({ onExpand }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    let startDateUTC = selectedStartDate;
-    let endDateUTC = selectedEndDate;
+    let startDateUTC = startDate;
+    let endDateUTC = endDate;
 
-    if (selectedStartDate && selectedEndDate) {
+    if (startDate && endDate) {
       startDateUTC = new Date(
-        selectedStartDate.getTime() -
-          selectedStartDate.getTimezoneOffset() * 60000
+        startDate.getTime() - startDate.getTimezoneOffset() * 60000
       );
       endDateUTC = new Date(
-        selectedEndDate.getTime() - selectedEndDate.getTimezoneOffset() * 60000
+        endDate.getTime() - endDate.getTimezoneOffset() * 60000
       );
     }
 
@@ -147,7 +138,7 @@ export const DetailedReport = ({ onExpand }) => {
 
   return (
     <div>
-      {isLoading && <BraveLogo />}
+      {isLoading && <BraveLogo message={'Your report is loading...'} />}
       <form className={s.DetailedReportForm} onSubmit={handleSubmit}>
         <div className={s.DetailedReportContainer}>
           <div className={s.DetailedReportBox}>
@@ -163,35 +154,27 @@ export const DetailedReport = ({ onExpand }) => {
                   <MenuItem value="custom">Custom</MenuItem>
                 </Select>
               </FormControl>
-              {isPeriod === 'custom' && (
-                <div className={s.DetailedReportInner}>
-                  <h4>Start Date:</h4>
-                  <DatePicker
-                    selected={selectedStartDate}
-                    onChange={handleStartDateChange}
-                    className={s.DetailedReportDatePicker}
-                    placeholderText="Select Start Date"
-                    selectsStart
-                    startDate={selectedStartDate}
-                    endDate={selectedEndDate}
-                    dateFormat="dd/MM/yyyy"
-                    isClearable
-                  />
-                  <h4>End Date:</h4>
-                  <DatePicker
-                    selected={selectedEndDate}
-                    onChange={handleEndDateChange}
-                    className={s.DetailedReportDatePicker}
-                    placeholderText="Select End Date"
-                    selectsEnd
-                    startDate={selectedStartDate}
-                    endDate={selectedEndDate}
-                    minDate={selectedStartDate}
-                    dateFormat="dd/MM/yyyy"
-                    isClearable
-                  />
-                </div>
-              )}
+              <div className={s.DetailedReportInner}>
+                <h4>From/To:</h4>
+                <DatePicker
+                  className={s.DetailedReportDatePicker}
+                  selectsRange={true}
+                  startDate={isPeriod === 'custom' ? startDate : null}
+                  endDate={isPeriod === 'custom' ? endDate : null}
+                  onChange={update => {
+                    setDateRange(update);
+                  }}
+                  isClearable={true}
+                  monthsShown={2}
+                  dateFormat="dd/MM/yyyy"
+                  placeholderText={
+                    isPeriod === 'custom'
+                      ? 'DD/MM/YYYY'
+                      : 'Select period custom'
+                  }
+                  disabled={isPeriod === 'custom' ? false : true}
+                />
+              </div>
             </div>
 
             <div className={s.DetailedReportInner}>

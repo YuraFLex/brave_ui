@@ -422,6 +422,7 @@ export const ShowSummaryReports = () => {
           onGridReady={onGridReady}
           suppressCsvExport={false}
           pinnedBottomRowData={tableFooter}
+          enableFilter={true}
         />
       </div>
     </div>

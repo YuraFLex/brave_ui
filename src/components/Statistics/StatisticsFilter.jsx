@@ -21,8 +21,8 @@ import { changeItem } from 'redux/statistics/itemSlice';
 export const StatisticsFilter = () => {
   const [isPeriod, setIsPeriod] = useState('today');
   const [isEndpoint, setIsEndpoint] = useState('all');
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
 
   const dispatch = useDispatch();
   const id = useSelector(userPartnerId);
@@ -75,27 +75,18 @@ export const StatisticsFilter = () => {
     setIsEndpoint(e.target.value);
   };
 
-  const handleStartDateChange = date => {
-    setSelectedStartDate(date);
-  };
-
-  const handleEndDateChange = date => {
-    setSelectedEndDate(date);
-  };
-
   const handleSubmit = e => {
     e.preventDefault();
 
-    let startDateUTC = selectedStartDate;
-    let endDateUTC = selectedEndDate;
+    let startDateUTC = startDate;
+    let endDateUTC = endDate;
 
-    if (selectedStartDate && selectedEndDate) {
+    if (startDate && endDate) {
       startDateUTC = new Date(
-        selectedStartDate.getTime() -
-          selectedStartDate.getTimezoneOffset() * 60000
+        startDate.getTime() - startDate.getTimezoneOffset() * 60000
       );
       endDateUTC = new Date(
-        selectedEndDate.getTime() - selectedEndDate.getTimezoneOffset() * 60000
+        endDate.getTime() - endDate.getTimezoneOffset() * 60000
       );
     }
 
@@ -126,7 +117,7 @@ export const StatisticsFilter = () => {
 
   return (
     <div className={s.StatisticsFilterBox}>
-      {isLoading && <BraveLogo />}
+      {isLoading && <BraveLogo message={'Loading Platform Activity...'} />}
       <form className={s.StatisticsFilterForm} onSubmit={handleSubmit}>
         <p>Period:</p>
         <FormControl style={{ width: '300px' }}>
@@ -139,36 +130,25 @@ export const StatisticsFilter = () => {
             <MenuItem value="custom">Custom</MenuItem>
           </Select>
         </FormControl>
-
-        {isPeriod === 'custom' && (
-          <div className={s.StatisticsFilterDatePickerContainer}>
-            <p className={s.StatisticsFilterDatePickerLabel}>Start Date:</p>
-            <DatePicker
-              selected={selectedStartDate}
-              onChange={handleStartDateChange}
-              className={s.StatisticsFilterDatePicker}
-              placeholderText="Select Start Date"
-              selectsStart
-              startDate={selectedStartDate}
-              endDate={selectedEndDate}
-              dateFormat="dd/MM/yyyy"
-              isClearable
-            />
-            <p className={s.StatisticsFilterDatePickerLabel}>End Date:</p>
-            <DatePicker
-              selected={selectedEndDate}
-              onChange={handleEndDateChange}
-              className={s.StatisticsFilterDatePicker}
-              placeholderText="Select End Date"
-              selectsEnd
-              startDate={selectedStartDate}
-              endDate={selectedEndDate}
-              minDate={selectedStartDate}
-              dateFormat="dd/MM/yyyy"
-              isClearable
-            />
-          </div>
-        )}
+        <div className={s.StatisticsFilterDatePickerContainer}>
+          <p className={s.StatisticsFilterDatePickerLabel}>From/To:</p>
+          <DatePicker
+            className={s.StatisticsFilterDatePicker}
+            selectsRange={true}
+            startDate={isPeriod === 'custom' ? startDate : null}
+            endDate={isPeriod === 'custom' ? endDate : null}
+            onChange={update => {
+              setDateRange(update);
+            }}
+            isClearable={true}
+            monthsShown={2}
+            dateFormat="dd/MM/yyyy"
+            placeholderText={
+              isPeriod === 'custom' ? 'DD/MM/YYYY' : 'Select period custom'
+            }
+            disabled={isPeriod === 'custom' ? false : true}
+          />
+        </div>
 
         {type === 'DSP' ? (
           <>

@@ -68,6 +68,10 @@ export const ShowDetailedReport = () => {
     }
   }, [detailedData]);
 
+  useEffect(() => {
+    setRowData([]);
+  }, []);
+
   const columnDefs = [
     {
       headerName: 'Date',

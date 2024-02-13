@@ -24,5 +24,8 @@
 }
 
 .menuOpen {
-  width: calc(100% - 85px);
+  width: calc(100% - 15px);
+  @media screen and (min-width: 666px) {
+    width: calc(100% - 85px);
+  }
 }

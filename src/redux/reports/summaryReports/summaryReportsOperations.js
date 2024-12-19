@@ -18,7 +18,7 @@ export const fetchSummaryReports = createAsyncThunk(
             } else {
                 toast.error(data.message);
             }
-            return data
+            return data.summaryData;
         } catch (error) {
             if (error.response) {
                 const { data } = error.response;

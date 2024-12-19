@@ -52,20 +52,18 @@ export const ShowSummaryReports = () => {
   };
 
   useEffect(() => {
-    if (summaryData && summaryData.summaryData.spending) {
-      const newData = summaryData.summaryData.spending.map(
-        (spending, index) => ({
-          spending: spending,
-          w_rate: summaryData.summaryData.w_rate[index],
-          t_interval: summaryData.summaryData.t_interval[index],
-          req: summaryData.summaryData.req[index],
-          impress: summaryData.summaryData.impress[index],
-          resp: summaryData.summaryData.resp[index],
-          timeOut: summaryData.summaryData.timeOut[index],
-          t_outs: summaryData.summaryData.t_outs[index],
-          key: index,
-        })
-      );
+    if (summaryData && summaryData.spending) {
+      const newData = summaryData.spending.map((spending, index) => ({
+        spending: spending,
+        w_rate: summaryData.w_rate[index],
+        t_interval: summaryData.t_interval[index],
+        req: summaryData.req[index],
+        impress: summaryData.impress[index],
+        resp: summaryData.resp[index],
+        timeOut: summaryData.timeOut[index],
+        t_outs: summaryData.t_outs[index],
+        key: index,
+      }));
 
       setRowData(newData);
     }
@@ -187,16 +185,16 @@ export const ShowSummaryReports = () => {
   ];
 
   const tableFooter =
-    summaryData && summaryData.summaryData.total
+    summaryData.length && summaryData.total
       ? [
           {
-            spending: summaryData.summaryData.total.spending,
-            w_rate: summaryData.summaryData.total.w_rate,
-            req: summaryData.summaryData.total.req,
-            resp: summaryData.summaryData.total.resp,
-            impress: summaryData.summaryData.total.impress,
-            timeOut: summaryData.summaryData.total.timeOut,
-            t_outs: summaryData.summaryData.total.t_outs,
+            spending: summaryData.total.spending,
+            w_rate: summaryData.total.w_rate,
+            req: summaryData.total.req,
+            resp: summaryData.total.resp,
+            impress: summaryData.total.impress,
+            timeOut: summaryData.total.timeOut,
+            t_outs: summaryData.total.t_outs,
           },
         ]
       : [];
@@ -395,10 +393,10 @@ export const ShowSummaryReports = () => {
       <div
         style={{
           height:
-            (summaryData.summaryData.period === 'today' &&
-              summaryData.summaryData.displayBy !== 'hour') ||
-            (summaryData.summaryData.period === 'yesterday' &&
-              summaryData.summaryData.displayBy !== 'hour')
+            (summaryData.period === 'today' &&
+              summaryData.displayBy !== 'hour') ||
+            (summaryData.period === 'yesterday' &&
+              summaryData.displayBy !== 'hour')
               ? 250
               : 550,
           width: '100%',
